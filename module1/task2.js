@@ -1,7 +1,8 @@
-const csv = require('csvtojson');
-const fs = require('fs');
-const pathCSV = './csv';
-const pathTXT = './txt';
+import csv from "csvtojson";
+import fs from 'fs';
+
+const pathCSVFile = './csv/file.csv';
+const pathTXTFile = './txt/file.txt';
 
 csv({
   headers: ["book", "author", "amount", "price"],
@@ -12,10 +13,10 @@ csv({
     "price": "number"
   }
 })
-  .fromFile(`${pathCSV}/file.csv`)
+  .fromFile(pathCSVFile)
   .then((json) => {
     let data = json.map((obj) => JSON.stringify(obj)).join('\n');
-    fs.writeFile(`${pathTXT}/file.txt`, data, (error, data) => {
+    fs.writeFile(pathTXTFile, data, (error, data) => {
       if(error) console.log(error)
     });
   });
