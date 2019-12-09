@@ -1,11 +1,11 @@
 import csv from "csvtojson";
 import fs from 'fs';
+import path from 'path';
 import { pipeline } from 'stream';
 
 if (process.argv[2] === 'ram') {
-  const pathCSVFileRAM = './csv/file.r.csv';
-  const pathTXTFileRAM = './txt/file.r.txt';
-  const readableStream = fs.createReadStream(pathCSVFileRAM);
+  const pathCSVFileRAM = path.join(__dirname, 'csv', 'file.r.csv');
+  const pathTXTFileRAM = path.join(__dirname, 'txt', 'file.r.txt');
   const writableStream = fs.createWriteStream(pathTXTFileRAM);
 
   csv({
@@ -18,8 +18,8 @@ if (process.argv[2] === 'ram') {
     }
   }).fromFile(pathCSVFileRAM).pipe(writableStream);
 } else {
-  const pathCSVFile = './csv/file.csv';
-  const pathTXTFile = './txt/file.txt';
+  const pathCSVFile = path.join(__dirname, 'csv', 'file.csv');
+  const pathTXTFile = path.join(__dirname, 'txt', 'file.txt');
   
   csv({
     headers: ["book", "author", "amount", "price"],
