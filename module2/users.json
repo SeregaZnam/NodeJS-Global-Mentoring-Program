@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "login": "user",
+    "password": 123,
+    "age": 20,
+    "isDeleted": false
+  },
+  {
+    "id": 2,
+    "login": "use2",
+    "password": 1234,
+    "age": 21,
+    "isDeleted": false
+  },
+  {
+    "id": "2345",
+    "login": "",
+    "password": "",
+    "age": "",
+    "isDeleted": false
+  },
+  {
+    "id": "2345234",
+    "login": "gertgert",
+    "password": "gerther",
+    "age": "gertg",
+    "isDeleted": false
+  },
+  {
+    "id": "2345234",
+    "login": "gertgert",
+    "password": "gerther",
+    "age": "gertg",
+    "isDeleted": false
+  },
+  {
+    "id": "2435234",
+    "login": "tertg",
+    "password": "gertger",
+    "age": "gertg",
+    "isDeleted": false
+  },
+  {
+    "id": "2435234",
+    "login": "tertg",
+    "password": "gertger",
+    "age": "gertg",
+    "isDeleted": false
+  },
+  {
+    "id": "52345",
+    "login": "grtyh",
+    "password": "gert",
+    "age": "gertg",
+    "isDeleted": false
+  }
+]
