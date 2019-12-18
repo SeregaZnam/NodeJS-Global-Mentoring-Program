@@ -1,6 +1,6 @@
-import csv from "csvtojson";
+import csv from 'csvtojson';
 import fs from 'fs';
-import path from 'path';
+import path from 'path'
 import { pipeline } from 'stream';
 
 if (process.argv[2] === 'ram') {
@@ -9,12 +9,12 @@ if (process.argv[2] === 'ram') {
   const writableStream = fs.createWriteStream(pathTXTFileRAM);
 
   csv({
-    headers: ["book", "author", "amount", "price"],
+    headers: ['book', 'author', 'amount', 'price'],
     includeColumns: /(book|author|price)/,
     colParser: {
-      "book": "string",
-      "author": "string",
-      "price": "number"
+      'book': 'string',
+      'author': 'string',
+      'price': 'number'
     }
   }).fromFile(pathCSVFileRAM).pipe(writableStream);
 } else {
@@ -22,12 +22,12 @@ if (process.argv[2] === 'ram') {
   const pathTXTFile = path.join(__dirname, 'txt', 'file.txt');
   
   csv({
-    headers: ["book", "author", "amount", "price"],
+    headers: ['book', 'author', 'amount', 'price'],
     includeColumns: /(book|author|price)/,
     colParser: {
-      "book": "string",
-      "author": "string",
-      "price": "number"
+      'book': 'string',
+      'author': 'string',
+      'price': 'number'
     }
   })
     .fromFile(pathCSVFile)

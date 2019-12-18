@@ -6,6 +6,7 @@
   "scripts": {
     "task1": "nodemon --exec babel-node ./module1/task1.js",
     "task2": "nodemon --exec babel-node ./module1/task2.js",
+    "task21": "nodemon --exec babel-node ./module2/app.js",
     "start": "nodemon --exec babel-node ./index.js"
   },
   "repository": {
@@ -31,6 +32,7 @@
     "nodemon": "^2.0.1"
   },
   "dependencies": {
-    "csvtojson": "^2.0.10"
+    "csvtojson": "^2.0.10",
+    "express": "^4.17.1"
   }
 }
