@@ -1,7 +1,12 @@
 {
-  "parser": "babel-eslint",
-  "plugins": [
+  "extends": [
+      "tslint:recommended"
   ],
+  "linterOptions": {
+      "exclude": [
+          "node_modules/**/*"
+      ]
+  },
   "env": {
       "browser": true,
       "node": true,
