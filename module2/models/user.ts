@@ -18,4 +18,6 @@ export interface IUserServise {
     update(user: User): Promise<boolean>;
 
     delete(id: string): Promise<boolean>;
+
+    store(): User[];
 }

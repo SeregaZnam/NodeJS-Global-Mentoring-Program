@@ -4,11 +4,18 @@ import path from 'path';
 import util from 'util';
 
 export class UserService implements IUserServise {
+    private data: User[] = [];
+
+    constructor() {
+        this.getDataDB();
+    }
+
     private async getDataDB (): Promise<User[]> {
         const pathData = path.resolve(__dirname, '../', 'database', 'users.json');
         const readFile = util.promisify(fs.readFile);
         try {
             const jsonData = await readFile(pathData, {encoding: 'utf-8'});
+            this.data = JSON.parse(jsonData);
             return JSON.parse(jsonData);
         } catch {
             throw new Error('Error receiving data');
@@ -34,7 +41,8 @@ export class UserService implements IUserServise {
 
     public async save(user: User): Promise<boolean> {
         const users = await this.getDataDB();
-        users.push(user)
+        users.push(user);
+        this.data = users;
 
         try {
             const pathData = path.resolve(__dirname, '../', 'database', 'users.json');
@@ -50,6 +58,7 @@ export class UserService implements IUserServise {
         const users = await this.getDataDB();
         const index = users.findIndex((u: User) => u.id == user.id);
         users[index] = user;
+        this.data = users;
 
         try {
             const pathData = path.resolve(__dirname, '../', 'database', 'users.json');
@@ -61,10 +70,11 @@ export class UserService implements IUserServise {
         }
     }
 
-    public async delete(id: string) {
+    public async delete(id: string): Promise<boolean> {
         const users = await this.getDataDB();
         const index = users.findIndex((u: User) => u.id == id);
-        users[index].isDeleted = true; 
+        users[index].isDeleted = true;
+        this.data = users;
 
         try {
             const pathData = path.resolve(__dirname, '../', 'database', 'users.json');
@@ -74,5 +84,9 @@ export class UserService implements IUserServise {
         } catch {
             return false;
         }
+    }
+
+    public store(): User[] {
+        return this.data;
     }
 }

@@ -19,5 +19,12 @@
 		"password": "sdf98xA",
 		"age": 25,
 		"isDeleted": false
+	},
+	{
+		"id": "40d151b8-cd04-49bb-b133-7bd388f35a61",
+		"login": "Andrey",
+		"password": "sdf298xA",
+		"age": 45,
+		"isDeleted": true
 	}
 ]

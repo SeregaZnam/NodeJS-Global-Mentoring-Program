@@ -6,10 +6,12 @@ import fs from 'fs';
 import { User } from '../models/user';
 import { UserDTO } from '../dto/userDTO';
 
+const userService = new UserService();
+
 export const getAutoSuggestUsers = async (req: any, res: any) => {
     const loginSubstring = req.query.loginSubstring;
     const limit = req.query.limit;
-    const users = await new UserService().getAutoSuggest(loginSubstring, limit);
+    const users = await userService.getAutoSuggest(loginSubstring, limit);
 
     res.status(200).json(users);
 };
@@ -36,7 +38,7 @@ export const createUser = async (req: any, res: any) => {
         user.password = value.password;
         user.age = value.age;
 
-        await new UserService().save(user)
+        await userService.save(user)
             ? res.status(201).json(true)
             : res.status(404).end();
     } catch(err) {
@@ -46,7 +48,7 @@ export const createUser = async (req: any, res: any) => {
 
 export const getUser = async (req: any, res: any) => {
     const id = req.params.id;
-    const user = await new UserService().getById(id);
+    const user = await userService.getById(id);
 
     if (user) {
         res.status(200).json(user);
@@ -57,7 +59,7 @@ export const getUser = async (req: any, res: any) => {
 
 export const updateUser = async (req: any, res: any) => {
     const id = req.params.id;
-    const user = await new UserService().getById(id);
+    const user = await userService.getById(id);
 
     if (!user) {
         res.status(404).end();
@@ -83,7 +85,7 @@ export const updateUser = async (req: any, res: any) => {
         user.password = value.password;
         user.age = value.age;
 
-        await new UserService().update(user)
+        await userService.update(user)
             ? res.status(201).json(true)
             : res.status(404).end();
     } catch(err) {
@@ -93,9 +95,9 @@ export const updateUser = async (req: any, res: any) => {
 
 export const deleteUser = async (req: any, res: any) => {
     const id = req.params.id;
-    const user = await new UserService().getById(id);
+    const user = await userService.getById(id);
 
-    if (user && await new UserService().delete(user.id)) {
+    if (user && await userService.delete(user.id)) {
         res.status(201).json(true);
     } else {
         res.status(404).end();
