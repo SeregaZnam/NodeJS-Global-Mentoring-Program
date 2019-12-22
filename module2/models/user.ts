@@ -7,7 +7,7 @@ export interface User {
 }
 
 export interface IUserServise {
-    getAll(): Promise<User[]>;
+    getAll(): User[];
     
     getById(id: number): Promise<User | undefined>;
 

@@ -26,5 +26,12 @@
 		"password": "sdf298xA",
 		"age": 45,
 		"isDeleted": true
+	},
+	{
+		"id": "f53519b6-482b-4ac9-bbcf-459cd35b905d",
+		"login": "Sergey",
+		"password": "123wer",
+		"age": 25,
+		"isDeleted": true
 	}
 ]

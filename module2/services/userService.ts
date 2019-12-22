@@ -22,17 +22,17 @@ export class UserService implements IUserServise {
         }
     }
  
-    public getAll(): Promise<User[]> {
-        return this.getDataDB();
+    public getAll(): User[] {
+        return this.data;
     }
     
     public async getById(id: number): Promise<User | undefined> {
-        const users = await this.getDataDB();
+        const users = this.data;
         return users.find((user: User) => user.id == id.toString());
     }
 
     public async getAutoSuggest(loginSubstring: string, limit: number): Promise<User[]> {
-        const users = await this.getDataDB();
+        const users = this.data;
         const result = users.filter((u: User) => {
             return u.login.includes(loginSubstring);
         });
@@ -40,7 +40,7 @@ export class UserService implements IUserServise {
     }
 
     public async save(user: User): Promise<boolean> {
-        const users = await this.getDataDB();
+        const users = this.data;
         users.push(user);
         this.data = users;
 
@@ -55,7 +55,7 @@ export class UserService implements IUserServise {
     }
 
     public async update(user: User): Promise<boolean> {
-        const users = await this.getDataDB();
+        const users = this.data;
         const index = users.findIndex((u: User) => u.id == user.id);
         users[index] = user;
         this.data = users;
@@ -71,7 +71,7 @@ export class UserService implements IUserServise {
     }
 
     public async delete(id: string): Promise<boolean> {
-        const users = await this.getDataDB();
+        const users = this.data;
         const index = users.findIndex((u: User) => u.id == id);
         users[index].isDeleted = true;
         this.data = users;
