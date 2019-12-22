@@ -1,4 +1,4 @@
-import { IUserServise, User } from "../models/user";
+import { IUserServise, User } from '../models/user';
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
@@ -14,7 +14,7 @@ export class UserService implements IUserServise {
             throw new Error('Error receiving data');
         }
     }
-
+ 
     public getAll(): Promise<User[]> {
         return this.getDataDB();
     }
@@ -24,13 +24,12 @@ export class UserService implements IUserServise {
         return users.find((user: User) => user.id == id.toString());
     }
 
-    public async getAutoSuggest(limit: number, loginSubstring: string): Promise<User[]> {
+    public async getAutoSuggest(loginSubstring: string, limit: number): Promise<User[]> {
         const users = await this.getDataDB();
         const result = users.filter((u: User) => {
             return u.login.includes(loginSubstring);
         });
-        result.length = limit;
-        return result;
+        return result.slice(0, limit);
     }
 
     public async save(user: User): Promise<boolean> {
@@ -76,10 +75,4 @@ export class UserService implements IUserServise {
             return false;
         }
     }
-
-    // private loadDataFromFile(): void;
-
-    // public store(): void {
-
-    // }
 }

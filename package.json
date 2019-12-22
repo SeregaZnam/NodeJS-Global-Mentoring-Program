@@ -40,6 +40,8 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "@types/hapi__joi": "^16.0.4",
     "convict": "^5.2.0",
     "csvtojson": "^2.0.10",
     "express": "^4.17.1",
