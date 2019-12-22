@@ -1,25 +1,43 @@
+import {uuid} from 'uuidv4';
+
 export interface User {
-    is: string;
+    id: string;
     login: string;
     password: string;
     age: number;
     isDeleted: boolean;
 }
 
+export class UserDB {
+    public id: string;
+    public login: string;
+    public password: string;
+    public age: number;
+    public isDeleted: boolean;
+
+    constructor() {
+        this.id = uuid();
+        this.login = '';
+        this.password = '';
+        this.age = 0;
+        this.isDeleted = false;
+    }
+}
+
 export interface IUserServise {
-    getAll(): User[];
+    getAll(): Promise<User[]>;
     
-    getById(id: number): User;
+    getById(id: number): Promise<User | undefined>;
 
-    getAutoSuggest(limit: number, loginSubstring: string): UserAutoSuggestDTO[];
+    getAutoSuggest(limit: number, loginSubstring: string): Promise<User[]>;
 
-    save(user: User): boolean;
+    save(user: User): Promise<boolean>;
 
-    update(user: User): boolean;
+    update(user: User): Promise<boolean>;
 
-    delete(id: string): User | undefined;
+    delete(id: string): Promise<boolean>;
 
-    loadDataFromFile(): void;
+    // loadDataFromFile(): void;
 
-    store(): void
+    // store(): void
 }
