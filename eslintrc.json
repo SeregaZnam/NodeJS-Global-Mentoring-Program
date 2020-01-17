@@ -1,13 +1,6 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "extends": [
-      "tslint:recommended"
-  ],
-  "linterOptions": {
-      "exclude": [
-          "node_modules/**/*"
-      ]
-  },
+  "parser": "babel-eslint",
+  "plugins": [],
   "env": {
       "browser": true,
       "node": true,
