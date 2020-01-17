@@ -1,0 +1,37 @@
+[
+	{
+		"id": "8d36f203-7508-478a-b4d5-ef92c2220af5",
+		"login": "Alex",
+		"password": "123test",
+		"age": 15,
+		"isDeleted": true
+	},
+	{
+		"id": "95f6897d-053f-4945-9880-b5c7bb2fedb0",
+		"login": "Robin",
+		"password": "asd456A",
+		"age": 20,
+		"isDeleted": false
+	},
+	{
+		"id": "cc92a89a-966f-4428-bc00-746e830c8f71",
+		"login": "Tony",
+		"password": "sdf98xA",
+		"age": 25,
+		"isDeleted": false
+	},
+	{
+		"id": "40d151b8-cd04-49bb-b133-7bd388f35a61",
+		"login": "Andrey",
+		"password": "sdf298xA",
+		"age": 45,
+		"isDeleted": true
+	},
+	{
+		"id": "f53519b6-482b-4ac9-bbcf-459cd35b905d",
+		"login": "Sergey",
+		"password": "123wer",
+		"age": 25,
+		"isDeleted": true
+	}
+]

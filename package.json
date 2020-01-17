@@ -2,14 +2,14 @@
   "name": "nodejs-global-mentoring-program",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "dist/app.js",
   "scripts": {
     "task1": "nodemon --exec babel-node ./module1/task1.js",
     "task2": "nodemon --exec babel-node ./module1/task2.js",
     "task21": "nodemon --exec ts-node ./module2/app.ts",
     "start": "node dist/app.js",
     "serve:ts": "nodemon --exec ts-node ./module2/app.ts",
-    "copy:locales": "copyfiles ./**/* dist",
+    "copy:locales": "copyfiles -u=1 -a module2/**/* dist",
     "build-ts": "tsc",
     "clean": "rimraf dist/*",
     "build": "npm run clean && npm run build-ts && npm run copy:locales"
@@ -51,6 +51,7 @@
     "csvtojson": "^2.0.10",
     "express": "^4.17.1",
     "lodash": "^4.17.15",
+    "rimraf": "^3.0.0",
     "uuidv4": "^6.0.0"
   }
 }
