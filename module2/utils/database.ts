@@ -10,6 +10,7 @@ export const sequelize = new Sequelize(
   {
     dialect: "postgres",
     host,
-    port
+    port,
+    ssl: true
   }
 );
