@@ -73,7 +73,6 @@ export class UserService implements IUserServise {
     public async delete(id: string): Promise<boolean> {
         const users = this.data;
         const index = users.findIndex((u: User) => u.id == id);
-        users[index].isDeleted = true;
         this.data = users;
 
         try {

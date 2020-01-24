@@ -5,13 +5,11 @@ export class UserDTO {
     public login: string;
     public password: string;
     public age: number;
-    public isDeleted: boolean;
 
     constructor() {
         this.id = uuid();
         this.login = '';
         this.password = '';
         this.age = 0;
-        this.isDeleted = false;
     }
 }

@@ -7,7 +7,6 @@ class UserDTO {
         this.login = '';
         this.password = '';
         this.age = 0;
-        this.isDeleted = false;
     }
 }
 exports.UserDTO = UserDTO;

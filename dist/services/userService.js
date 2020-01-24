@@ -89,7 +89,6 @@ class UserService {
         return __awaiter(this, void 0, void 0, function* () {
             const users = this.data;
             const index = users.findIndex((u) => u.id == id);
-            users[index].isDeleted = true;
             this.data = users;
             try {
                 const pathData = path_1.default.resolve(__dirname, '../', 'database', 'users.json');

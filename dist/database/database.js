@@ -9,6 +9,7 @@ const { host, database, password, user, port } = config_1.default.get("db");
 exports.sequelize = new sequelize_1.Sequelize(database, user, password, {
     dialect: "postgres",
     host,
-    port
+    port,
+    ssl: true
 });
 //# sourceMappingURL=database.js.map
