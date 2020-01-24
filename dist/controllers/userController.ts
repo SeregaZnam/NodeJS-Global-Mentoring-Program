@@ -1,10 +1,9 @@
 import { UserService } from '../services/userService';
 import * as Joi from '@hapi/joi';
-import path from 'path';
-import util from 'util';
-import fs from 'fs';
-import { User } from '../models/user';
+import { User as UserModel } from '../models/user';
 import { UserDTO } from '../dto/userDTO';
+import { User } from '../database/entities/User';
+import { Model } from 'sequelize/types';
 
 const userService = new UserService();
 
@@ -48,10 +47,10 @@ export const createUser = async (req: any, res: any) => {
 
 export const getUser = async (req: any, res: any) => {
     const id = req.params.id;
-    const user = await userService.getById(id);
+    const usetDb = await User.findAll();
 
-    if (user) {
-        res.status(200).json(user);
+    if (usetDb) {
+        res.status(200).json(usetDb);
     } else {
         res.status(404).end();
     }

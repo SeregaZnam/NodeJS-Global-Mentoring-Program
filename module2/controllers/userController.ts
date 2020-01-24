@@ -47,10 +47,9 @@ export const createUser = async (req: any, res: any) => {
 
 export const getUser = async (req: any, res: any) => {
     const id = req.params.id;
-    const user = await userService.getById(id);
     const usetDb = await User.findAll();
 
-    if (user) {
+    if (usetDb) {
         res.status(200).json(usetDb);
     } else {
         res.status(404).end();
