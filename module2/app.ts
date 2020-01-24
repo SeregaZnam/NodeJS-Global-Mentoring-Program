@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use('/user', userRoutes);
 
-app.use(async (req, res) => {
+app.use((req, res) => {
   res.status(404).send('Page not found');
 });
 
