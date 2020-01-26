@@ -36,7 +36,6 @@ const database_1 = require("../database");
 const sequelize_1 = __importStar(require("sequelize"));
 class UserModel extends sequelize_1.Model {
 }
-exports.UserModel = UserModel;
 UserModel.init({
     id: {
         type: sequelize_1.default.UUID,
@@ -59,4 +58,5 @@ UserModel.init({
     sequelize: database_1.sequelize,
     tableName: "users"
 });
+exports.userModel = database_1.sequelize.models.UserModel;
 //# sourceMappingURL=User.js.map

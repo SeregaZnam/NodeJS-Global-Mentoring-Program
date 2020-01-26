@@ -28,7 +28,7 @@
 import {sequelize} from "../database";
 import Sequelize, {Model} from "sequelize";
 
-export class UserModel extends Model {}
+class UserModel extends Model {}
 
 UserModel.init({
   id: {
@@ -52,3 +52,5 @@ UserModel.init({
   sequelize,
   tableName: "users"
 });
+
+export const userModel = sequelize.models.UserModel;
