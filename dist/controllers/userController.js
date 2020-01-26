@@ -56,7 +56,7 @@ exports.createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // const id = req.params.id;
     // const user = await userService.getById(id);
-    const userDb = yield User_1.userModel.findAll();
+    const userDb = yield User_1.UserModel.findAll();
     if (userDb) {
         res.status(200).json(userDb);
     }
