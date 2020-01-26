@@ -47,8 +47,8 @@ export const createUser = async (req: any, res: any) => {
 };
 
 export const getUser = async (req: any, res: any) => {
-    const id = req.params.id;
-    const user = await userService.getById(id);
+    // const id = req.params.id;
+    // const user = await userService.getById(id);
     const userDb = await UserModel.findAll();
 
     if (userDb) {
