@@ -49,7 +49,7 @@ export const createUser = async (req: any, res: any) => {
 export const getUser = async (req: any, res: any) => {
     const id = req.params.id;
     const user = await userService.getById(id);
-    const userDb = await User.findAll();
+    // const userDb = await User.findAll();
 
     if (user) {
         res.status(200).json(user);

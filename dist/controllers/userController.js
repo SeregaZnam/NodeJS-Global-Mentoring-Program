@@ -19,7 +19,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const userService_1 = require("../services/userService");
 const Joi = __importStar(require("@hapi/joi"));
 const userDTO_1 = require("../dto/userDTO");
-const User_1 = require("../database/entities/User");
 const userService = new userService_1.UserService();
 exports.getAutoSuggestUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const loginSubstring = req.query.loginSubstring;
@@ -56,7 +55,7 @@ exports.createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const user = yield userService.getById(id);
-    const userDb = yield User_1.User.findAll();
+    // const userDb = await User.findAll();
     if (user) {
         res.status(200).json(user);
     }
