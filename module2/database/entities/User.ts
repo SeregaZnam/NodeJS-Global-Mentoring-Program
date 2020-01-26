@@ -49,8 +49,7 @@ UserModel.init({
     type: Sequelize.INTEGER
   }
 }, {
-  sequelize,
-  tableName: "users"
+  sequelize
 });
 
 export const userModel = sequelize.models.UserModel;
