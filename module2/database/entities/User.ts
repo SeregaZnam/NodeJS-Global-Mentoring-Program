@@ -1,7 +1,7 @@
 import { sequelize } from "../database";
 import { DataTypes } from "sequelize";
 
-export const User: any = sequelize.define('User', {
+export const User = sequelize.define('User', {
   id: {
     type: DataTypes.UUID,
     allowNull: false,
@@ -22,3 +22,5 @@ export const User: any = sequelize.define('User', {
 }, {
   tableName: "users"
 });
+
+export const UserModel = sequelize.models.User;
