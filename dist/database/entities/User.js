@@ -1,11 +1,43 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+// import { sequelize } from "../database";
+// import sequelize, {Model, sequelize} from "sequelize";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// export const User = sequelize.define('User', {
+//   id: {
+//     type: Sequelize.UUID,
+//     allowNull: false,
+//     primaryKey: true,
+//     defaultValue: Sequelize.UUID
+//   },
+//   login: {
+//     type: Sequelize.STRING,
+//     allowNull: false
+//   },
+//   password: {
+//     type: Sequelize.STRING,
+//     allowNull: false
+//   },
+//   age: {
+//     type: Sequelize.INTEGER
+//   }
+// }, {
+//   tableName: "users"
+// });
+//
+// export const UserModel = sequelize.models.User;
 const database_1 = require("../database");
-const sequelize_1 = __importDefault(require("sequelize"));
-exports.User = database_1.sequelize.define('User', {
+const sequelize_1 = __importStar(require("sequelize"));
+class UserModel extends sequelize_1.Model {
+}
+exports.UserModel = UserModel;
+UserModel.init({
     id: {
         type: sequelize_1.default.UUID,
         allowNull: false,
@@ -24,7 +56,7 @@ exports.User = database_1.sequelize.define('User', {
         type: sequelize_1.default.INTEGER
     }
 }, {
+    sequelize: database_1.sequelize,
     tableName: "users"
 });
-exports.UserModel = database_1.sequelize.models.User;
 //# sourceMappingURL=User.js.map
