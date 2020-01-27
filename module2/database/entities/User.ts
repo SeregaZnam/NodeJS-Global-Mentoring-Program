@@ -20,6 +20,7 @@ const User = sequelize.define('User', {
     type: DataTypes.INTEGER
   }
 }, {
+  tableName: "users",
   timestamps: false
 });
 
