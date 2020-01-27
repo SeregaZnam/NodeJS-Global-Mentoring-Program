@@ -7,5 +7,7 @@ export const sequelize = new Sequelize(database, user, password, {
   dialect: "postgres",
   host,
   port,
-  ssl: true
+  dialectOptions: {
+    ssl: true
+  }
 });
