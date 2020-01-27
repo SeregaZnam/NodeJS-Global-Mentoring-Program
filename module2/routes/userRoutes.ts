@@ -4,12 +4,12 @@ import * as userController from '../controllers/userController';
 const router = Router();
 
 router.route('/')
-    .get(userController.getAutoSuggestUsers)
-    .put(userController.createUser)
+   .get(userController.getAutoSuggestUsers)
+   .put(userController.createUser);
 
 router.route('/:id')
-    .get(userController.getUser)
-    .post(userController.updateUser)
-    .delete(userController.deleteUser);
+   .get(userController.getUser)
+   .post(userController.updateUser)
+   .delete(userController.deleteUser);
 
 export default router;
