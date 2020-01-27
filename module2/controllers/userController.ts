@@ -5,6 +5,7 @@ import util from 'util';
 import fs from 'fs';
 import { UserDTO } from '../dto/userDTO';
 import { User } from '../database/entities/User';
+import { sequelize } from '../database/database';
 
 const userService = new UserService();
 
@@ -51,10 +52,10 @@ export const getUser = async (req: any, res: any) => {
     const user = await userService.getById(id);
     
     // !error
-    // const userDb = await User.findAll();
+    const userDb = await sequelize.models.User.findAll();
 
-    if (user) {
-        res.status(200).json(user);
+    if (userDb) {
+        res.status(200).json(userDb);
     } else {
         res.status(404).end();
     }
