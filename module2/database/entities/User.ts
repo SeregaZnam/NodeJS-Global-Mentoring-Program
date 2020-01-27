@@ -19,6 +19,8 @@ const User = sequelize.define('User', {
   age: {
     type: DataTypes.INTEGER
   }
+}, {
+  timestamps: false
 });
 
 export const UserModel = sequelize.models.User;
