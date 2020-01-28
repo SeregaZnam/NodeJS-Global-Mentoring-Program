@@ -1,10 +1,6 @@
 import { UserService } from '../services/userService';
 import * as Joi from '@hapi/joi';
-import path from 'path';
-import util from 'util';
-import fs from 'fs';
 import { UserDTO } from '../dto/userDTO';
-import {UserModel} from "../database/entities/User";
 
 const userService = new UserService();
 
@@ -47,12 +43,11 @@ export const createUser = async (req: any, res: any) => {
 };
 
 export const getUser = async (req: any, res: any) => {
-    // const id = req.params.id;
-    // const user = await userService.getById(id);
-    const userDb = await UserModel.findAll();
+    const id = req.params.id;
+    const user = await userService.getById(id);
 
-    if (userDb) {
-        res.status(200).json(userDb);
+    if (user) {
+        res.status(200).json(user);
     } else {
         res.status(404).end();
     }

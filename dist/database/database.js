@@ -10,6 +10,8 @@ exports.sequelize = new sequelize_1.Sequelize(database, user, password, {
     dialect: "postgres",
     host,
     port,
-    ssl: true
+    dialectOptions: {
+        ssl: true
+    }
 });
 //# sourceMappingURL=database.js.map

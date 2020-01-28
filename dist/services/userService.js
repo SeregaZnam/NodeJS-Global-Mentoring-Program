@@ -12,9 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
-const util_1 = __importDefault(require("util"));
+const User_1 = __importDefault(require("../database/entities/User"));
 class UserService {
     constructor() {
         this.data = [];
@@ -22,12 +20,10 @@ class UserService {
     }
     getDataDB() {
         return __awaiter(this, void 0, void 0, function* () {
-            const pathData = path_1.default.resolve(__dirname, '../', 'database', 'users.json');
-            const readFile = util_1.default.promisify(fs_1.default.readFile);
             try {
-                const jsonData = yield readFile(pathData, { encoding: 'utf-8' });
-                this.data = JSON.parse(jsonData);
-                return JSON.parse(jsonData);
+                const users = yield User_1.default.findAll();
+                this.data = users;
+                return users;
             }
             catch (_a) {
                 throw new Error('Error receiving data');
@@ -35,7 +31,7 @@ class UserService {
         });
     }
     getAll() {
-        return this.data;
+        return this.store();
     }
     getById(id) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -43,24 +39,22 @@ class UserService {
             return users.find((user) => user.id == id.toString());
         });
     }
-    getAutoSuggest(loginSubstring, limit) {
+    getAutoSuggest(loginSubstring, limit = undefined) {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = this.data;
-            const result = users.filter((u) => {
-                return u.login.includes(loginSubstring);
+            const result = this.data.filter((u) => {
+                const user = u.login.toLocaleLowerCase();
+                const substr = loginSubstring.toLocaleLowerCase();
+                return user.includes(substr);
             });
             return result.slice(0, limit);
         });
     }
     save(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = this.data;
-            users.push(user);
-            this.data = users;
             try {
-                const pathData = path_1.default.resolve(__dirname, '../', 'database', 'users.json');
-                const writeFile = util_1.default.promisify(fs_1.default.writeFile);
-                writeFile(pathData, JSON.stringify(users, null, '\t'));
+                yield User_1.default.create(user);
+                // update this.data
+                this.getDataDB();
                 return true;
             }
             catch (_a) {
@@ -70,14 +64,16 @@ class UserService {
     }
     update(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = this.data;
-            const index = users.findIndex((u) => u.id == user.id);
-            users[index] = user;
-            this.data = users;
             try {
-                const pathData = path_1.default.resolve(__dirname, '../', 'database', 'users.json');
-                const writeFile = util_1.default.promisify(fs_1.default.writeFile);
-                writeFile(pathData, JSON.stringify(users, null, '\t'));
+                yield User_1.default.update({
+                    login: user.login,
+                    password: user.password,
+                    age: user.age
+                }, {
+                    where: { id: user.id }
+                });
+                // update this.data
+                this.getDataDB();
                 return true;
             }
             catch (_a) {
@@ -87,13 +83,11 @@ class UserService {
     }
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = this.data;
-            const index = users.findIndex((u) => u.id == id);
-            this.data = users;
             try {
-                const pathData = path_1.default.resolve(__dirname, '../', 'database', 'users.json');
-                const writeFile = util_1.default.promisify(fs_1.default.writeFile);
-                writeFile(pathData, JSON.stringify(users, null, '\t'));
+                yield User_1.default.destroy({
+                    where: { id }
+                });
+                this.getDataDB();
                 return true;
             }
             catch (_a) {

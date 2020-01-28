@@ -1,29 +1,25 @@
 import { IUserServise, User } from '../models/user';
-import fs from 'fs';
-import path from 'path';
-import util from 'util';
+import UserModel from "../database/entities/User";
 
 export class UserService implements IUserServise {
-    private data: User[] = [];
+    private data: any = [];
 
     constructor() {
         this.getDataDB();
     }
 
-    private async getDataDB (): Promise<User[]> {
-        const pathData = path.resolve(__dirname, '../', 'database', 'users.json');
-        const readFile = util.promisify(fs.readFile);
+    private async getDataDB (): Promise<any> {
         try {
-            const jsonData = await readFile(pathData, {encoding: 'utf-8'});
-            this.data = JSON.parse(jsonData);
-            return JSON.parse(jsonData);
+            const users = await UserModel.findAll();
+            this.data = users;
+            return users;
         } catch {
             throw new Error('Error receiving data');
         }
     }
  
     public getAll(): User[] {
-        return this.data;
+        return this.store();
     }
     
     public async getById(id: number): Promise<User | undefined> {
@@ -31,23 +27,23 @@ export class UserService implements IUserServise {
         return users.find((user: User) => user.id == id.toString());
     }
 
-    public async getAutoSuggest(loginSubstring: string, limit: number): Promise<User[]> {
-        const users = this.data;
-        const result = users.filter((u: User) => {
-            return u.login.includes(loginSubstring);
+    public async getAutoSuggest(
+       loginSubstring: string,
+       limit: number | undefined = undefined
+    ): Promise<User[]> {
+        const result = this.data.filter((u: User) => {
+            const user = u.login.toLocaleLowerCase();
+            const substr = loginSubstring.toLocaleLowerCase();
+            return user.includes(substr);
         });
         return result.slice(0, limit);
     }
 
     public async save(user: User): Promise<boolean> {
-        const users = this.data;
-        users.push(user);
-        this.data = users;
-
         try {
-            const pathData = path.resolve(__dirname, '../', 'database', 'users.json');
-            const writeFile = util.promisify(fs.writeFile);
-            writeFile(pathData, JSON.stringify(users, null, '\t'));
+            await UserModel.create(user);
+            // update this.data
+            this.getDataDB();
             return true;
         } catch {
             return false;
@@ -55,15 +51,16 @@ export class UserService implements IUserServise {
     }
 
     public async update(user: User): Promise<boolean> {
-        const users = this.data;
-        const index = users.findIndex((u: User) => u.id == user.id);
-        users[index] = user;
-        this.data = users;
-
         try {
-            const pathData = path.resolve(__dirname, '../', 'database', 'users.json');
-            const writeFile = util.promisify(fs.writeFile);
-            writeFile(pathData, JSON.stringify(users, null, '\t'));
+            await UserModel.update({
+                login: user.login,
+                password: user.password,
+                age: user.age
+            }, {
+                where: {id: user.id}
+            });
+            // update this.data
+            this.getDataDB();
             return true;
         } catch {
             return false;
@@ -71,14 +68,11 @@ export class UserService implements IUserServise {
     }
 
     public async delete(id: string): Promise<boolean> {
-        const users = this.data;
-        const index = users.findIndex((u: User) => u.id == id);
-        this.data = users;
-
         try {
-            const pathData = path.resolve(__dirname, '../', 'database', 'users.json');
-            const writeFile = util.promisify(fs.writeFile);
-            writeFile(pathData, JSON.stringify(users, null, '\t'));
+            await UserModel.destroy({
+                where: {id}
+            });
+            this.getDataDB();
             return true;
         } catch {
             return false;
