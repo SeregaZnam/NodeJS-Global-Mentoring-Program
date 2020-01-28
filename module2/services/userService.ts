@@ -19,7 +19,7 @@ export class UserService implements IUserServise {
     }
  
     public getAll(): User[] {
-        return this.data;
+        return this.store();
     }
     
     public async getById(id: number): Promise<User | undefined> {
