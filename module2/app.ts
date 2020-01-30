@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import config from './config';
 import userRoutes from './routes/userRoutes';
 
-async function startServer() {
+async function bootstrap() {
   const app = express();
 
   app.use(express.json());
@@ -18,4 +18,4 @@ async function startServer() {
   });
 }
 
-startServer();
+bootstrap();

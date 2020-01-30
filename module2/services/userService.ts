@@ -1,5 +1,6 @@
 import { IUserServise, User } from '../models/user';
 import UserModel from "../database/entities/User";
+import GroupModel from "../database/entities/Group";
 
 export class UserService implements IUserServise {
     private data: any = [];
