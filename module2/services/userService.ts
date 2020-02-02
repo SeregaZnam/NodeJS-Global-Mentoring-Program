@@ -1,17 +1,16 @@
 import { IUserServise, User } from '../models/user';
-import UserModel from "../database/entities/User";
-import GroupModel from "../database/entities/Group";
+import { UserRepository } from '../database/repositories/UserRepository';
 
 export class UserService implements IUserServise {
     private data: any = [];
 
-    constructor() {
+    constructor(private userRepository: UserRepository) {
         this.getDataDB();
     }
 
     private async getDataDB (): Promise<any> {
         try {
-            const users = await UserModel.findAll();
+            const users = await this.userRepository.findAll();
             this.data = users;
             return users;
         } catch {
@@ -42,8 +41,7 @@ export class UserService implements IUserServise {
 
     public async save(user: User): Promise<boolean> {
         try {
-            await UserModel.create(user);
-            // update this.data
+            await this.userRepository.create(user);
             this.getDataDB();
             return true;
         } catch {
@@ -53,14 +51,7 @@ export class UserService implements IUserServise {
 
     public async update(user: User): Promise<boolean> {
         try {
-            await UserModel.update({
-                login: user.login,
-                password: user.password,
-                age: user.age
-            }, {
-                where: {id: user.id}
-            });
-            // update this.data
+            await this.userRepository.update(user);
             this.getDataDB();
             return true;
         } catch {
@@ -70,9 +61,7 @@ export class UserService implements IUserServise {
 
     public async delete(id: string): Promise<boolean> {
         try {
-            await UserModel.destroy({
-                where: {id}
-            });
+            await this.userRepository.destroy(id);
             this.getDataDB();
             return true;
         } catch {

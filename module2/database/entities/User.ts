@@ -1,5 +1,6 @@
 import {DataTypes, ModelCtor, Model} from "sequelize";
 import {sequelize} from "../database";
+// import GroupModel from "./Group";
 
 sequelize.define('User', {
   id: {
@@ -23,5 +24,12 @@ sequelize.define('User', {
   tableName: "users",
   timestamps: false
 });
+
+// sequelize.models.User.belongsToMany(GroupModel, {
+//   through: 'UserGroup',
+//   as: 'users',
+//   foreignKey: 'userId',
+//   otherKey: 'groupId'
+// });
 
 export default sequelize.models.User as ModelCtor<Model>;

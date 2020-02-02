@@ -11,3 +11,6 @@ INSERT INTO groups (name, permissions) VALUES
     ('Group2', ARRAY ['READ', 'WRITE', 'DELETE']),
     ('Group3', ARRAY ['READ', 'WRITE', 'DELETE', 'SHARE']),
     ('Group4', ARRAY ['READ', 'WRITE', 'DELETE', 'SHARE', 'UPLOAD_FILES']);
+
+INSERT INTO userGroup (userId, groupId) VALUES
+    ('9f228f13-bd44-4bed-9cb4-f070cefb8088', 'b634282a-5029-417a-a991-62521cb66721');

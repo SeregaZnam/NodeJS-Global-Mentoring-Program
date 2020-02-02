@@ -14,3 +14,10 @@ CREATE TABLE groups (
     permissions     varchar(40)[] NOT NULL,
     PRIMARY KEY(id)
 );
+
+CREATE TABLE userGroup (
+    id              uuid DEFAULT uuid_generate_v4() NOT NULL,
+    userId          uuid NOT NULL,
+    groupId         uuid NOT NULL,
+    PRIMARY KEY(id)
+);

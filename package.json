@@ -60,6 +60,7 @@
     "pg-hstore": "^2.3.3",
     "rimraf": "^3.0.0",
     "sequelize": "^5.21.3",
+    "sequelize-auto-migrations": "^1.0.3",
     "sequelize-cli": "^5.5.1",
     "uuidv4": "^6.0.0"
   }
