@@ -3,23 +3,23 @@ import { User } from "../../models/user";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
 export class UserRepository implements IUserRepository {
-    UserEntity: any;
+    private UserEntity: any;
 
     constructor(private userModel: ModelCtor<Model>) {
         this.UserEntity = this.userModel;
     }
 
     async findAll(): Promise<User[]> {
-        const users: any = await this.userModel.findAll();
+        const users = await this.UserEntity.findAll();
         return users;
     }
 
     async create(user: User) {
-        await this.userModel.create(user);
+        await this.UserEntity.create(user);
     }
 
     async update(user: User) {
-        await this.userModel.update({
+        await this.UserEntity.update({
             login: user.login,
             password: user.password,
             age: user.age
@@ -29,7 +29,7 @@ export class UserRepository implements IUserRepository {
     }
 
     async destroy(id: string) {
-        await this.userModel.destroy({
+        await this.UserEntity.destroy({
             where: {id}
         });
     }
