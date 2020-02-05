@@ -1,4 +1,4 @@
-import GroupModel from "../database/entities/Group";
+import GroupModel from "../database/entities/User";
 import { GroupRepository } from "../database/repositories/GroupRepository";
 import { GroupService } from "../services/groupService";
 
