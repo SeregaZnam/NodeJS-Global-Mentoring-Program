@@ -8,20 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = __importDefault(require("../database/entities/User"));
 class UserService {
-    constructor() {
+    constructor(userRepository) {
+        this.userRepository = userRepository;
         this.data = [];
         this.getDataDB();
     }
     getDataDB() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const users = yield User_1.default.findAll();
+                const users = yield this.userRepository.findAll();
                 this.data = users;
                 return users;
             }
@@ -52,8 +49,7 @@ class UserService {
     save(user) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield User_1.default.create(user);
-                // update this.data
+                yield this.userRepository.create(user);
                 this.getDataDB();
                 return true;
             }
@@ -65,14 +61,7 @@ class UserService {
     update(user) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield User_1.default.update({
-                    login: user.login,
-                    password: user.password,
-                    age: user.age
-                }, {
-                    where: { id: user.id }
-                });
-                // update this.data
+                yield this.userRepository.update(user);
                 this.getDataDB();
                 return true;
             }
@@ -84,9 +73,7 @@ class UserService {
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield User_1.default.destroy({
-                    where: { id }
-                });
+                yield this.userRepository.destroy(id);
                 this.getDataDB();
                 return true;
             }

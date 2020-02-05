@@ -12,23 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const config_1 = __importDefault(require("./config"));
-const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
-const groupRoutes_1 = __importDefault(require("./routes/groupRoutes"));
-function bootstrap() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const app = express_1.default();
-        app.use(express_1.default.json());
-        app.use('/user', userRoutes_1.default);
-        app.use('/group', groupRoutes_1.default);
-        app.use((req, res) => {
-            res.status(404).send('Page not found');
-        });
-        app.listen(config_1.default.get("port"), () => {
-            console.log(`Server is running at ${config_1.default.get("port")}!`);
-        });
-    });
-}
-bootstrap();
-//# sourceMappingURL=app.js.map
+const User_1 = __importDefault(require("../database/entities/User"));
+const GroupRepository_1 = require("../database/repositories/GroupRepository");
+const groupService_1 = require("../services/groupService");
+const groupRepository = new GroupRepository_1.GroupRepository(User_1.default);
+const groupService = new groupService_1.GroupService(groupRepository);
+// TODO
+exports.getAllGroups = () => __awaiter(void 0, void 0, void 0, function* () { });
+// TODO
+exports.createGroup = () => __awaiter(void 0, void 0, void 0, function* () { });
+// TODO
+exports.getGroup = () => __awaiter(void 0, void 0, void 0, function* () { });
+// TODO
+exports.updateGroup = () => __awaiter(void 0, void 0, void 0, function* () { });
+// TODO
+exports.deleteGroup = () => __awaiter(void 0, void 0, void 0, function* () { });
+//# sourceMappingURL=groupController.js.map

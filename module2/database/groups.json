@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Group1",
+        "permissions": ["READ"]
+    },
+    {
+        "name": "Group1",
+        "permissions": ["READ", "WRITE"]
+    },
+    {
+        "name": "Group2",
+        "permissions": ["READ", "WRITE", "DELETE"]
+    },
+    {
+        "name": "Group3",
+        "permissions": ["READ", "WRITE", "DELETE", "SHARE"]
+    },
+    {
+        "name": "Group4",
+        "permissions": ["READ", "WRITE", "DELETE", "SHARE", "UPLOAD_FILES"]
+    }
+]
