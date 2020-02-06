@@ -119,7 +119,7 @@ sequelize.models.UserGroup.belongsTo(sequelize.models.Group, {
   const users = fs.readFileSync(path.join(__dirname, '../', 'users.json'), {encoding: "utf-8"});
   const usersDB = await sequelize.models.User.bulkCreate(JSON.parse(users));
 
-  console.log(sequelize.models);
+  // console.log(sequelize.models);
 })();
 
 export default sequelize.models.User as ModelCtor<Model>;
