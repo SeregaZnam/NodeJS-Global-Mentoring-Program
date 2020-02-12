@@ -49,10 +49,8 @@ sequelize.define('Group', {
 sequelize.define('UserGroup', {
   userId: {
     type: DataTypes.UUID,
-    allowNull: false,
-    primaryKey: true,
     references: {
-      model: 'User',
+      model: sequelize.models.User,
       key: 'id'
     },
     onDelete: 'cascade',
@@ -60,10 +58,8 @@ sequelize.define('UserGroup', {
   },
   groupId: {
     type: DataTypes.UUID,
-    allowNull: false,
-    primaryKey: true,
     references: {
-      model: 'Group',
+      model: sequelize.models.Group,
       key: 'id'
     },
     onDelete: 'cascade',
@@ -76,18 +72,11 @@ sequelize.define('UserGroup', {
 
 sequelize.models.Group.belongsToMany(sequelize.models.User, {
    through: sequelize.models.UserGroup,
-   as: 'groups',
-   foreignKey: 'groupId',
-   otherKey: 'userId'
 });
 
 sequelize.models.User.belongsToMany(sequelize.models.Group, {
   through: sequelize.models.UserGroup,
-  as: 'users',
-  foreignKey: 'userId',
-  otherKey: 'groupId'
 });
-
 
 sequelize.models.UserGroup.belongsTo(sequelize.models.User, {
   as: 'users',
@@ -111,15 +100,32 @@ sequelize.models.UserGroup.belongsTo(sequelize.models.Group, {
   // const groups = fs.readFileSync(path.join(__dirname, '../', 'groups.json'), {encoding: "utf-8"});
   // await sequelize.models.Group.bulkCreate(JSON.parse(groups));
 
-  sequelize.models.Group.create({
-    name: "Group1",
-    permissions: ["READ"]
-  })
+  // sequelize.models.Group.create({
+  //   name: "Group1",
+  //   permissions: ["READ"]
+  // })
 
-  const users = fs.readFileSync(path.join(__dirname, '../', 'users.json'), {encoding: "utf-8"});
-  const usersDB = await sequelize.models.User.bulkCreate(JSON.parse(users));
+  // const users = fs.readFileSync(path.join(__dirname, '../', 'users.json'), {encoding: "utf-8"});
+  // const usersDB = await sequelize.models.User.bulkCreate(JSON.parse(users));
 
-  console.log(sequelize.models);
+  // console.log(sequelize.models);
+
+  const user = await sequelize.models.User.create({
+    "login": "Alex",
+    "password": "123test",
+    "age": 15,
+    "group": "Group1"
+  }) as any;
+
+  const group = await sequelize.models.Group.create({
+    "name": "Group1",
+    "permissions": ["READ"]
+  }) as any;
+
+  const userGroup = await sequelize.models.UserGroup.create({
+    userId: user.dataValues.id,
+    groupId: group.dataValues.id,
+  });
   
 })();
 
