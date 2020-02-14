@@ -3,7 +3,7 @@ import config from './config';
 import userRoutes from './routes/userRoutes';
 import groupRoutes from './routes/groupRoutes';
 
-async function bootstrap() {
+const bootstrap = async () => {
   const app = express();
 
   app.use(express.json());
