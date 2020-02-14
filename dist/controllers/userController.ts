@@ -1,8 +1,11 @@
 import { UserService } from '../services/userService';
 import * as Joi from '@hapi/joi';
 import { UserDTO } from '../dto/userDTO';
+import { UserRepository } from '../database/repositories/UserRepository';
+import UserModel from "../database/entities/User";
 
-const userService = new UserService();
+const userRepository = new UserRepository(UserModel);
+const userService = new UserService(userRepository);
 
 export const getAutoSuggestUsers = async (req: any, res: any) => {
     const loginSubstring = req.query.loginSubstring;

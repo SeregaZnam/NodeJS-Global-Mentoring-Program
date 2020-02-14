@@ -15,11 +15,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const userService_1 = require("../services/userService");
 const Joi = __importStar(require("@hapi/joi"));
 const userDTO_1 = require("../dto/userDTO");
-const userService = new userService_1.UserService();
+const UserRepository_1 = require("../database/repositories/UserRepository");
+const User_1 = __importDefault(require("../database/entities/User"));
+const userRepository = new UserRepository_1.UserRepository(User_1.default);
+const userService = new userService_1.UserService(userRepository);
 exports.getAutoSuggestUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const loginSubstring = req.query.loginSubstring;
     const limit = req.query.limit;

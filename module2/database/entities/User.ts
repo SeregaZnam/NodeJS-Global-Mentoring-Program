@@ -1,5 +1,7 @@
 import {DataTypes, ModelCtor, Model} from "sequelize";
 import {sequelize} from "../database";
+import fs from "fs";
+import path from "path";
 
 const User = sequelize.define('User', {
   id: {
