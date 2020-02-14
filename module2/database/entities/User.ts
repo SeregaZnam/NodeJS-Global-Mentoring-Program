@@ -3,7 +3,7 @@ import {sequelize} from "../database";
 import fs from "fs";
 import path from "path";
 
-const User = sequelize.define('User', {
+const User: any = sequelize.define('User', {
   id: {
     type: DataTypes.UUID,
     allowNull: false,
@@ -26,7 +26,7 @@ const User = sequelize.define('User', {
   timestamps: false
 });
 
-const Group = sequelize.define('Group', {
+const Group: any = sequelize.define('Group', {
   id: {
      type: DataTypes.UUID,
      allowNull: false,
