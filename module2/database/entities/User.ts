@@ -1,7 +1,7 @@
 import {DataTypes, ModelCtor, Model} from "sequelize";
 import {sequelize} from "../database";
 
-const User: any = sequelize.define('User', {
+const User = sequelize.define('User', {
   id: {
     type: DataTypes.UUID,
     allowNull: false,
@@ -24,7 +24,7 @@ const User: any = sequelize.define('User', {
   timestamps: false
 });
 
-const Group: any = sequelize.define('Group', {
+const Group = sequelize.define('Group', {
   id: {
      type: DataTypes.UUID,
      allowNull: false,
