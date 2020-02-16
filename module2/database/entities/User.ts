@@ -46,37 +46,33 @@ const Group: any = sequelize.define('Group', {
   timestamps: false
 });
 
-// sequelize.define('UserGroup', {
-//   userId: {
-//     type: DataTypes.UUID,
-//     allowNull: false,
-//     references: {
-//       model: 'User',
-//       key: 'id'
-//     }
-//   },
-//   groupId: {
-//     type: DataTypes.UUID,
-//     allowNull: false,
-//     references: {
-//       model: 'Group',
-//       key: 'id'
-//     }
-//   }
-// }, {
-//   tableName: "usergroup",
-//   timestamps: false
-// });
+const UserGroup: any = sequelize.define('UserGroup', {
+  id: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    primaryKey: true,
+    defaultValue: DataTypes.UUIDV4
+  },
+  userId: {
+    type: DataTypes.UUID,
+  },
+  groupId: {
+    type: DataTypes.UUID,
+  }
+  }, {
+    tableName: "user-group",
+    timestamps: false
+});
 
 sequelize.models.User.belongsToMany(Group, {
-  through: 'UserGroup'
+  through: 'user-group'
   // as: 'users',
   // foreignKey: 'userId',
   // otherKey: 'groupId'
 });
 
 sequelize.models.Group.belongsToMany(User, {
-   through: 'UserGroup',
+   through: 'user-group',
   //  as: 'groups',
   //  foreignKey: 'groupId',
   //  otherKey: 'userId'
@@ -103,7 +99,7 @@ sequelize.models.Group.belongsToMany(User, {
   //   permissions: ['READ']
   // })
 
-  // group1.setUsers([
+  // await group1.setUsers([
   //   user1.id,
   //   user2.id
   // ])
@@ -124,5 +120,6 @@ sequelize.models.Group.belongsToMany(User, {
 
 export {
   User as UserModel,
-  Group as GroupModel
+  Group as GroupModel,
+  UserGroup as UserGroupModel
 };

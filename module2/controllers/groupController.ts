@@ -4,7 +4,6 @@ import { GroupService } from "../services/groupService";
 import { Request, Response } from "express";
 import { GroupDTO } from "../dto/groupDTO";
 import * as Joi from '@hapi/joi';
-import { readdirSync } from "fs";
 
 const groupRepository = new GroupRepository(GroupModel);
 const groupService = new GroupService(groupRepository);

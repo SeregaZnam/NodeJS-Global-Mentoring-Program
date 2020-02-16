@@ -11,8 +11,7 @@ export class GroupRepository implements IGroupRepository {
     }
 
     async getById(id: string): Promise<Group> {
-        const group = await this.GroupEntity.findByPk(id);
-        return group;
+        return await this.GroupEntity.findByPk(id);
     }
     
     async findAll(): Promise<Group[]> {
