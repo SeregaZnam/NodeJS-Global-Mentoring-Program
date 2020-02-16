@@ -1,6 +1,7 @@
 import { ModelCtor, Model } from "sequelize/types";
 import { User } from "../../models/user";
 import { IUserRepository } from "../../repositories/IUserRepository";
+import { UserDTO } from "../../dto/userDTO";
 
 export class UserRepository implements IUserRepository {
     private UserEntity: any;
@@ -14,7 +15,7 @@ export class UserRepository implements IUserRepository {
         return users;
     }
 
-    async create(user: User) {
+    async create(user: UserDTO) {
         await this.UserEntity.create(user);
     }
 

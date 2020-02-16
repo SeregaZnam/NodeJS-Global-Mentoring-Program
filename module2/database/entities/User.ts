@@ -86,18 +86,17 @@ sequelize.models.Group.belongsToMany(User, {
 
   await sequelize.sync();
 
-  // User.create({
+  // const user1 = await User.create({
   //   "login": "Alex",
   //   "password": "123test",
   //   "age": 15
   // });
 
-  // User.create({
+  // const user2 = await User.create({
   //   "login": "Robin",
   //   "password": "asd456A",
   //   "age": 20
   // });
-  // "041b7ddb-0e7e-41cc-b7e2-c51ec8e5c0bc"
 
   // const group1 = await Group.create({
   //   name: 'Group1',
@@ -105,8 +104,8 @@ sequelize.models.Group.belongsToMany(User, {
   // })
 
   // group1.setUsers([
-  //   "041b7ddb-0e7e-41cc-b7e2-c51ec8e5c0bc",
-  //   "d254c057-eba8-4c30-b96a-d01d6d837765"
+  //   user1.id,
+  //   user2.id
   // ])
 
   // User.destroy({
@@ -121,4 +120,9 @@ sequelize.models.Group.belongsToMany(User, {
 //   age: 15
 // }])
 
-export default sequelize.models.User as ModelCtor<Model>;
+
+
+export {
+  User as UserModel,
+  Group as GroupModel
+};
