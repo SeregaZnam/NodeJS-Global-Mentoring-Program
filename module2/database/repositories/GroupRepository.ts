@@ -1,6 +1,7 @@
 import { IGroupRepository } from "../../repositories/IGroupRepository";
 import { ModelCtor, Model } from "sequelize/types";
 import { Group } from "../../models/group";
+import { GroupDTO } from "../../dto/groupDTO";
 
 export class GroupRepository implements IGroupRepository {
     private GroupEntity: any;
@@ -10,8 +11,7 @@ export class GroupRepository implements IGroupRepository {
     }
 
     async getById(id: string): Promise<Group> {
-        const group = await this.GroupEntity.getById(id);
-        return group;
+        return await this.GroupEntity.findByPk(id);
     }
     
     async findAll(): Promise<Group[]> {
@@ -19,7 +19,7 @@ export class GroupRepository implements IGroupRepository {
         return users;
     }
 
-    async create(group: Group) {
+    async create(group: GroupDTO) {
         await this.GroupEntity.create(group);
     }
     

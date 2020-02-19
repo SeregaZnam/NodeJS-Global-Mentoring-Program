@@ -1,5 +1,6 @@
 import { IUserServise, User } from '../models/user';
 import { UserRepository } from '../database/repositories/UserRepository';
+import { UserDTO } from '../dto/userDTO';
 
 export class UserService implements IUserServise {
     private data: any = [];
@@ -22,7 +23,7 @@ export class UserService implements IUserServise {
         return this.store();
     }
     
-    public async getById(id: number): Promise<User | undefined> {
+    public async getById(id: number | string): Promise<User | undefined> {
         const users = this.data;
         return users.find((user: User) => user.id == id.toString());
     }
@@ -39,7 +40,7 @@ export class UserService implements IUserServise {
         return result.slice(0, limit);
     }
 
-    public async save(user: User): Promise<boolean> {
+    public async save(user: UserDTO): Promise<boolean> {
         try {
             await this.userRepository.create(user);
             this.getDataDB();

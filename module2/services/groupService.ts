@@ -1,23 +1,49 @@
 import { GroupRepository } from "../database/repositories/GroupRepository";
 import { IGroupServise, Group } from "../models/group";
+import { GroupDTO } from "../dto/groupDTO";
 
 export class GroupService implements IGroupServise {
 
   constructor(private groupRepository: GroupRepository) {}
 
-  // TODO
-  getAll(): any {}
+  async getAll(): Promise<any> {
+    try {
+      const groups = await this.groupRepository.findAll();
+      return groups;
+    } catch {
+        throw new Error('Error receiving groups');
+    }
+  }
 
-  // TODO
-  getById(id: number): any {}
+  async getById(id: string): Promise<Group> {
+    return await this.groupRepository.getById(id);
+  }
 
-  // TODO
-  save(user: Group): any {}
+  async save(group: GroupDTO): Promise<boolean> {
+    try {
+      await this.groupRepository.create(group);
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
-  // TODO
-  update(user: Group): any {}
+  async update(group: Group): Promise<boolean> {
+    try {
+      await this.groupRepository.update(group);
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
-  // TODO
-  delete(id: string): any {}
+  async delete(id: string): Promise<boolean> {
+    try {
+      await this.groupRepository.destroy(id);
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
 }

@@ -7,9 +7,9 @@ export interface Group {
 }
 
 export interface IGroupServise {
-   getAll(): Group[];
+   getAll(): Promise<Group[]>;
    
-   getById(id: number): Promise<Group | undefined>;
+   getById(id: string): Promise<Group>;
 
    save(user: Group): Promise<boolean>;
 

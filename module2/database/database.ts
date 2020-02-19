@@ -1,7 +1,6 @@
 import { Sequelize } from "sequelize";
 import config from "../config";
-import { Group } from "./entities/Group";
-import { User } from "./entities/User";
+import { UserModel, GroupModel } from "./entities/User";
 
 const {host, database, password, user, port} = config.get("db");
 
@@ -12,14 +11,6 @@ export const sequelize = new Sequelize(database, user, password, {
   dialectOptions: {
     ssl: true
   }
-});
-
-sequelize.models.User.belongsToMany(Group, {
-  through: 'UserGroup'
-});
-
-sequelize.models.Group.belongsToMany(User, {
-   through: 'UserGroup',
 });
 
 (async () => {
