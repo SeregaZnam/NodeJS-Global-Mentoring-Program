@@ -1,14 +1,14 @@
-import { ModelCtor, Model } from "sequelize/types";
 import { User } from "../../models/user";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { UserDTO } from "../../dto/userDTO";
-import { GroupModel } from "../entities/User";
+import { GroupModel } from "../entities/Group";
+import { UserModel } from "../entities/User";
 
 export class UserRepository implements IUserRepository {
     private UserEntity: any;
 
-    constructor(private userModel: ModelCtor<Model>) {
-        this.UserEntity = this.userModel;
+    constructor() {
+        this.UserEntity = UserModel;
     }
 
     async getById(id: string): Promise<User> {

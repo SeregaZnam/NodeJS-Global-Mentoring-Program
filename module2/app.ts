@@ -3,9 +3,11 @@ import config from './config';
 import userRoutes from './routes/userRoutes';
 import groupRoutes from './routes/groupRoutes';
 import userGroupRoutes from './routes/userGroupRoutes';
+import { createDbConnect } from './database/database';
 
 const bootstrap = async () => {
   const app = express();
+  const db = await createDbConnect(config)
 
   app.use(express.json());
 
@@ -17,8 +19,10 @@ const bootstrap = async () => {
     res.status(404).send('Page not found');
   });
 
-  app.listen(config.get("port"), () => {
-    console.log(`Server is running at ${config.get("port")}!`);
+  db.sync().then(() => {
+    app.listen(config.get("port"), () => {
+      console.log(`Server is running at ${config.get("port")}!`);
+    });
   });
 }
 

@@ -1,9 +1,9 @@
-import { GroupModel } from "../database/entities/User";
 import { GroupRepository } from "../database/repositories/GroupRepository";
 import { GroupService } from "../services/groupService";
 import { Request, Response } from "express";
 import { GroupDTO } from "../dto/groupDTO";
 import * as Joi from '@hapi/joi';
+import { GroupModel } from "../database/entities/Group";
 
 const groupRepository = new GroupRepository(GroupModel);
 const groupService = new GroupService(groupRepository);

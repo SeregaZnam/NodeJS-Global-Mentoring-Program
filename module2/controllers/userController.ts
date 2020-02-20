@@ -5,7 +5,7 @@ import { UserRepository } from '../database/repositories/UserRepository';
 import { UserModel } from "../database/entities/User";
 import { Request, Response } from 'express';
 
-const userRepository = new UserRepository(UserModel);
+const userRepository = new UserRepository();
 const userService = new UserService(userRepository);
 
 export const getAutoSuggestUsers = async (req: Request, res: Response) => {
