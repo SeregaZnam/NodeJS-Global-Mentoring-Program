@@ -11,7 +11,7 @@ export class UserGroupService {
         try {
             const group: any = await this.groupRepository.getById(groupId);
             const user: any = await this.userRepository.getById(userId);
-            await group.setUsers([user]);
+            await group.addUserModel([user]);
             return true;
         } catch {
             return false;

@@ -1,10 +1,17 @@
 import {DataTypes, Model, Sequelize} from "sequelize";
+import {GroupModel} from "./Group";
 
 export class UserModel extends Model<UserModel> {
   public id!: string;
   public login!: string;
   public password!: string;
   public age!: string;
+
+  static associate = () => {
+    UserModel.associations.groups = UserModel.belongsToMany(GroupModel, {
+      through: 'user-group'
+    })
+  }
 }
 
 export const initUserModel = async (sequelize: Sequelize): Promise<UserModel> => {

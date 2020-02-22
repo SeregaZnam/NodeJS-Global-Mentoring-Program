@@ -7,6 +7,7 @@ export interface Group {
 }
 
 export interface IGroupServise {
+
    getAll(): Promise<Group[]>;
    
    getById(id: string): Promise<Group>;
@@ -16,4 +17,5 @@ export interface IGroupServise {
    update(user: Group): Promise<boolean>;
 
    delete(id: string): Promise<boolean>;
+
 }

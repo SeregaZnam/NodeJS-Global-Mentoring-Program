@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
-import config, { Config } from "../config";
-import { initUserModel } from "./entities/User";
-import { initGroupModel } from "./entities/Group";
-import { initUserGroupModel } from "./entities/UserGroup";
+import { Config } from "../config";
+import { initUserModel, UserModel } from "./entities/User";
+import { initGroupModel, GroupModel } from "./entities/Group";
+// import { initUserGroupModel } from "./entities/UserGroup";
 
 export const createDbConnect = async (config: Config) => {
   const {host, database, password, user, port} = config.get("db");
@@ -15,9 +15,17 @@ export const createDbConnect = async (config: Config) => {
     }
   });
 
-  initUserModel(sequelize);
-  initGroupModel(sequelize);
-  initUserGroupModel(sequelize);
+  await initUserModel(sequelize);
+  await initGroupModel(sequelize);
+  // await initUserGroupModel(sequelize);
+
+  await UserModel.associate();
+  await GroupModel.associate();
+  // [UserModel, GroupModel].forEach((entiry: any) => {
+  //   if (entiry.associate) {
+  //     entiry.associate();
+  //   }
+  // });
 
   return sequelize;
 };

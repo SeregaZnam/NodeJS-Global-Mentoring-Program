@@ -6,7 +6,8 @@ export interface User {
 }
 
 export interface IUserServise {
-    getAll(): User[];
+
+    getAll(): Promise<User[]>;
     
     getById(id: number): Promise<User | undefined>;
 
@@ -18,5 +19,4 @@ export interface IUserServise {
 
     delete(id: string): Promise<boolean>;
 
-    store(): User[];
 }

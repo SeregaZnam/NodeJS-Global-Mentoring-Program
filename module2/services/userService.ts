@@ -3,28 +3,14 @@ import { UserRepository } from '../database/repositories/UserRepository';
 import { UserDTO } from '../dto/userDTO';
 
 export class UserService implements IUserServise {
-    private data: any = [];
-
-    constructor(private userRepository: UserRepository) {
-        this.getDataDB();
-    }
-
-    private async getDataDB (): Promise<any> {
-        try {
-            const users = await this.userRepository.findAll();
-            this.data = users;
-            return users;
-        } catch {
-            throw new Error('Error receiving data');
-        }
-    }
+    constructor(private userRepository: UserRepository) {}
  
-    public getAll(): User[] {
-        return this.store();
+    public async getAll(): Promise<User[]> {
+        return await this.userRepository.findAll();
     }
     
     public async getById(id: number | string): Promise<User | undefined> {
-        const users = this.data;
+        const users = await this.userRepository.findAll();
         return users.find((user: User) => user.id == id.toString());
     }
 
@@ -32,7 +18,8 @@ export class UserService implements IUserServise {
        loginSubstring: string,
        limit: number | undefined = undefined
     ): Promise<User[]> {
-        const result = this.data.filter((u: User) => {
+        const users = await this.userRepository.findAll();
+        const result = users.filter((u: User) => {
             const user = u.login.toLocaleLowerCase();
             const substr = loginSubstring.toLocaleLowerCase();
             return user.includes(substr);
@@ -43,7 +30,6 @@ export class UserService implements IUserServise {
     public async save(user: UserDTO): Promise<boolean> {
         try {
             await this.userRepository.create(user);
-            this.getDataDB();
             return true;
         } catch {
             return false;
@@ -53,7 +39,6 @@ export class UserService implements IUserServise {
     public async update(user: User): Promise<boolean> {
         try {
             await this.userRepository.update(user);
-            this.getDataDB();
             return true;
         } catch {
             return false;
@@ -63,14 +48,10 @@ export class UserService implements IUserServise {
     public async delete(id: string): Promise<boolean> {
         try {
             await this.userRepository.destroy(id);
-            this.getDataDB();
             return true;
         } catch {
             return false;
         }
     }
 
-    public store(): User[] {
-        return this.data;
-    }
 }
