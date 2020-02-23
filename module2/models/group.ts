@@ -9,7 +9,7 @@ export interface Group {
 export interface IGroupServise {
 
    getAll(): Promise<Group[]>;
-   
+
    getById(id: string): Promise<Group>;
 
    save(user: Group): Promise<boolean>;

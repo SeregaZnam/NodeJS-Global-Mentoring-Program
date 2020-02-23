@@ -1,4 +1,4 @@
-import { Group } from "../models/group";
+import { Group } from '../models/group';
 
 export interface IGroupRepository {
 
@@ -11,5 +11,5 @@ export interface IGroupRepository {
     update(user: Group): void;
 
     destroy(id: string): void;
-    
+
 }

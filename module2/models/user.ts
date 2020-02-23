@@ -8,7 +8,7 @@ export interface User {
 export interface IUserServise {
 
     getAll(): Promise<User[]>;
-    
+
     getById(id: number): Promise<User | undefined>;
 
     getAutoSuggest(loginSubstring: string, limit: number): Promise<User[]>;

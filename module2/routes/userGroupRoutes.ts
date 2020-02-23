@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from 'express';
 import * as userGroupController from '../controllers/userGroupController';
 
 const router = Router();
