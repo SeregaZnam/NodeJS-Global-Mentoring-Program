@@ -23,5 +23,5 @@ export const createDbConnect = async (config: Config) => {
       }
    });
 
-   return sequelize;
+   return { sequelize, Sequelize };
 };

@@ -3,7 +3,7 @@ import config from './config';
 import userRoutes from './routes/userRoutes';
 import groupRoutes from './routes/groupRoutes';
 import userGroupRoutes from './routes/userGroupRoutes';
-import { createDbConnect } from './database/database';
+import { createDbConnect } from './database';
 
 const bootstrap = async () => {
    const app = express();
@@ -19,7 +19,7 @@ const bootstrap = async () => {
       res.status(404).send('Page not found');
    });
 
-   db.sync().then(() => {
+   db.sequelize.sync().then(() => {
       app.listen(config.get('port'), () => {
          console.log(`Server is running at ${config.get('port')}!`);
       });

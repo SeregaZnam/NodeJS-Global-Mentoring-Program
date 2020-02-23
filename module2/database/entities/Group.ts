@@ -1,10 +1,12 @@
-import { DataTypes, Model, Sequelize } from 'sequelize';
+import { DataTypes, Model, Sequelize, HasManyAddAssociationMixin } from 'sequelize';
 import { UserModel } from './User';
 
-export class GroupModel extends Model<GroupModel> {
+export class GroupModel extends Model {
    public id!: string;
    public name!: string;
    public permissions!: string[];
+
+   addUserModel!: HasManyAddAssociationMixin<UserModel, string>;
 
    static associate = () => {
       GroupModel.associations.users = GroupModel.belongsToMany(UserModel, {

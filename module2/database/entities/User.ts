@@ -1,7 +1,7 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
 import { GroupModel } from './Group';
 
-export class UserModel extends Model<UserModel> {
+export class UserModel extends Model {
    public id!: string;
    public login!: string;
    public password!: string;
