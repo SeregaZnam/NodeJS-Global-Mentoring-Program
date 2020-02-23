@@ -1,12 +1,24 @@
 import convict from 'convict';
 
 const config = convict({
+   env: {
+      doc: 'The application environment',
+      format: ['production', 'development'],
+      default: 'development',
+      env: 'NODE_ENV'
+   },
    port: {
       doc: 'The port to bind.',
       format: 'port',
       default: 3000,
       env: 'PORT',
       arg: 'port'
+   },
+   logging_level: {
+      doc: 'The logging level to print to the console',
+      format: ['fatal', 'error', 'warn', 'info', 'debug', 'trace'],
+      default: 'info',
+      env: 'LOGGING_LEVEL'
    },
    db: {
       host: {

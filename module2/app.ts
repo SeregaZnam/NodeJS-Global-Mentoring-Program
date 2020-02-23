@@ -8,36 +8,50 @@ import userGroupRoutes from './routes/userGroupRoutes';
 import { createDbConnect } from './database';
 import { UserModel } from './database/entities/User';
 import { GroupModel } from './database/entities/Group';
+import logger from './logger';
+
+process.on('unhandledRejection', (err) => {
+   throw err;
+});
 
 const bootstrap = async () => {
-   const app = express();
-   const db = await createDbConnect(config);
+   try {
+      logger.info('Server starting bootstrap');
 
-   app.use(express.json());
+      const app = express();
+      const db = await createDbConnect(config);
 
-   app.use('/user', userRoutes);
-   app.use('/group', groupRoutes);
-   app.use('/user-group', userGroupRoutes);
+      app.use(express.json());
 
-   app.use((req: Request, res: Response) => {
-      res.status(404).send('Page not found');
-   });
+      app.use('/user', userRoutes);
+      app.use('/group', groupRoutes);
+      app.use('/user-group', userGroupRoutes);
 
-   db.sequelize.sync({ force: true })
-      .then(async () => {
-         const pathUserSeed = path.resolve(__dirname, 'database', 'seeds', 'users.json');
-         const pathGroupSeed = path.resolve(__dirname, 'database', 'seeds', 'groups.json');
-         const users = await fs.promises.readFile(pathUserSeed, { encoding: 'utf-8' });
-         const group = await fs.promises.readFile(pathGroupSeed, { encoding: 'utf-8' });
-
-         UserModel.bulkCreate(JSON.parse(users));
-         GroupModel.bulkCreate(JSON.parse(group));
-      })
-      .then(() => {
-         app.listen(config.get('port'), () => {
-            console.log(`Server is running at ${config.get('port')}!`);
-         });
+      app.use((req: Request, res: Response) => {
+         res.status(404).send('Page not found');
       });
+
+      db.sequelize.sync({ force: true })
+         .then(async () => {
+            const pathUserSeed = path.resolve(__dirname, 'database', 'seeds', 'users.json');
+            const pathGroupSeed = path.resolve(__dirname, 'database', 'seeds', 'groups.json');
+            const users = await fs.promises.readFile(pathUserSeed, { encoding: 'utf-8' });
+            const group = await fs.promises.readFile(pathGroupSeed, { encoding: 'utf-8' });
+
+            UserModel.bulkCreate(JSON.parse(users));
+            GroupModel.bulkCreate(JSON.parse(group));
+         })
+         .then(() => {
+            app.listen(config.get('port'), () => {
+               console.log(`Server is running at ${config.get('port')}!`);
+            });
+         });
+   } catch (err) {
+      logger.error('can not bootstrap server', { err });
+      throw err;
+   }
 };
 
-bootstrap();
+bootstrap().catch(() => {
+   process.exit(1);
+});
