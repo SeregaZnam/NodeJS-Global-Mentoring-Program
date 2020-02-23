@@ -1,10 +1,11 @@
 import { User } from '../models/user';
+import { UserModel } from '../database/entities/User';
 
 export interface IUserRepository {
 
-    getById(id: string): Promise<User>
+    getById(id: string): Promise<UserModel>
 
-    findAll(): Promise<User[]>;
+    findAll(): Promise<UserModel[]>;
 
     create(user: User): void;
 

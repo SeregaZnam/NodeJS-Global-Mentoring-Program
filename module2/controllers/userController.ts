@@ -1,9 +1,9 @@
 import { UserService } from '../services/userService';
 import * as Joi from '@hapi/joi';
-import { UserDTO } from '../dto/userDTO';
 import { UserRepository } from '../database/repositories/UserRepository';
-import { UserModel } from '../database/entities/User';
 import { Request, Response } from 'express';
+import { User } from '../models/user';
+import { UserMapper } from '../mappers/UserMapper';
 
 const userRepository = new UserRepository();
 const userService = new UserService(userRepository);
@@ -13,7 +13,7 @@ export const getAutoSuggestUsers = async (req: Request, res: Response) => {
    const limit = req.query.limit;
    const users = await userService.getAutoSuggest(loginSubstring, limit);
 
-   res.status(200).json(users);
+   res.status(200).json(users.map((u: User) => UserMapper.toDTO(u)));
 };
 
 export const createUser = async (req: Request, res: Response) => {
@@ -31,7 +31,7 @@ export const createUser = async (req: Request, res: Response) => {
 
    try {
       const value = await schema.validateAsync(req.body);
-      const user: UserDTO = {
+      const user: Omit<User, 'id'> = {
          login: value.login,
          password: value.password,
          age: value.age
@@ -51,7 +51,7 @@ export const getUser = async (req: Request, res: Response) => {
    const user = await userService.getById(id);
 
    if (user) {
-      res.status(200).json(user);
+      res.status(200).json(UserMapper.toDTO(user));
    } else {
       res.status(404).end();
    }

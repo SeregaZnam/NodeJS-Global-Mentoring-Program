@@ -1,17 +1,20 @@
 import { IUserServise, User } from '../models/user';
 import { UserRepository } from '../database/repositories/UserRepository';
-import { UserDTO } from '../dto/userDTO';
+import { UserModel } from '../database/entities/User';
 
 export class UserService implements IUserServise {
    constructor(private userRepository: UserRepository) {}
 
    public async getAll(): Promise<User[]> {
-      return await this.userRepository.findAll();
+      const users = await this.userRepository.findAll();
+      return users.map((user: UserModel) => user.get({ plain: true }) as User);
    }
 
    public async getById(id: number | string): Promise<User | undefined> {
       const users = await this.userRepository.findAll();
-      return users.find((user: User) => user.id === id.toString());
+      return users
+         .map((user: UserModel) => user.get({ plain: true }) as User)
+         .find((user: User) => user.id === id.toString());
    }
 
    public async getAutoSuggest(
@@ -19,15 +22,16 @@ export class UserService implements IUserServise {
       limit: number | undefined = undefined
    ): Promise<User[]> {
       const users = await this.userRepository.findAll();
-      const result = users.filter((u: User) => {
-         const user = u.login.toLocaleLowerCase();
-         const substr = loginSubstring.toLocaleLowerCase();
-         return user.includes(substr);
-      });
+      const result = users.map((u) => u.get({ plain: true }) as User)
+         .filter((u: User) => {
+            const user = u.login.toLocaleLowerCase();
+            const substr = loginSubstring.toLocaleLowerCase();
+            return user.includes(substr);
+         });
       return result.slice(0, limit);
    }
 
-   public async save(user: UserDTO): Promise<boolean> {
+   public async save(user: Omit<User, 'id'>): Promise<boolean> {
       try {
          await this.userRepository.create(user);
          return true;
