@@ -1,25 +1,27 @@
 import { User } from '../../models/user';
 import { GroupModel } from '../../../group/data-access/entity/Group';
 import { UserModel } from '../entitity/User';
+import { injectable } from 'inversify';
 
+@injectable()
 export class UserRepository {
-   public static async getById(id: string): Promise<UserModel | null> {
+   public async getById(id: string): Promise<UserModel | null> {
       const user = await UserModel.findByPk(id);
       return user;
    }
 
-   public static async findAll(): Promise<UserModel[]> {
+   public async findAll(): Promise<UserModel[]> {
       const users = await UserModel.findAll({
          include: [GroupModel]
       });
       return users;
    }
 
-   public static async create(user: Omit<User, 'id'>) {
+   public async create(user: Omit<User, 'id'>) {
       await UserModel.create(user);
    }
 
-   public static async update(user: User) {
+   public async update(user: User) {
       await UserModel.update({
          login: user.login,
          password: user.password,
@@ -29,7 +31,7 @@ export class UserRepository {
       });
    }
 
-   public static async destroy(id: string) {
+   public async destroy(id: string) {
       await UserModel.destroy({
          where: { id }
       });

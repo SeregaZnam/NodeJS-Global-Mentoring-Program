@@ -1,4 +1,4 @@
-import { Config } from '../config';
+import { Config } from '../configs/config';
 import { Sequelize } from 'sequelize';
 import { initUserModel, UserModel } from '../modules/user/data-access/entitity/User';
 import { initGroupModel, GroupModel } from '../modules/group/data-access/entity/Group';

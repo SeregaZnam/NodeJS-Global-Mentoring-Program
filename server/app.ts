@@ -1,14 +1,18 @@
+import 'reflect-metadata';
 import fs from 'fs';
 import path from 'path';
 import express from 'express';
-import config from './config';
+import config from './configs/config';
 import logger from './logger';
+import bodyParser from 'body-parser';
 import { createDbConnect } from './database';
 import { UserModel } from './modules/user/data-access/entitity/User';
 import { GroupModel } from './modules/group/data-access/entity/Group';
+import { InversifyExpressServer } from 'inversify-express-utils';
 import { httpError } from './middleware/httpError';
-import { attachRoutes } from './routes';
 import { loggerHandler } from './middleware/loggerHandler';
+import { bindings } from './inversify.config';
+import { Container } from 'inversify';
 
 process.on('unhandledRejection', (err) => {
    throw err;
@@ -17,15 +21,20 @@ process.on('unhandledRejection', (err) => {
 const bootstrap = async () => {
    try {
       logger.info('Server starting bootstrap');
-
-      const app = express();
+      const container = new Container();
+      await container.loadAsync(bindings);
+      const app = new InversifyExpressServer(container);
       const db = await createDbConnect(config);
 
-      app.use(express.json());
-      app.use(loggerHandler);
-      app.use(httpError);
+      // eslint-disable-next-line no-shadow
+      app.setConfig((app) => {
+         app.use(bodyParser.json());
+      });
 
-      attachRoutes(app);
+      const server = app.build();
+      server.use(express.json());
+      server.use(loggerHandler);
+      server.use(httpError);
 
       db.sequelize.sync({ force: true })
          .then(async () => {
@@ -38,7 +47,7 @@ const bootstrap = async () => {
             GroupModel.bulkCreate(JSON.parse(group));
          })
          .then(() => {
-            app.listen(config.get('port'), () => {
+            server.listen(config.get('port'), () => {
                console.log(`Server is running at ${config.get('port')}!`);
             });
          });

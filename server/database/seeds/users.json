@@ -1,0 +1,27 @@
+[
+   {
+      "login": "Alex",
+      "password": "123test",
+      "age": 15
+   },
+   {
+      "login": "Robin",
+      "password": "asd456A",
+      "age": 20
+   },
+   {
+      "login": "Tony",
+      "password": "sdf98xA",
+      "age": 25
+   },
+   {
+      "login": "Andrey",
+      "password": "sdf298xA",
+      "age": 45
+   },
+   {
+      "login": "Sergey",
+      "password": "123wer",
+      "age": 25
+   }
+]

@@ -1,22 +1,24 @@
-import { Group } from '../models/group';
-import { GroupDTO } from '../dto/groupDTO';
-import { GroupModel } from '../data-access/entity/Group';
+import { Group } from '../../models/group';
+import { GroupDTO } from '../../dto/groupDTO';
+import { GroupModel } from '../entity/Group';
+import { injectable } from 'inversify';
 
+@injectable()
 export class GroupRepository {
-   public static async getById(id: string): Promise<GroupModel | null> {
+   public async getById(id: string): Promise<GroupModel | null> {
       return await GroupModel.findByPk(id);
    }
 
-   public static async findAll(): Promise<GroupModel[]> {
+   public async findAll(): Promise<GroupModel[]> {
       const users = await GroupModel.findAll();
       return users;
    }
 
-   public static async create(group: GroupDTO) {
+   public async create(group: GroupDTO) {
       await GroupModel.create(group);
    }
 
-   public static async update(group: Group) {
+   public async update(group: Group) {
       await GroupModel.update({
          name: group.name,
          permissions: group.permissions
@@ -25,7 +27,7 @@ export class GroupRepository {
       });
    }
 
-   public static async destroy(id: string) {
+   public async destroy(id: string) {
       await GroupModel.destroy({
          where: { id }
       });
