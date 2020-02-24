@@ -1,5 +1,5 @@
 import * as Joi from '@hapi/joi';
-import { GroupService } from '../services/groupService';
+import { GroupService } from '../service';
 import { Request, Response } from 'express';
 import { GroupDTO } from '../dto/groupDTO';
 

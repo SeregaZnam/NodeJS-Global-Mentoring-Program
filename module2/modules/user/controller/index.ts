@@ -1,8 +1,8 @@
-import { UserService } from '../services/userService';
+import { UserService } from '../service';
 import * as Joi from '@hapi/joi';
 import { Request, Response } from 'express';
 import { User } from '../models/user';
-import { UserMapper } from '../mappers/UserMapper';
+import { UserMapper } from '../utils/mappers/UserMapper';
 
 export const getAutoSuggestUsers = async (req: Request, res: Response) => {
    const loginSubstring = req.query.loginSubstring;

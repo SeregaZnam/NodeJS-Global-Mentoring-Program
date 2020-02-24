@@ -1,8 +1,8 @@
-import { GroupRepository } from '../database/repositories/GroupRepository';
-import { UserRepository } from '../database/repositories/UserRepository';
+import { GroupRepository } from '../../group/repository/GroupRepository';
+import { UserRepository } from '../../user/data-access/repository/UserRepository';
 import { Transaction } from 'sequelize/types';
-import { GroupModel } from '../database/entities/Group';
-import { UserModel } from '../database/entities/User';
+import { GroupModel } from '../../group/data-access/entity/Group';
+import { UserModel } from '../../user/data-access/entitity/User';
 
 export class UserGroupService {
    public static async save(userId: string, groupId: string, transaction: Transaction): Promise<boolean> {

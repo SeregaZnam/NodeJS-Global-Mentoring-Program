@@ -1,5 +1,5 @@
 import { DataTypes, Model, Sequelize, HasManyAddAssociationMixin } from 'sequelize';
-import { UserModel } from './User';
+import { UserModel } from '../../../user/data-access/entitity/User';
 
 export class GroupModel extends Model {
    public id!: string;

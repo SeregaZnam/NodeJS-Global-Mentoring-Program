@@ -1,7 +1,6 @@
-import { GroupRepository } from '../database/repositories/GroupRepository';
-import { IGroupServise, Group } from '../models/group';
+import { GroupRepository } from '../repository/GroupRepository';
+import { Group } from '../models/group';
 import { GroupDTO } from '../dto/groupDTO';
-import { GroupModel } from '../database/entities/Group';
 
 export class GroupService {
    public static async getAll(): Promise<any> {

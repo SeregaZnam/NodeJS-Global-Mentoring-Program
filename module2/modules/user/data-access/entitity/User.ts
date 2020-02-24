@@ -1,5 +1,5 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
-import { GroupModel } from './Group';
+import { GroupModel } from '../../../group/data-access/entity/Group';
 
 export class UserModel extends Model {
    public id!: string;

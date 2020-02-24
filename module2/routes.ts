@@ -1,6 +1,6 @@
-import userRoutes from './userRoutes';
-import groupRoutes from './groupRoutes';
-import userGroupRoutes from './userGroupRoutes';
+import userRoutes from './modules/user/routes';
+import groupRoutes from './modules/group/routes';
+import userGroupRoutes from './modules/user-group/routes';
 import { Application } from 'express';
 
 export const attachRoutes = (app: Application) => {

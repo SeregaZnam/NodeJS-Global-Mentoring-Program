@@ -1,6 +1,6 @@
-import { Group } from '../../models/group';
-import { GroupDTO } from '../../dto/groupDTO';
-import { GroupModel } from '../entities/Group';
+import { Group } from '../models/group';
+import { GroupDTO } from '../dto/groupDTO';
+import { GroupModel } from '../data-access/entity/Group';
 
 export class GroupRepository {
    public static async getById(id: string): Promise<GroupModel | null> {

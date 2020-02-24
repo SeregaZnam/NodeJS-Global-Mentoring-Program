@@ -1,6 +1,6 @@
 import { User } from '../models/user';
-import { UserRepository } from '../database/repositories/UserRepository';
-import { UserModel } from '../database/entities/User';
+import { UserRepository } from '../data-access/repository/UserRepository';
+import { UserModel } from '../data-access/entitity/User';
 
 export class UserService {
    public static async getAll(): Promise<User[]> {

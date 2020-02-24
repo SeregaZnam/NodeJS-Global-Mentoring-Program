@@ -1,6 +1,6 @@
 import { User } from '../../models/user';
-import { GroupModel } from '../entities/Group';
-import { UserModel } from '../entities/User';
+import { GroupModel } from '../../../group/data-access/entity/Group';
+import { UserModel } from '../entitity/User';
 
 export class UserRepository {
    public static async getById(id: string): Promise<UserModel | null> {

@@ -1,8 +1,8 @@
 import * as Joi from '@hapi/joi';
 import { Request, Response } from 'express';
-import { UserGroupService } from '../services/userGroupService';
-import { createDbConnect } from '../database';
-import config from '../config';
+import { UserGroupService } from '../service';
+import { createDbConnect } from '../../../database';
+import config from '../../../config';
 
 export const createUserGroup = async (req: Request, res: Response) => {
    const schema = Joi.object({
