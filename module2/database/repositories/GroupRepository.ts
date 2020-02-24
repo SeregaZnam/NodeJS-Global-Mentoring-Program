@@ -1,30 +1,23 @@
-import { IGroupRepository } from '../../repositories/IGroupRepository';
-import { ModelCtor, Model } from 'sequelize/types';
 import { Group } from '../../models/group';
 import { GroupDTO } from '../../dto/groupDTO';
+import { GroupModel } from '../entities/Group';
 
-export class GroupRepository implements IGroupRepository {
-   private GroupEntity: any;
-
-   constructor(private groupModel: ModelCtor<Model>) {
-      this.GroupEntity = this.groupModel;
+export class GroupRepository {
+   public static async getById(id: string): Promise<GroupModel | null> {
+      return await GroupModel.findByPk(id);
    }
 
-   async getById(id: string): Promise<Group> {
-      return await this.GroupEntity.findByPk(id);
-   }
-
-   async findAll(): Promise<Group[]> {
-      const users = await this.GroupEntity.findAll();
+   public static async findAll(): Promise<GroupModel[]> {
+      const users = await GroupModel.findAll();
       return users;
    }
 
-   async create(group: GroupDTO) {
-      await this.GroupEntity.create(group);
+   public static async create(group: GroupDTO) {
+      await GroupModel.create(group);
    }
 
-   async update(group: Group) {
-      await this.GroupEntity.update({
+   public static async update(group: Group) {
+      await GroupModel.update({
          name: group.name,
          permissions: group.permissions
       }, {
@@ -32,8 +25,8 @@ export class GroupRepository implements IGroupRepository {
       });
    }
 
-   async destroy(id: string) {
-      await this.GroupEntity.destroy({
+   public static async destroy(id: string) {
+      await GroupModel.destroy({
          where: { id }
       });
    }

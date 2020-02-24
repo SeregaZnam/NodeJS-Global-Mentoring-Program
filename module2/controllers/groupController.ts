@@ -1,15 +1,10 @@
-import { GroupRepository } from '../database/repositories/GroupRepository';
+import * as Joi from '@hapi/joi';
 import { GroupService } from '../services/groupService';
 import { Request, Response } from 'express';
 import { GroupDTO } from '../dto/groupDTO';
-import * as Joi from '@hapi/joi';
-import { GroupModel } from '../database/entities/Group';
-
-const groupRepository = new GroupRepository(GroupModel);
-const groupService = new GroupService(groupRepository);
 
 export const getAllGroups = async (req: Request, res: Response) => {
-   const groups = await groupService.getAll();
+   const groups = await GroupService.getAll();
 
    if (groups) {
       res.status(200).json(groups);
@@ -35,7 +30,7 @@ export const createGroup = async (req: Request, res: Response) => {
       };
 
       // eslint-disable-next-line no-unused-expressions
-      await groupService.save(group)
+      await GroupService.save(group)
          ? res.status(201).json(true)
          : res.status(404).end();
    } catch (err) {
@@ -45,7 +40,7 @@ export const createGroup = async (req: Request, res: Response) => {
 
 export const getGroup = async (req: Request, res: Response) => {
    const id = req.params.id;
-   const group = await groupRepository.getById(id);
+   const group = await GroupService.getById(id);
 
    if (group) {
       res.status(200).json(group);
@@ -56,7 +51,7 @@ export const getGroup = async (req: Request, res: Response) => {
 
 export const updateGroup = async (req: Request, res: Response) => {
    const id = req.params.id;
-   const group = await groupService.getById(id);
+   const group = await GroupService.getById(id);
 
    if (!group) {
       res.status(404).end();
@@ -78,7 +73,7 @@ export const updateGroup = async (req: Request, res: Response) => {
       group.permissions = value.permissions;
 
       // eslint-disable-next-line no-unused-expressions
-      await groupService.update(group)
+      await GroupService.update(group)
          ? res.status(201).json(true)
          : res.status(404).end();
    } catch (err) {
@@ -88,9 +83,9 @@ export const updateGroup = async (req: Request, res: Response) => {
 
 export const deleteGroup = async (req: Request, res: Response) => {
    const id = req.params.id;
-   const group = await groupService.getById(id);
+   const group = await GroupService.getById(id);
 
-   if (group && await groupService.delete(group.id)) {
+   if (group && await GroupService.delete(group.id)) {
       res.status(201).json(true);
    } else {
       res.status(404).end();

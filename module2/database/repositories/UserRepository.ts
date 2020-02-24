@@ -1,33 +1,26 @@
 import { User } from '../../models/user';
-import { IUserRepository } from '../../repositories/IUserRepository';
 import { GroupModel } from '../entities/Group';
 import { UserModel } from '../entities/User';
 
-export class UserRepository implements IUserRepository {
-   private UserEntity: any;
-
-   constructor() {
-      this.UserEntity = UserModel;
-   }
-
-   async getById(id: string): Promise<UserModel> {
-      const user = await this.UserEntity.findByPk(id);
+export class UserRepository {
+   public static async getById(id: string): Promise<UserModel | null> {
+      const user = await UserModel.findByPk(id);
       return user;
    }
 
-   async findAll(): Promise<UserModel[]> {
-      const users = await this.UserEntity.findAll({
-         include: GroupModel
+   public static async findAll(): Promise<UserModel[]> {
+      const users = await UserModel.findAll({
+         include: [GroupModel]
       });
       return users;
    }
 
-   async create(user: Omit<User, 'id'>) {
-      await this.UserEntity.create(user);
+   public static async create(user: Omit<User, 'id'>) {
+      await UserModel.create(user);
    }
 
-   async update(user: User) {
-      await this.UserEntity.update({
+   public static async update(user: User) {
+      await UserModel.update({
          login: user.login,
          password: user.password,
          age: user.age
@@ -36,8 +29,8 @@ export class UserRepository implements IUserRepository {
       });
    }
 
-   async destroy(id: string) {
-      await this.UserEntity.destroy({
+   public static async destroy(id: string) {
+      await UserModel.destroy({
          where: { id }
       });
    }
