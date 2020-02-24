@@ -1,2 +1,20 @@
 {"message":"Server starting bootstrap","level":"info"}
 {"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"method":"GET","level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"method":"GET","level":"info","message":"Handle request method"}
+{"method":"GET","level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"method":"GET","level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"method":"GET","level":"info","message":"Handle request method"}
+{"level":"error","message":"Error get users with suggest"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}

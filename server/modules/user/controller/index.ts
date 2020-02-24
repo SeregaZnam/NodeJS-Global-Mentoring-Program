@@ -7,9 +7,12 @@ import { UserMapper } from '../utils/mappers/UserMapper';
 export const getAutoSuggestUsers = async (req: Request, res: Response) => {
    const loginSubstring = req.query.loginSubstring;
    const limit = req.query.limit;
-   const users = await UserService.getAutoSuggest(loginSubstring, limit);
-
-   res.status(200).json(users.map((u: User) => UserMapper.toDTO(u)));
+   try {
+      const users = await UserService.getAutoSuggest(loginSubstring, limit);
+      res.status(200).json(users && users.map((u: User) => UserMapper.toDTO(u)));
+   } catch (err) {
+      console.log(123);
+   }
 };
 
 export const createUser = async (req: Request, res: Response) => {

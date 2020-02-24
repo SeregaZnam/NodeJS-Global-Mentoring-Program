@@ -1,6 +1,7 @@
 import { User } from '../models/user';
 import { UserRepository } from '../data-access/repository/UserRepository';
 import { UserModel } from '../data-access/entitity/User';
+import logger from '../../../logger';
 
 export class UserService {
    public static async getAll(): Promise<User[]> {
@@ -16,15 +17,24 @@ export class UserService {
    public static async getAutoSuggest(
       loginSubstring: string,
       limit: number | undefined = undefined
-   ): Promise<User[]> {
-      const users = await UserRepository.findAll();
-      const result = users.map((u) => u.get({ plain: true }) as User)
-         .filter((u: User) => {
-            const user = u.login.toLocaleLowerCase();
-            const substr = loginSubstring.toLocaleLowerCase();
-            return user.includes(substr);
+   ): Promise<User[] | void> {
+      try {
+         const users = await UserRepository.findAll();
+         const result = users.map((u: UserModel) => u.get({ plain: true }) as User)
+            .filter((u: User) => {
+               const user = u.login.toLocaleLowerCase();
+               const substr = loginSubstring.toLocaleLowerCase();
+               return user.includes(substr);
+            });
+         return result.slice(0, limit);
+      } catch (err) {
+         console.log(err);
+         logger.error('Error get users with suggest', {
+            err,
+            method: 'getAutoSuggest',
+            params: { loginSubstring, limit }
          });
-      return result.slice(0, limit);
+      }
    }
 
    public static async save(user: Omit<User, 'id'>): Promise<boolean> {
