@@ -4,9 +4,6 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "task1": "nodemon --exec babel-node ./module1/task1.js",
-    "task2": "nodemon --exec babel-node ./module1/task2.js",
-    "task21": "nodemon --exec ts-node ./module5/app.ts",
     "start": "node dist/app.js",
     "serve:ts": "nodemon --exec ts-node ./module5/app.ts",
     "copy:locales": "copyfiles -u=1 -a module5/**/* dist",
