@@ -6,10 +6,10 @@
   "scripts": {
     "task1": "nodemon --exec babel-node ./module1/task1.js",
     "task2": "nodemon --exec babel-node ./module1/task2.js",
-    "task21": "nodemon --exec ts-node ./module2/app.ts",
+    "task21": "nodemon --exec ts-node ./module5/app.ts",
     "start": "node dist/app.js",
-    "serve:ts": "nodemon --exec ts-node ./module2/app.ts",
-    "copy:locales": "copyfiles -u=1 -a module2/**/* dist",
+    "serve:ts": "nodemon --exec ts-node ./module5/app.ts",
+    "copy:locales": "copyfiles -u=1 -a module5/**/* dist",
     "build-ts": "tsc",
     "clean": "rimraf dist/*",
     "build": "npm run clean && npm run build-ts && npm run copy:locales"
