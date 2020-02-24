@@ -5,8 +5,8 @@
   "main": "dist/app.js",
   "scripts": {
     "start": "node dist/app.js",
-    "serve:ts": "nodemon --exec ts-node ./module5/app.ts",
-    "copy:locales": "copyfiles -u=1 -a module5/**/* dist",
+    "serve:ts": "nodemon --exec ts-node ./server/app.ts",
+    "copy:locales": "copyfiles -u=1 -a server/**/* dist",
     "build-ts": "tsc",
     "clean": "rimraf dist/*",
     "build": "npm run clean && npm run build-ts && npm run copy:locales"
