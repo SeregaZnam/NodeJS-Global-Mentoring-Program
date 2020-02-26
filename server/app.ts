@@ -23,15 +23,15 @@ const bootstrap = async () => {
       logger.info('Server starting bootstrap');
       const container = new Container();
       await container.loadAsync(bindings);
-      const app = new InversifyExpressServer(container);
+      const inversifyExpressServer = new InversifyExpressServer(container);
       const db = await createDbConnect(config);
 
       // eslint-disable-next-line no-shadow
-      app.setConfig((app) => {
+      inversifyExpressServer.setConfig((app) => {
          app.use(bodyParser.json());
       });
 
-      const server = app.build();
+      const server = inversifyExpressServer.build();
       server.use(express.json());
       server.use(loggerHandler);
       server.use(httpError);
