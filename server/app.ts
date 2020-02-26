@@ -26,7 +26,6 @@ const bootstrap = async () => {
       const inversifyExpressServer = new InversifyExpressServer(container);
       const db = await createDbConnect(config);
 
-      // eslint-disable-next-line no-shadow
       inversifyExpressServer.setConfig((app) => {
          app.use(bodyParser.json());
       });
