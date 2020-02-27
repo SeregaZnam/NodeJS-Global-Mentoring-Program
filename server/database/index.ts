@@ -3,7 +3,12 @@ import { Sequelize } from 'sequelize';
 import { initUserModel, UserModel } from '../modules/user/data-access/entitity/User';
 import { initGroupModel, GroupModel } from '../modules/group/data-access/entity/Group';
 
-export const createDbConnect = async (config: Config) => {
+export interface DBConnect {
+   sequelize: Sequelize,
+   Sequelize: typeof Sequelize
+}
+
+export const createDbConnect = async (config: Config): Promise<DBConnect> => {
    const { host, database, password, user, port } = config.get('db');
    const sequelize = new Sequelize(database, user, password, {
       dialect: 'postgres',
