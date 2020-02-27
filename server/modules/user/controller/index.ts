@@ -1,11 +1,22 @@
+import logger from '../../../logger';
 import { UserService } from '../service';
 import * as Joi from '@hapi/joi';
 import { Request, Response } from 'express';
 import { User } from '../models/user';
 import { UserMapper } from '../utils/mappers/UserMapper';
-import { controller, httpGet, request, response, BaseHttpController, httpPut, httpPost, httpDelete } from 'inversify-express-utils';
+import {
+   httpGet,
+   httpPut,
+   httpPost,
+   request,
+   response,
+   httpDelete,
+   controller,
+   BaseHttpController
+} from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
+import { NotFoundError, CreateError, UpdateError, DeleteError } from '../../../errors';
 
 @controller('/user')
 export class UserController extends BaseHttpController {
@@ -20,12 +31,9 @@ export class UserController extends BaseHttpController {
    ) {
       const loginSubstring = req.query.loginSubstring;
       const limit = req.query.limit;
-      try {
-         const users = await this.userService.getAutoSuggest(loginSubstring, limit);
-         res.status(200).json(users && users.map((u: User) => UserMapper.toDTO(u)));
-      } catch (err) {
-         console.log(err);
-      }
+
+      const users = await this.userService.getAutoSuggest(loginSubstring, limit);
+      res.status(200).json(users && users.map((u: User) => UserMapper.toDTO(u)));
    }
 
    @httpPut('')
@@ -52,13 +60,18 @@ export class UserController extends BaseHttpController {
             password: value.password,
             age: value.age
          };
-
-         // eslint-disable-next-line no-unused-expressions
-         await this.userService.save(user)
-            ? res.status(201).json(true)
-            : res.status(404).end();
+         await this.userService.save(user);
+         res.status(200).json(true);
       } catch (err) {
-         res.status(400).json(err.details[0].message).end();
+         logger.error('Error create request', {
+            method: 'createUser',
+            params: {
+               login: req.body.login,
+               password: req.body.password,
+               age: req.body.age
+            }
+         });
+         throw new CreateError('Error create user');
       }
    }
 
@@ -68,12 +81,18 @@ export class UserController extends BaseHttpController {
       @response() res: Response
    ) {
       const id = req.params.id;
-      const user = await this.userService.getById(id);
 
-      if (user) {
-         res.status(200).json(UserMapper.toDTO(user));
-      } else {
-         res.status(404).end();
+      try {
+         const user = await this.userService.getById(id);
+         if (user) {
+            res.status(200).json(UserMapper.toDTO(user));
+         }
+      } catch {
+         logger.error('Error getting user', {
+            method: 'getUser',
+            params: { id }
+         });
+         throw new NotFoundError('Error getting user');
       }
    }
 
@@ -86,8 +105,7 @@ export class UserController extends BaseHttpController {
       const user = await this.userService.getById(id);
 
       if (!user) {
-         res.status(404).end();
-         return;
+         throw new NotFoundError('Error getting user');
       }
 
       const schema = Joi.object({
@@ -109,12 +127,14 @@ export class UserController extends BaseHttpController {
          user.password = value.password;
          user.age = value.age;
 
-         // eslint-disable-next-line no-unused-expressions
-         await this.userService.update(user)
-            ? res.status(201).json(true)
-            : res.status(404).end();
-      } catch (err) {
-         res.status(400).json(err.details[0].message).end();
+         await this.userService.update(user);
+         res.status(200).json(true);
+      } catch {
+         logger.error('Error updating user', {
+            method: 'updateUser',
+            params: { id }
+         });
+         throw new UpdateError('Error update user');
       }
    }
 
@@ -124,12 +144,18 @@ export class UserController extends BaseHttpController {
       @response() res: Response
    ) {
       const id = req.params.id;
-      const user = await this.userService.getById(id);
 
-      if (user && await this.userService.delete(user.id)) {
-         res.status(201).json(true);
-      } else {
-         res.status(404).end();
+      try {
+         const user = await this.userService.getById(id);
+         if (user) {
+            await this.userService.delete(user.id);
+         }
+      } catch {
+         logger.error('Error deleting user', {
+            method: 'deleteUser',
+            params: { id }
+         });
+         throw new DeleteError('Error deleting user');
       }
    }
 }

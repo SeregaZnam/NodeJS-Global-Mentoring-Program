@@ -43,29 +43,17 @@ export class UserService {
    }
 
    public async save(user: Omit<User, 'id'>): Promise<boolean> {
-      try {
-         await this.userRepository.create(user);
-         return true;
-      } catch {
-         return false;
-      }
+      await this.userRepository.create(user);
+      return true;
    }
 
    public async update(user: User): Promise<boolean> {
-      try {
-         await this.userRepository.update(user);
-         return true;
-      } catch {
-         return false;
-      }
+      await this.userRepository.update(user);
+      return true;
    }
 
    public async delete(id: string): Promise<boolean> {
-      try {
-         await this.userRepository.destroy(id);
-         return true;
-      } catch {
-         return false;
-      }
+      await this.userRepository.destroy(id);
+      return true;
    }
 }

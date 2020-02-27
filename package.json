@@ -55,6 +55,7 @@
     "copyfiles": "^2.1.1",
     "csvtojson": "^2.0.10",
     "express": "^4.17.1",
+    "http-status-codes": "^1.4.0",
     "inversify": "^5.0.1",
     "inversify-express-utils": "^6.3.2",
     "lodash": "^4.17.15",

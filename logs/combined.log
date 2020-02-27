@@ -2,3 +2,58 @@
 {"message":"Server is running at 3000!","level":"info"}
 {"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
 {"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user/a34b2bcd-2496-4641-97ee-57a37142edf3","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/robots.txt","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/favicon.ico","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
