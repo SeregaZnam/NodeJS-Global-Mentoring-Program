@@ -57,3 +57,5 @@
 {"message":"Server starting bootstrap","level":"info"}
 {"message":"Server is running at 3000!","level":"info"}
 {"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}

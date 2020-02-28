@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import cors from 'cors';
+import helmet from 'helmet';
 import express from 'express';
 import logger from './logger';
 import config from './configs/config';
@@ -10,6 +11,7 @@ import { loggerHandler } from './middlewares/loggerHandler';
 import { bindings } from './inversify.config';
 import { Container } from 'inversify';
 import { preloadMockData } from './utils/preloadMockData';
+import { initializeStrategies } from './auth';
 
 process.on('unhandledRejection', (err) => {
    throw err;
@@ -22,12 +24,14 @@ const bootstrap = async () => {
       await container.loadAsync(bindings);
       const server = new InversifyExpressServer(container);
 
-      server.setConfig((app) => {
+      server.setConfig(async (app) => {
          app.use(cors());
+         app.use(helmet())
          app.use(bodyParser.json());
          app.use(express.json());
          app.use(loggerHandler);
          app.use(httpError);
+         await initializeStrategies();
       });
 
       const app = server.build();

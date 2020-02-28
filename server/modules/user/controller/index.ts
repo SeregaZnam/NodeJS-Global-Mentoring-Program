@@ -1,7 +1,7 @@
 import logger from '../../../logger';
 import { UserService } from '../service';
 import * as Joi from '@hapi/joi';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { User } from '../models/user';
 import { UserMapper } from '../utils/mappers/UserMapper';
 import {
@@ -17,12 +17,18 @@ import {
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import { NotFoundError, CreateError, UpdateError, DeleteError } from '../../../errors';
+import passport = require('passport');
 
 @controller('/user')
 export class UserController extends BaseHttpController {
    constructor(@inject(TYPES.UserService) private userService: UserService) {
       super();
    }
+
+   @httpGet('/login',
+      passport.authenticate('custom', {session: false})
+   )
+   async signInUser(req: Request, res: Response, next: NextFunction) {}
 
    @httpGet('')
    async getAutoSuggestUsers(
