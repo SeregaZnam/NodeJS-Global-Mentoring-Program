@@ -1,7 +1,8 @@
 import 'reflect-metadata';
+import cors from 'cors';
 import express from 'express';
-import config from './configs/config';
 import logger from './logger';
+import config from './configs/config';
 import bodyParser from 'body-parser';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import { httpError } from './middlewares/httpError';
@@ -22,6 +23,7 @@ const bootstrap = async () => {
       const server = new InversifyExpressServer(container);
 
       server.setConfig((app) => {
+         app.use(cors());
          app.use(bodyParser.json());
          app.use(express.json());
          app.use(loggerHandler);
