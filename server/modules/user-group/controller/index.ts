@@ -1,4 +1,3 @@
-import config from '../../../configs/config';
 import {
    controller,
    httpPut,
@@ -10,7 +9,7 @@ import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import { executionTime } from '../../../utils/executionTime';
-import { createDbConnect, DBConnect } from '../../../database';
+import { DBConnect } from '../../../database';
 import { UserGroupService } from '../service';
 import { Request, Response } from 'express';
 import { Logger } from '../../../logger';

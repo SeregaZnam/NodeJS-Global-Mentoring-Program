@@ -590,3 +590,23 @@
 {"message":"Server starting bootstrap","level":"info"}
 {"message":"Server starting bootstrap","level":"info"}
 {"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=1&loginSubstring=leX","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1167.137701ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 1153.3164ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"a581bfd1-da96-467a-9287-b0db8e3eb88a","groupId":"d393ed17-6937-443e-8298-13c3e4858b33"},"level":"info","message":"Handle request method"}
+{"message":"method createUserGroup worked in 1796.837499ms","level":"info"}
+{"method":"GET","url":"/user?limit=1&loginSubstring=leX","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 146.3044ms","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 293.0204ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=leX","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 145.967499ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 145.759499ms","level":"info"}
+{"method":"PUT","url":"/group","body":{"name":"Group3","permissions":["READ","WRITE"]},"level":"info","message":"Handle request method"}
+{"message":"method createGroup worked in 289.808ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 143.8998ms","level":"info"}
