@@ -160,3 +160,9 @@
 {"message":"method getAutoSuggestUsers worked in 1231.520401ms","level":"info"}
 {"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
 {"message":"method createUser worked in 309.8622ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 158.240901ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}

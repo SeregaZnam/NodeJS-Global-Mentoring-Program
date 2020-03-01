@@ -39,7 +39,7 @@
     "rules": {
         "no-debugger": 1,
         "comma-dangle": [
-            2,
+            1,
             "never"
         ],
         "no-cond-assign": [

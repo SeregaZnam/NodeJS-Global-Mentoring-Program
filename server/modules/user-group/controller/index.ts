@@ -1,11 +1,18 @@
 import * as Joi from '@hapi/joi';
-import { Request, Response } from 'express';
-import { UserGroupService } from '../service';
-import { createDbConnect } from '../../../database';
 import config from '../../../configs/config';
-import { controller, BaseHttpController, httpPut, request, response } from 'inversify-express-utils';
+import {
+   controller,
+   httpPut,
+   request,
+   response,
+   BaseHttpController
+} from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
+import { executionTime } from '../../../utils/executionTime';
+import { createDbConnect } from '../../../database';
+import { UserGroupService } from '../service';
+import { Request, Response } from 'express';
 
 @controller('/user-group')
 export class UserGroupController extends BaseHttpController {
@@ -14,6 +21,7 @@ export class UserGroupController extends BaseHttpController {
    }
 
    @httpPut('')
+   @executionTime()
    async createUserGroup(
       @request() req: Request,
       @response() res: Response

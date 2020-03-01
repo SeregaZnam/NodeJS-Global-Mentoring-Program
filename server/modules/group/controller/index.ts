@@ -5,6 +5,7 @@ import { GroupDTO } from '../dto/groupDTO';
 import { controller, BaseHttpController, httpGet, request, response, httpPut, httpPost, httpDelete } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
+import { executionTime } from '../../../utils/executionTime';
 
 @controller('/group')
 export class GroupController extends BaseHttpController {
@@ -13,6 +14,7 @@ export class GroupController extends BaseHttpController {
    }
 
    @httpGet('')
+   @executionTime()
    async getAllGroups(
       @request() req: Request,
       @response() res: Response
@@ -27,6 +29,7 @@ export class GroupController extends BaseHttpController {
    }
 
    @httpPut('')
+   @executionTime()
    async createGroup(
       @request() req: Request,
       @response() res: Response
@@ -56,6 +59,7 @@ export class GroupController extends BaseHttpController {
    }
 
    @httpGet('/:id')
+   @executionTime()
    async getGroup(
       @request() req: Request,
       @response() res: Response
@@ -71,6 +75,7 @@ export class GroupController extends BaseHttpController {
    }
 
    @httpPost('/:id')
+   @executionTime()
    async updateGroup(
       @request() req: Request,
       @response() res: Response
@@ -107,6 +112,7 @@ export class GroupController extends BaseHttpController {
    }
 
    @httpDelete('/:id')
+   @executionTime()
    async deleteGroup(
       @request() req: Request,
       @response() res: Response
