@@ -17,6 +17,7 @@ import {
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import { NotFoundError, CreateError, UpdateError, DeleteError } from '../../../errors';
+import { executionTime } from '../../../utils/executionTime';
 
 @controller('/user')
 export class UserController extends BaseHttpController {
@@ -25,6 +26,7 @@ export class UserController extends BaseHttpController {
    }
 
    @httpGet('')
+   @executionTime()
    async getAutoSuggestUsers(
       @request() req: Request,
       @response() res: Response
@@ -37,6 +39,7 @@ export class UserController extends BaseHttpController {
    }
 
    @httpPut('')
+   @executionTime()
    async createUser(
       @request() req: Request,
       @response() res: Response
@@ -76,6 +79,7 @@ export class UserController extends BaseHttpController {
    }
 
    @httpGet('/:id')
+   @executionTime()
    async getUser(
       @request() req: Request,
       @response() res: Response
@@ -97,6 +101,7 @@ export class UserController extends BaseHttpController {
    }
 
    @httpPost('/:id')
+   @executionTime()
    async updateUser(
       @request() req: Request,
       @response() res: Response
@@ -139,6 +144,7 @@ export class UserController extends BaseHttpController {
    }
 
    @httpDelete('/:id')
+   @executionTime()
    async deleteUser(
       @request() req: Request,
       @response() res: Response
