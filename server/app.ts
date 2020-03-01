@@ -1,7 +1,7 @@
 import 'reflect-metadata';
+import logger from './logger';
 import express from 'express';
 import config from './configs/config';
-import logger from './logger';
 import bodyParser from 'body-parser';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import { httpError } from './middlewares/httpError';

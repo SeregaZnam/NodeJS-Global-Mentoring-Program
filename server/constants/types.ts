@@ -4,5 +4,6 @@ export const TYPES = {
    GroupService: Symbol.for('GroupService'),
    UserGroupService: Symbol.for('UserGroupService'),
    UserRepository: Symbol.for('UserRepository'),
-   GroupRepository: Symbol.for('GroupRepository')
+   GroupRepository: Symbol.for('GroupRepository'),
+   Logger: Symbol.for('Logger')
 };

@@ -7,6 +7,7 @@ import { GroupRepository } from './modules/group/data-access/repository/GroupRep
 import { UserRepository } from './modules/user/data-access/repository/UserRepository';
 import { createDbConnect, DBConnect } from './database';
 import { AsyncContainerModule, interfaces } from 'inversify';
+import logger, { Logger } from './logger';
 
 export const bindings = new AsyncContainerModule(async (bind: interfaces.Bind) => {
    await import('./modules/user/controller');
@@ -18,6 +19,7 @@ export const bindings = new AsyncContainerModule(async (bind: interfaces.Bind) =
    await dbConnect.sequelize.sync({ force: true });
 
    bind<DBConnect>(TYPES.DbConnect).toConstantValue(dbConnect);
+   bind<Logger>(TYPES.Logger).toConstantValue(logger);
 
    bind<UserService>(TYPES.UserService).to(UserService);
    bind<GroupService>(TYPES.GroupService).to(GroupService);

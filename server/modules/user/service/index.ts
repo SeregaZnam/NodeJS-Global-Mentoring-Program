@@ -22,18 +22,11 @@ export class UserService {
    public async getAutoSuggest(
       loginSubstring: string,
       limit: number | undefined = undefined
-   ): Promise<User[] | void> {
+   ): Promise<UserModel[] | void> {
       try {
-         const users = await this.userRepository.findAll();
-         const result = users.map((u: UserModel) => u.get({ plain: true }) as User)
-            .filter((u: User) => {
-               const user = u.login.toLocaleLowerCase();
-               const substr = loginSubstring.toLocaleLowerCase();
-               return user.includes(substr);
-            });
-         return result.slice(0, limit);
+         const users = await this.userRepository.findAll(loginSubstring, limit);
+         return users;
       } catch (err) {
-         console.log(err);
          logger.error('Error get users with suggest', {
             err,
             method: 'getAutoSuggest',

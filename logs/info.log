@@ -166,3 +166,204 @@
 {"message":"method getAllGroups worked in 158.240901ms","level":"info"}
 {"message":"Server starting bootstrap","level":"info"}
 {"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 173.628601ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 1177.679401ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"7c02fdc4-6214-4fbb-a587-37b0ae113be0","groupId":"30a53d72-1605-45a0-bccd-63ccce0edbaa"},"level":"info","message":"Handle request method"}
+{"message":"method createUserGroup worked in 4293.1867ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 164.619699ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 161.0378ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 166.1404ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1173.7854ms","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1197.1133ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 168.4328ms","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1210.352999ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 172.0028ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 172.0075ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":""},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 13.085101ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":""},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 12.177101ms","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=s","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"s","limit":""},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 7.393201ms","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=r","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"r","limit":""},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 2.2147ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=r","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"r","limit":""},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 12.824899ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=r","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"r","limit":""},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 13.0075ms","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":""},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 7.4956ms","level":"info"}
+{"method":"GET","url":"/user?limit=","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"limit":""},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 7.5985ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 172.9191ms","level":"info"}
+{"method":"GET","url":"/user?limit=2&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 151.502199ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 156.143799ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 173.865ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"3"},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 11.9088ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=Alex","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"Alex","limit":"3"},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 9.162501ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=%22Alex%22","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"\"Alex\"","limit":"3"},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 7.8384ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=%22Alex%22","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"\"Alex\"","limit":"3"},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 2.834901ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=%22Alex%22","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"\"Alex\"","limit":"3"},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 6.612299ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=Alex","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"Alex","limit":"3"},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 2.8065ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=Alex","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"Alex","limit":"3"},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 12.355801ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=Alex","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 172.8956ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=Ale","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 149.5069ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=Ale","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 173.804601ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=Alex","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 150.7951ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=lex","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 152.6408ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=lex","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 171.380101ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=Lex","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 152.247601ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=Lex","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 169.8319ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=lex","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 151.1366ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=lex","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 172.2703ms","level":"info"}
+{"method":"GET","url":"/user?limit=3&loginSubstring=leX","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 150.8971ms","level":"info"}
+{"method":"GET","url":"/user?limit=&loginSubstring=leX","body":{},"level":"info","message":"Handle request method"}
+{"err":{"name":"SequelizeDatabaseError","parent":{"name":"error","length":92,"severity":"ERROR","code":"22P02","position":"848","file":"int8.c","line":"126","routine":"scanint8","sql":"SELECT \"UserModel\".\"id\", \"UserModel\".\"login\", \"UserModel\".\"password\", \"UserModel\".\"age\", \"GroupModels\".\"id\" AS \"GroupModels.id\", \"GroupModels\".\"name\" AS \"GroupModels.name\", \"GroupModels\".\"permissions\" AS \"GroupModels.permissions\", \"GroupModels->user-group\".\"createdAt\" AS \"GroupModels.user-group.createdAt\", \"GroupModels->user-group\".\"updatedAt\" AS \"GroupModels.user-group.updatedAt\", \"GroupModels->user-group\".\"UserModelId\" AS \"GroupModels.user-group.UserModelId\", \"GroupModels->user-group\".\"GroupModelId\" AS \"GroupModels.user-group.GroupModelId\" FROM \"users\" AS \"UserModel\" LEFT OUTER JOIN ( \"user-group\" AS \"GroupModels->user-group\" INNER JOIN \"groups\" AS \"GroupModels\" ON \"GroupModels\".\"id\" = \"GroupModels->user-group\".\"GroupModelId\") ON \"UserModel\".\"id\" = \"GroupModels->user-group\".\"UserModelId\" WHERE \"UserModel\".\"login\" ILIKE '%leX%' LIMIT '';"},"original":{"name":"error","length":92,"severity":"ERROR","code":"22P02","position":"848","file":"int8.c","line":"126","routine":"scanint8","sql":"SELECT \"UserModel\".\"id\", \"UserModel\".\"login\", \"UserModel\".\"password\", \"UserModel\".\"age\", \"GroupModels\".\"id\" AS \"GroupModels.id\", \"GroupModels\".\"name\" AS \"GroupModels.name\", \"GroupModels\".\"permissions\" AS \"GroupModels.permissions\", \"GroupModels->user-group\".\"createdAt\" AS \"GroupModels.user-group.createdAt\", \"GroupModels->user-group\".\"updatedAt\" AS \"GroupModels.user-group.updatedAt\", \"GroupModels->user-group\".\"UserModelId\" AS \"GroupModels.user-group.UserModelId\", \"GroupModels->user-group\".\"GroupModelId\" AS \"GroupModels.user-group.GroupModelId\" FROM \"users\" AS \"UserModel\" LEFT OUTER JOIN ( \"user-group\" AS \"GroupModels->user-group\" INNER JOIN \"groups\" AS \"GroupModels\" ON \"GroupModels\".\"id\" = \"GroupModels->user-group\".\"GroupModelId\") ON \"UserModel\".\"id\" = \"GroupModels->user-group\".\"UserModelId\" WHERE \"UserModel\".\"login\" ILIKE '%leX%' LIMIT '';"},"sql":"SELECT \"UserModel\".\"id\", \"UserModel\".\"login\", \"UserModel\".\"password\", \"UserModel\".\"age\", \"GroupModels\".\"id\" AS \"GroupModels.id\", \"GroupModels\".\"name\" AS \"GroupModels.name\", \"GroupModels\".\"permissions\" AS \"GroupModels.permissions\", \"GroupModels->user-group\".\"createdAt\" AS \"GroupModels.user-group.createdAt\", \"GroupModels->user-group\".\"updatedAt\" AS \"GroupModels.user-group.updatedAt\", \"GroupModels->user-group\".\"UserModelId\" AS \"GroupModels.user-group.UserModelId\", \"GroupModels->user-group\".\"GroupModelId\" AS \"GroupModels.user-group.GroupModelId\" FROM \"users\" AS \"UserModel\" LEFT OUTER JOIN ( \"user-group\" AS \"GroupModels->user-group\" INNER JOIN \"groups\" AS \"GroupModels\" ON \"GroupModels\".\"id\" = \"GroupModels->user-group\".\"GroupModelId\") ON \"UserModel\".\"id\" = \"GroupModels->user-group\".\"UserModelId\" WHERE \"UserModel\".\"login\" ILIKE '%leX%' LIMIT '';"},"method":"getAutoSuggest","params":{"loginSubstring":"leX","limit":""},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 183.7102ms","level":"info"}
+{"method":"GET","url":"/user?limit=0&loginSubstring=leX","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1204.2073ms","level":"info"}
+{"method":"GET","url":"/user&loginSubstring=leX","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?loginSubstring=leX","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1234.7773ms","level":"info"}

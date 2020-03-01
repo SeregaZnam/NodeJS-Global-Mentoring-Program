@@ -4,8 +4,8 @@ import { Request, Response } from 'express';
 import { GroupDTO } from '../dto/groupDTO';
 import { controller, BaseHttpController, httpGet, request, response, httpPut, httpPost, httpDelete } from 'inversify-express-utils';
 import { inject } from 'inversify';
-import { TYPES } from '../../../constants/types';
 import { executionTime } from '../../../utils/executionTime';
+import { TYPES } from '../../../constants/types';
 
 @controller('/group')
 export class GroupController extends BaseHttpController {

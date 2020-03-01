@@ -1,4 +1,3 @@
-import logger from '../../../logger';
 import { UserService } from '../service';
 import * as Joi from '@hapi/joi';
 import { Request, Response } from 'express';
@@ -18,10 +17,14 @@ import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import { NotFoundError, CreateError, UpdateError, DeleteError } from '../../../errors';
 import { executionTime } from '../../../utils/executionTime';
+import { Logger } from '../../../logger';
 
 @controller('/user')
 export class UserController extends BaseHttpController {
-   constructor(@inject(TYPES.UserService) private userService: UserService) {
+   constructor(
+      @inject(TYPES.Logger) private logger: Logger,
+      @inject(TYPES.UserService) private userService: UserService
+   ) {
       super();
    }
 
@@ -35,7 +38,7 @@ export class UserController extends BaseHttpController {
       const limit = req.query.limit;
 
       const users = await this.userService.getAutoSuggest(loginSubstring, limit);
-      res.status(200).json(users && users.map((u: User) => UserMapper.toDTO(u)));
+      res.status(200).json(users);
    }
 
    @httpPut('')
@@ -66,7 +69,7 @@ export class UserController extends BaseHttpController {
          await this.userService.save(user);
          res.status(200).json(true);
       } catch (err) {
-         logger.error('Error create request', {
+         this.logger.error('Error create request', {
             method: 'createUser',
             params: {
                login: req.body.login,
@@ -92,7 +95,7 @@ export class UserController extends BaseHttpController {
             res.status(200).json(UserMapper.toDTO(user));
          }
       } catch {
-         logger.error('Error getting user', {
+         this.logger.error('Error getting user', {
             method: 'getUser',
             params: { id }
          });
@@ -135,7 +138,7 @@ export class UserController extends BaseHttpController {
          await this.userService.update(user);
          res.status(200).json(true);
       } catch {
-         logger.error('Error updating user', {
+         this.logger.error('Error updating user', {
             method: 'updateUser',
             params: { id }
          });
@@ -157,7 +160,7 @@ export class UserController extends BaseHttpController {
             await this.userService.delete(user.id);
          }
       } catch {
-         logger.error('Error deleting user', {
+         this.logger.error('Error deleting user', {
             method: 'deleteUser',
             params: { id }
          });
