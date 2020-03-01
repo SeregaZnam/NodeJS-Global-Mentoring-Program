@@ -1,4 +1,3 @@
-import * as Joi from '@hapi/joi';
 import config from '../../../configs/config';
 import {
    controller,
@@ -11,16 +10,19 @@ import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import { executionTime } from '../../../utils/executionTime';
-import { createDbConnect } from '../../../database';
+import { createDbConnect, DBConnect } from '../../../database';
 import { UserGroupService } from '../service';
 import { Request, Response } from 'express';
 import { Logger } from '../../../logger';
 import { CreateError } from '../../../errors';
+import { validateBody } from '../../../helpers/validate';
+import { UserGroupschema } from '../schemas/userGroupSchemas';
 
 @controller('/user-group')
 export class UserGroupController extends BaseHttpController {
    constructor(
       @inject(TYPES.Logger) private logger: Logger,
+      @inject(TYPES.DbConnect) private dbConnect: DBConnect,
       @inject(TYPES.UserGroupService) private userGroupService: UserGroupService
    ) {
       super();
@@ -32,18 +34,12 @@ export class UserGroupController extends BaseHttpController {
       @request() req: Request,
       @response() res: Response
    ) {
-      const schema = Joi.object({
-         userId: Joi.string()
-            .required(),
-         groupId: Joi.string()
-            .required()
-      });
-      const dbConnect = await createDbConnect(config);
-      const transaction = await dbConnect.sequelize.transaction();
+      const transaction = await this.dbConnect.sequelize.transaction();
 
       try {
-         const value = await schema.validateAsync(req.body);
-         await this.userGroupService.save(value.userId, value.groupId, transaction)
+         const value = await validateBody(UserGroupschema, req.body);
+         await this.userGroupService.save(value.userId, value.groupId, transaction);
+
          res.status(HttpStatus.OK).json(true);
          transaction.commit();
       } catch (err) {

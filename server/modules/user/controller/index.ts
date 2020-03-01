@@ -1,5 +1,4 @@
 import { UserService } from '../service';
-import * as Joi from '@hapi/joi';
 import { Request, Response } from 'express';
 import { User } from '../models/user';
 import { UserMapper } from '../utils/mappers/UserMapper';
@@ -16,9 +15,16 @@ import {
 import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
-import { NotFoundError, CreateError, UpdateError, DeleteError } from '../../../errors';
+import {
+   NotFoundError,
+   CreateError,
+   UpdateError,
+   DeleteError
+} from '../../../errors';
 import { executionTime } from '../../../utils/executionTime';
 import { Logger } from '../../../logger';
+import { validateBody } from '../../../helpers/validate';
+import { UserSchema } from '../schemas/userSchemas';
 
 @controller('/user')
 export class UserController extends BaseHttpController {
@@ -48,20 +54,8 @@ export class UserController extends BaseHttpController {
       @request() req: Request,
       @response() res: Response
    ) {
-      const schema = Joi.object({
-         login: Joi.string()
-            .required(),
-         password: Joi.string()
-            .regex(/^(?=.*\d)(?=.*[A-Za-z])/)
-            .required(),
-         age: Joi.number()
-            .min(4)
-            .max(130)
-            .required()
-      });
-
       try {
-         const value = await schema.validateAsync(req.body);
+         const value = await validateBody(UserSchema, req.body);
          const user: Omit<User, 'id'> = {
             login: value.login,
             password: value.password,
@@ -117,20 +111,8 @@ export class UserController extends BaseHttpController {
          throw new NotFoundError('Error getting user');
       }
 
-      const schema = Joi.object({
-         login: Joi.string()
-            .required(),
-         password: Joi.string()
-            .regex(/^(?=.*\d)(?=.*[A-Za-z])/)
-            .required(),
-         age: Joi.number()
-            .min(4)
-            .max(130)
-            .required()
-      });
-
       try {
-         const value = await schema.validateAsync(req.body);
+         const value = await validateBody(UserSchema, req.body);
 
          user.login = value.login;
          user.password = value.password;

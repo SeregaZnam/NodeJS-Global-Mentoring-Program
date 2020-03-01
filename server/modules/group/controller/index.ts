@@ -1,4 +1,3 @@
-import * as Joi from '@hapi/joi';
 import { GroupService } from '../service';
 import { Request, Response } from 'express';
 import { GroupDTO } from '../dto/groupDTO';
@@ -16,8 +15,15 @@ import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { executionTime } from '../../../utils/executionTime';
 import { TYPES } from '../../../constants/types';
-import { CreateError, NotFoundError, UpdateError, DeleteError } from '../../../errors';
+import {
+   CreateError,
+   NotFoundError,
+   UpdateError,
+   DeleteError
+} from '../../../errors';
 import { Logger } from '../../../logger';
+import { GroupSchema } from '../schemas/groupSchemas';
+import { validateBody } from '../../../helpers/validate';
 
 @controller('/group')
 export class GroupController extends BaseHttpController {
@@ -44,16 +50,8 @@ export class GroupController extends BaseHttpController {
       @request() req: Request,
       @response() res: Response
    ) {
-      const schema = Joi.object({
-         name: Joi.string()
-            .required(),
-         permissions: Joi.array()
-            .items(Joi.string())
-            .required()
-      });
-
       try {
-         const value = await schema.validateAsync(req.body);
+         const value = await validateBody(GroupSchema, req.body);
          const group: GroupDTO = {
             name: value.name,
             permissions: value.permissions
@@ -107,16 +105,8 @@ export class GroupController extends BaseHttpController {
          return;
       }
 
-      const schema = Joi.object({
-         name: Joi.string()
-            .required(),
-         permissions: Joi.array()
-            .items(Joi.string())
-            .required()
-      });
-
       try {
-         const value = await schema.validateAsync(req.body);
+         const value = await validateBody(GroupSchema, req.body);
 
          group.name = value.name;
          group.permissions = value.permissions;

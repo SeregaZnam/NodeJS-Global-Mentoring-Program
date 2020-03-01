@@ -37,3 +37,9 @@ export class DeleteError extends CustomError {
       super(message, ERROR_CODES.NOT_FOUND, HttpStatus.NOT_FOUND);
    }
 }
+
+export class ValidationError extends CustomError {
+   constructor(error: Error, body: any) {
+      super(error.message, ERROR_CODES.BAD_REQUEST, HttpStatus.BAD_REQUEST, body);
+   }
+}
