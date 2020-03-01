@@ -7,16 +7,22 @@ import {
    response,
    BaseHttpController
 } from 'inversify-express-utils';
+import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import { executionTime } from '../../../utils/executionTime';
 import { createDbConnect } from '../../../database';
 import { UserGroupService } from '../service';
 import { Request, Response } from 'express';
+import { Logger } from '../../../logger';
+import { CreateError } from '../../../errors';
 
 @controller('/user-group')
 export class UserGroupController extends BaseHttpController {
-   constructor(@inject(TYPES.UserGroupService) private userGroupService: UserGroupService) {
+   constructor(
+      @inject(TYPES.Logger) private logger: Logger,
+      @inject(TYPES.UserGroupService) private userGroupService: UserGroupService
+   ) {
       super();
    }
 
@@ -37,14 +43,19 @@ export class UserGroupController extends BaseHttpController {
 
       try {
          const value = await schema.validateAsync(req.body);
-         // eslint-disable-next-line no-unused-expressions
          await this.userGroupService.save(value.userId, value.groupId, transaction)
-            ? res.status(201).json(true)
-            : res.status(404).end();
+         res.status(HttpStatus.OK).json(true);
          transaction.commit();
       } catch (err) {
-         res.status(400).json(err.details[0].message).end();
          transaction.rollback();
+         this.logger.error('Error create request', {
+            method: 'createUser',
+            params: {
+               userId: req.body.userId,
+               groupId: req.body.groupId
+            }
+         });
+         throw new CreateError('Error create user group');
       }
    }
 }

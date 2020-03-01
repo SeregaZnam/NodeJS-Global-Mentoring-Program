@@ -13,7 +13,12 @@ export class UserRepository {
 
    public async findAll(loginSubstring: string = '', limit: number | undefined = undefined): Promise<UserModel[]> {
       const users = await UserModel.findAll({
-         include: [GroupModel],
+         include: [{
+            model: GroupModel,
+            through: {
+               attributes: ['permissions']
+            }
+         }],
          where: {
             login: {
                [Op.iLike]: `%${loginSubstring}%`

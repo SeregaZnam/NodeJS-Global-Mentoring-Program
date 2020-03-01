@@ -13,6 +13,7 @@ import {
    controller,
    BaseHttpController
 } from 'inversify-express-utils';
+import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import { NotFoundError, CreateError, UpdateError, DeleteError } from '../../../errors';
@@ -38,7 +39,7 @@ export class UserController extends BaseHttpController {
       const limit = req.query.limit;
 
       const users = await this.userService.getAutoSuggest(loginSubstring, limit);
-      res.status(200).json(users);
+      res.status(HttpStatus.OK).json(users);
    }
 
    @httpPut('')
@@ -67,7 +68,7 @@ export class UserController extends BaseHttpController {
             age: value.age
          };
          await this.userService.save(user);
-         res.status(200).json(true);
+         res.status(HttpStatus.OK).json(true);
       } catch (err) {
          this.logger.error('Error create request', {
             method: 'createUser',
@@ -92,7 +93,7 @@ export class UserController extends BaseHttpController {
       try {
          const user = await this.userService.getById(id);
          if (user) {
-            res.status(200).json(UserMapper.toDTO(user));
+            res.status(HttpStatus.OK).json(UserMapper.toDTO(user));
          }
       } catch {
          this.logger.error('Error getting user', {
@@ -136,7 +137,7 @@ export class UserController extends BaseHttpController {
          user.age = value.age;
 
          await this.userService.update(user);
-         res.status(200).json(true);
+         res.status(HttpStatus.OK).json(true);
       } catch {
          this.logger.error('Error updating user', {
             method: 'updateUser',
@@ -158,6 +159,7 @@ export class UserController extends BaseHttpController {
          const user = await this.userService.getById(id);
          if (user) {
             await this.userService.delete(user.id);
+            res.status(HttpStatus.OK).json(true);
          }
       } catch {
          this.logger.error('Error deleting user', {
