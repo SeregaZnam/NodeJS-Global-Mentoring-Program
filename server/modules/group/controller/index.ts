@@ -1,76 +1,98 @@
-import * as Joi from '@hapi/joi';
 import { GroupService } from '../service';
 import { Request, Response } from 'express';
 import { GroupDTO } from '../dto/groupDTO';
-import { controller, BaseHttpController, httpGet, request, response, httpPut, httpPost, httpDelete } from 'inversify-express-utils';
+import {
+   httpGet,
+   request,
+   response,
+   httpPut,
+   httpPost,
+   httpDelete,
+   controller,
+   BaseHttpController
+} from 'inversify-express-utils';
+import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
+import { executionTime } from '../../../utils/executionTime';
 import { TYPES } from '../../../constants/types';
+import {
+   CreateError,
+   NotFoundError,
+   UpdateError,
+   DeleteError
+} from '../../../errors';
+import { Logger } from '../../../logger';
+import { GroupSchema } from '../schemas/groupSchemas';
+import { validateBody } from '../../../helpers/validate';
 
 @controller('/group')
 export class GroupController extends BaseHttpController {
-   constructor(@inject(TYPES.GroupService) private groupService: GroupService) {
+   constructor(
+      @inject(TYPES.Logger) private logger: Logger,
+      @inject(TYPES.GroupService) private groupService: GroupService
+   ) {
       super();
    }
 
    @httpGet('')
+   @executionTime()
    async getAllGroups(
       @request() req: Request,
       @response() res: Response
    ) {
       const groups = await this.groupService.getAll();
-
-      if (groups) {
-         res.status(200).json(groups);
-      } else {
-         res.status(404).end();
-      }
+      res.status(HttpStatus.OK).json(groups);
    }
 
    @httpPut('')
+   @executionTime()
    async createGroup(
       @request() req: Request,
       @response() res: Response
    ) {
-      const schema = Joi.object({
-         name: Joi.string()
-            .required(),
-         permissions: Joi.array()
-            .items(Joi.string())
-            .required()
-      });
-
       try {
-         const value = await schema.validateAsync(req.body);
+         const value = await validateBody(GroupSchema, req.body);
          const group: GroupDTO = {
             name: value.name,
             permissions: value.permissions
          };
 
-         // eslint-disable-next-line no-unused-expressions
-         await this.groupService.save(group)
-            ? res.status(201).json(true)
-            : res.status(404).end();
+         await this.groupService.save(group);
+         res.status(HttpStatus.OK).json(true);
       } catch (err) {
-         res.status(400).json(err.details[0].message).end();
+         this.logger.error('Error create request', {
+            method: 'createGroup',
+            params: {
+               name: req.body.name,
+               permissions: req.body.permissions
+            }
+         });
+         throw new CreateError('Error create group');
       }
    }
 
    @httpGet('/:id')
+   @executionTime()
    async getGroup(
       @request() req: Request,
       @response() res: Response
    ) {
       const id = req.params.id;
-      const group = await this.groupService.getById(id);
 
-      if (group) {
-         res.status(200).json(group);
-      } else {
-         res.status(404).end();
+      try {
+         const group = await this.groupService.getById(id);
+         res.status(HttpStatus.OK).json(group);
+      } catch {
+         this.logger.error('Error getting user', {
+            method: 'getGroup',
+            params: { id }
+         });
+         throw new NotFoundError('Error getting group');
       }
    }
 
    @httpPost('/:id')
+   @executionTime()
    async updateGroup(
       @request() req: Request,
       @response() res: Response
@@ -83,41 +105,39 @@ export class GroupController extends BaseHttpController {
          return;
       }
 
-      const schema = Joi.object({
-         name: Joi.string()
-            .required(),
-         permissions: Joi.array()
-            .items(Joi.string())
-            .required()
-      });
-
       try {
-         const value = await schema.validateAsync(req.body);
+         const value = await validateBody(GroupSchema, req.body);
 
          group.name = value.name;
          group.permissions = value.permissions;
 
-         // eslint-disable-next-line no-unused-expressions
-         await this.groupService.update(group)
-            ? res.status(201).json(true)
-            : res.status(404).end();
-      } catch (err) {
-         res.status(400).json(err.details[0].message).end();
+         await this.groupService.update(group);
+         res.status(HttpStatus.OK).json(true);
+      } catch {
+         this.logger.error('Error updating group', {
+            method: 'updateGroup',
+            params: { id }
+         });
+         throw new UpdateError('Error update group');
       }
    }
 
    @httpDelete('/:id')
+   @executionTime()
    async deleteGroup(
       @request() req: Request,
       @response() res: Response
    ) {
       const id = req.params.id;
-      const group = await this.groupService.getById(id);
 
-      if (group && await this.groupService.delete(group.id)) {
-         res.status(201).json(true);
-      } else {
-         res.status(404).end();
+      try {
+         const group = await this.groupService.getById(id);
+         if (group) {
+            await this.groupService.delete(group.id);
+            res.status(HttpStatus.OK).json(true);
+         }
+      } catch {
+         throw new DeleteError('Error deleting group');
       }
    }
 }

@@ -26,7 +26,7 @@ const bootstrap = async () => {
 
       server.setConfig(async (app) => {
          app.use(cors());
-         app.use(helmet())
+         app.use(helmet());
          app.use(bodyParser.json());
          app.use(express.json());
          app.use(loggerHandler);

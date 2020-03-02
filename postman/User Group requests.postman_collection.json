@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "938deca9-a5fa-469a-9689-f3bf54eadeb5",
+		"name": "User Group requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user group",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"537d0c6b-fa81-4fc8-bcff-a386c4394a74\",\n\t\"groupId\": \"3f5cba30-9daa-41e5-a1fc-37f91f3b746b\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/user-group",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user-group"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

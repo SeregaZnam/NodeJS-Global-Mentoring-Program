@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "5db6a8c3-f9df-4666-b976-8585094282eb",
+		"name": "Group requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get groups",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/group",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"group"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create group",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Group3\",\n\t\"permissions\": [\"READ\", \"WRITE\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/group",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"group"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get group",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/group/e67a5c6d-7193-41e9-98c5-cb91214968de",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"group",
+						"e67a5c6d-7193-41e9-98c5-cb91214968de"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update group",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Group3\",\n\t\"permissions\": [\"READ\", \"WRITE\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/group/76b37e91-9a48-43b5-b486-30d4b9249896",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"group",
+						"76b37e91-9a48-43b5-b486-30d4b9249896"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete group",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/group/e67a5c6d-7193-41e9-98c5-cb91214968de",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"group",
+						"e67a5c6d-7193-41e9-98c5-cb91214968de"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

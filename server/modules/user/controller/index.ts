@@ -1,6 +1,5 @@
-import logger from '../../../logger';
+import passport from 'passport';
 import { UserService } from '../service';
-import * as Joi from '@hapi/joi';
 import { Request, Response, NextFunction } from 'express';
 import { User } from '../models/user';
 import { UserMapper } from '../utils/mappers/UserMapper';
@@ -14,14 +13,26 @@ import {
    controller,
    BaseHttpController
 } from 'inversify-express-utils';
+import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
-import { NotFoundError, CreateError, UpdateError, DeleteError } from '../../../errors';
-import passport = require('passport');
+import {
+   NotFoundError,
+   CreateError,
+   UpdateError,
+   DeleteError
+} from '../../../errors';
+import { executionTime } from '../../../utils/executionTime';
+import { Logger } from '../../../logger';
+import { validateBody } from '../../../helpers/validate';
+import { UserSchema } from '../schemas/userSchemas';
 
 @controller('/user')
 export class UserController extends BaseHttpController {
-   constructor(@inject(TYPES.UserService) private userService: UserService) {
+   constructor(
+      @inject(TYPES.Logger) private logger: Logger,
+      @inject(TYPES.UserService) private userService: UserService
+   ) {
       super();
    }
 
@@ -31,6 +42,7 @@ export class UserController extends BaseHttpController {
    async signInUser(req: Request, res: Response, next: NextFunction) {}
 
    @httpGet('')
+   @executionTime()
    async getAutoSuggestUsers(
       @request() req: Request,
       @response() res: Response
@@ -39,37 +51,26 @@ export class UserController extends BaseHttpController {
       const limit = req.query.limit;
 
       const users = await this.userService.getAutoSuggest(loginSubstring, limit);
-      res.status(200).json(users && users.map((u: User) => UserMapper.toDTO(u)));
+      res.status(HttpStatus.OK).json(users);
    }
 
    @httpPut('')
+   @executionTime()
    async createUser(
       @request() req: Request,
       @response() res: Response
    ) {
-      const schema = Joi.object({
-         login: Joi.string()
-            .required(),
-         password: Joi.string()
-            .regex(/^(?=.*\d)(?=.*[A-Za-z])/)
-            .required(),
-         age: Joi.number()
-            .min(4)
-            .max(130)
-            .required()
-      });
-
       try {
-         const value = await schema.validateAsync(req.body);
+         const value = await validateBody(UserSchema, req.body);
          const user: Omit<User, 'id'> = {
             login: value.login,
             password: value.password,
             age: value.age
          };
          await this.userService.save(user);
-         res.status(200).json(true);
+         res.status(HttpStatus.OK).json(true);
       } catch (err) {
-         logger.error('Error create request', {
+         this.logger.error('Error create request', {
             method: 'createUser',
             params: {
                login: req.body.login,
@@ -82,6 +83,7 @@ export class UserController extends BaseHttpController {
    }
 
    @httpGet('/:id')
+   @executionTime()
    async getUser(
       @request() req: Request,
       @response() res: Response
@@ -91,10 +93,10 @@ export class UserController extends BaseHttpController {
       try {
          const user = await this.userService.getById(id);
          if (user) {
-            res.status(200).json(UserMapper.toDTO(user));
+            res.status(HttpStatus.OK).json(UserMapper.toDTO(user));
          }
       } catch {
-         logger.error('Error getting user', {
+         this.logger.error('Error getting user', {
             method: 'getUser',
             params: { id }
          });
@@ -103,6 +105,7 @@ export class UserController extends BaseHttpController {
    }
 
    @httpPost('/:id')
+   @executionTime()
    async updateUser(
       @request() req: Request,
       @response() res: Response
@@ -114,29 +117,17 @@ export class UserController extends BaseHttpController {
          throw new NotFoundError('Error getting user');
       }
 
-      const schema = Joi.object({
-         login: Joi.string()
-            .required(),
-         password: Joi.string()
-            .regex(/^(?=.*\d)(?=.*[A-Za-z])/)
-            .required(),
-         age: Joi.number()
-            .min(4)
-            .max(130)
-            .required()
-      });
-
       try {
-         const value = await schema.validateAsync(req.body);
+         const value = await validateBody(UserSchema, req.body);
 
          user.login = value.login;
          user.password = value.password;
          user.age = value.age;
 
          await this.userService.update(user);
-         res.status(200).json(true);
+         res.status(HttpStatus.OK).json(true);
       } catch {
-         logger.error('Error updating user', {
+         this.logger.error('Error updating user', {
             method: 'updateUser',
             params: { id }
          });
@@ -145,6 +136,7 @@ export class UserController extends BaseHttpController {
    }
 
    @httpDelete('/:id')
+   @executionTime()
    async deleteUser(
       @request() req: Request,
       @response() res: Response
@@ -155,9 +147,10 @@ export class UserController extends BaseHttpController {
          const user = await this.userService.getById(id);
          if (user) {
             await this.userService.delete(user.id);
+            res.status(HttpStatus.OK).json(true);
          }
       } catch {
-         logger.error('Error deleting user', {
+         this.logger.error('Error deleting user', {
             method: 'deleteUser',
             params: { id }
          });

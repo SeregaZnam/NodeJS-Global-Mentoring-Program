@@ -1,6 +1,8 @@
 import winston from 'winston';
 import config from '../configs/config';
 
+export type Logger = ReturnType<typeof winston.createLogger>;
+
 const logger = winston.createLogger({
    level: config.get('env') === 'production' ? 'info' : 'debug',
    format: winston.format.json(),

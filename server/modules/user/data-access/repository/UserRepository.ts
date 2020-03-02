@@ -2,6 +2,7 @@ import { User } from '../../models/user';
 import { GroupModel } from '../../../group/data-access/entity/Group';
 import { UserModel } from '../entitity/User';
 import { injectable } from 'inversify';
+import { Op } from 'sequelize';
 
 @injectable()
 export class UserRepository {
@@ -10,9 +11,20 @@ export class UserRepository {
       return user;
    }
 
-   public async findAll(): Promise<UserModel[]> {
+   public async findAll(loginSubstring: string = '', limit: number | undefined = undefined): Promise<UserModel[]> {
       const users = await UserModel.findAll({
-         include: [GroupModel]
+         include: [{
+            model: GroupModel,
+            through: {
+               attributes: ['permissions']
+            }
+         }],
+         where: {
+            login: {
+               [Op.iLike]: `%${loginSubstring}%`
+            }
+         },
+         limit
       });
       return users;
    }

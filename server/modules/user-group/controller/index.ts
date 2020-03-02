@@ -1,42 +1,56 @@
-import * as Joi from '@hapi/joi';
-import { Request, Response } from 'express';
-import { UserGroupService } from '../service';
-import { createDbConnect } from '../../../database';
-import config from '../../../configs/config';
-import { controller, BaseHttpController, httpPut, request, response } from 'inversify-express-utils';
+import {
+   controller,
+   httpPut,
+   request,
+   response,
+   BaseHttpController
+} from 'inversify-express-utils';
+import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
+import { executionTime } from '../../../utils/executionTime';
+import { DBConnect } from '../../../database';
+import { UserGroupService } from '../service';
+import { Request, Response } from 'express';
+import { Logger } from '../../../logger';
+import { CreateError } from '../../../errors';
+import { validateBody } from '../../../helpers/validate';
+import { UserGroupschema } from '../schemas/userGroupSchemas';
 
 @controller('/user-group')
 export class UserGroupController extends BaseHttpController {
-   constructor(@inject(TYPES.UserGroupService) private userGroupService: UserGroupService) {
+   constructor(
+      @inject(TYPES.Logger) private logger: Logger,
+      @inject(TYPES.DbConnect) private dbConnect: DBConnect,
+      @inject(TYPES.UserGroupService) private userGroupService: UserGroupService
+   ) {
       super();
    }
 
    @httpPut('')
+   @executionTime()
    async createUserGroup(
       @request() req: Request,
       @response() res: Response
    ) {
-      const schema = Joi.object({
-         userId: Joi.string()
-            .required(),
-         groupId: Joi.string()
-            .required()
-      });
-      const dbConnect = await createDbConnect(config);
-      const transaction = await dbConnect.sequelize.transaction();
+      const transaction = await this.dbConnect.sequelize.transaction();
 
       try {
-         const value = await schema.validateAsync(req.body);
-         // eslint-disable-next-line no-unused-expressions
-         await this.userGroupService.save(value.userId, value.groupId, transaction)
-            ? res.status(201).json(true)
-            : res.status(404).end();
+         const value = await validateBody(UserGroupschema, req.body);
+         await this.userGroupService.save(value.userId, value.groupId, transaction);
+
+         res.status(HttpStatus.OK).json(true);
          transaction.commit();
       } catch (err) {
-         res.status(400).json(err.details[0].message).end();
          transaction.rollback();
+         this.logger.error('Error create request', {
+            method: 'createUser',
+            params: {
+               userId: req.body.userId,
+               groupId: req.body.groupId
+            }
+         });
+         throw new CreateError('Error create user group');
       }
    }
 }
