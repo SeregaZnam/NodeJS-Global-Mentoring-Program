@@ -26,20 +26,29 @@ import { executionTime } from '../../../utils/executionTime';
 import { Logger } from '../../../logger';
 import { validateBody } from '../../../helpers/validate';
 import { UserSchema } from '../schemas/userSchemas';
+import { AuthService } from '../../../service/auth.service';
 
 @controller('/user')
 export class UserController extends BaseHttpController {
    constructor(
       @inject(TYPES.Logger) private logger: Logger,
-      @inject(TYPES.UserService) private userService: UserService
+      @inject(TYPES.UserService) private userService: UserService,
+      @inject(TYPES.AuthService) private authService: AuthService
    ) {
       super();
    }
 
-   @httpGet('/login',
-      passport.authenticate('custom', {session: false})
+   @httpPost('/login',
+      passport.authenticate('custom', { session: false })
    )
-   async signInUser(req: Request, res: Response, next: NextFunction) {}
+   async signInUser(
+      @request() req: Request,
+      @response() res: Response,
+         next: NextFunction
+   ) {
+      const token = await this.authService.signToken(req.body);
+      res.json(token);
+   }
 
    @httpGet('')
    @executionTime()

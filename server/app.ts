@@ -17,10 +17,11 @@ process.on('unhandledRejection', (err) => {
    throw err;
 });
 
+export const container = new Container();
+
 const bootstrap = async () => {
    try {
       logger.info('Server starting bootstrap');
-      const container = new Container();
       await container.loadAsync(bindings);
       const server = new InversifyExpressServer(container);
 

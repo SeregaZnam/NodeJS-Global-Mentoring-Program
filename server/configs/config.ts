@@ -57,6 +57,15 @@ const config = convict({
          default: 5432,
          env: 'DB_PORT'
       }
+   },
+   jwt: {
+      secretKey: {
+         doc: 'JWT secret key',
+         format: String,
+         default: 'secretKey',
+         sensitive: true,
+         env: 'JWT_SECRET_KEY'
+      }
    }
 });
 

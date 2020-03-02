@@ -43,3 +43,9 @@ export class ValidationError extends CustomError {
       super(error.message, ERROR_CODES.BAD_REQUEST, HttpStatus.BAD_REQUEST, body);
    }
 }
+
+export class InvalidTokenError extends CustomError {
+   constructor(token: string) {
+      super(`Invalid token ${token}`, ERROR_CODES.INVALID_TOKEN, HttpStatus.BAD_REQUEST);
+   }
+}

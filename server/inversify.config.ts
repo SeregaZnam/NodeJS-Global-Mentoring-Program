@@ -8,6 +8,7 @@ import { UserRepository } from './modules/user/data-access/repository/UserReposi
 import { createDbConnect, DBConnect } from './database';
 import { AsyncContainerModule, interfaces } from 'inversify';
 import logger, { Logger } from './logger';
+import { AuthService } from './service/auth.service';
 
 export const bindings = new AsyncContainerModule(async (bind: interfaces.Bind) => {
    await import('./modules/user/controller');
@@ -20,6 +21,7 @@ export const bindings = new AsyncContainerModule(async (bind: interfaces.Bind) =
 
    bind<DBConnect>(TYPES.DbConnect).toConstantValue(dbConnect);
    bind<Logger>(TYPES.Logger).toConstantValue(logger);
+   bind<AuthService>(TYPES.AuthService).to(AuthService);
 
    bind<UserService>(TYPES.UserService).to(UserService);
    bind<GroupService>(TYPES.GroupService).to(GroupService);
