@@ -39,7 +39,7 @@ export class UserController extends BaseHttpController {
    }
 
    @httpPost('/login',
-      passport.authenticate('custom', { session: false })
+      passport.authenticate('auth', { session: false })
    )
    async signInUser(
       @request() req: Request,
