@@ -9,7 +9,9 @@ import {
    httpPost,
    httpDelete,
    controller,
-   BaseHttpController
+   BaseHttpController,
+   requestParam,
+   requestBody
 } from 'inversify-express-utils';
 import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
@@ -37,7 +39,6 @@ export class GroupController extends BaseHttpController {
    @httpGet('')
    @executionTime()
    async getAllGroups(
-      @request() req: Request,
       @response() res: Response
    ) {
       const groups = await this.groupService.getAll();
@@ -74,11 +75,9 @@ export class GroupController extends BaseHttpController {
    @httpGet('/:id')
    @executionTime()
    async getGroup(
-      @request() req: Request,
-      @response() res: Response
+      @response() res: Response,
+      @requestParam('id') id: string
    ) {
-      const id = req.params.id;
-
       try {
          const group = await this.groupService.getById(id);
          res.status(HttpStatus.OK).json(group);
@@ -94,19 +93,18 @@ export class GroupController extends BaseHttpController {
    @httpPost('/:id')
    @executionTime()
    async updateGroup(
-      @request() req: Request,
-      @response() res: Response
+      @response() res: Response,
+      @requestBody() body: any,
+      @requestParam('id') id: string
    ) {
-      const id = req.params.id;
       const group = await this.groupService.getById(id);
 
       if (!group) {
-         res.status(404).end();
-         return;
+         throw new NotFoundError('Group not found');
       }
 
       try {
-         const value = await validateBody(GroupSchema, req.body);
+         const value = await validateBody(GroupSchema, body);
 
          group.name = value.name;
          group.permissions = value.permissions;
@@ -125,11 +123,9 @@ export class GroupController extends BaseHttpController {
    @httpDelete('/:id')
    @executionTime()
    async deleteGroup(
-      @request() req: Request,
-      @response() res: Response
+      @response() res: Response,
+      @requestParam('id') id: string
    ) {
-      const id = req.params.id;
-
       try {
          const group = await this.groupService.getById(id);
          if (group) {

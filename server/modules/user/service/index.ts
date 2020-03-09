@@ -9,8 +9,8 @@ import { TYPES } from '../../../constants/types';
 export class UserService {
    constructor(@inject(TYPES.UserRepository) private userRepository: UserRepository) {}
 
-   public async getAll(): Promise<User[]> {
-      const users = await this.userRepository.findAll();
+   public async getAll(query?: any): Promise<User[]> {
+      const users = await this.userRepository.findAll({ query });
       return users.map((user: UserModel) => user.get({ plain: true }) as User);
    }
 
@@ -24,7 +24,7 @@ export class UserService {
       limit: number | undefined = undefined
    ): Promise<User[] | void> {
       try {
-         const users = await this.userRepository.findAll(loginSubstring, limit);
+         const users = await this.userRepository.findAll({ loginSubstring, limit });
          return users.map((user: UserModel) => user.get({ plain: true }) as User);
       } catch (err) {
          logger.error('Error get users with suggest', {

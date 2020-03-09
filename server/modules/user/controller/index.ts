@@ -11,7 +11,9 @@ import {
    response,
    httpDelete,
    controller,
-   BaseHttpController
+   BaseHttpController,
+   requestParam,
+   requestBody
 } from 'inversify-express-utils';
 import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
@@ -94,11 +96,9 @@ export class UserController extends BaseHttpController {
    @httpGet('/:id')
    @executionTime()
    async getUser(
-      @request() req: Request,
-      @response() res: Response
+      @response() res: Response,
+      @requestParam('id') id: string
    ) {
-      const id = req.params.id;
-
       try {
          const user = await this.userService.getById(id);
          if (user) {
@@ -116,10 +116,10 @@ export class UserController extends BaseHttpController {
    @httpPost('/:id')
    @executionTime()
    async updateUser(
-      @request() req: Request,
-      @response() res: Response
+      @response() res: Response,
+      @requestBody() body: any,
+      @requestParam('id') id: string
    ) {
-      const id = req.params.id;
       const user = await this.userService.getById(id);
 
       if (!user) {
@@ -127,7 +127,7 @@ export class UserController extends BaseHttpController {
       }
 
       try {
-         const value = await validateBody(UserSchema, req.body);
+         const value = await validateBody(UserSchema, body);
 
          user.login = value.login;
          user.password = value.password;
@@ -147,11 +147,9 @@ export class UserController extends BaseHttpController {
    @httpDelete('/:id')
    @executionTime()
    async deleteUser(
-      @request() req: Request,
-      @response() res: Response
+      @response() res: Response,
+      @requestParam('id') id: string
    ) {
-      const id = req.params.id;
-
       try {
          const user = await this.userService.getById(id);
          if (user) {

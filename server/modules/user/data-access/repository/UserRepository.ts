@@ -11,7 +11,9 @@ export class UserRepository {
       return user;
    }
 
-   public async findAll(loginSubstring: string = '', limit: number | undefined = undefined): Promise<UserModel[]> {
+   public async findAll(
+      { loginSubstring = '', limit = undefined, query = {} }: {loginSubstring?: string, limit?: number | undefined, query?: any}
+   ): Promise<UserModel[]> {
       const users = await UserModel.findAll({
          include: [{
             model: GroupModel,
@@ -20,6 +22,7 @@ export class UserRepository {
             }
          }],
          where: {
+            ...query,
             login: {
                [Op.iLike]: `%${loginSubstring}%`
             }
