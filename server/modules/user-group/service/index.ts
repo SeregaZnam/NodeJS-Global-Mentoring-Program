@@ -5,6 +5,7 @@ import { GroupModel } from '../../group/data-access/entity/Group';
 import { UserModel } from '../../user/data-access/entitity/User';
 import { injectable, inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
+import { NotFoundError } from '../../../errors';
 
 @injectable()
 export class UserGroupService {
@@ -13,18 +14,13 @@ export class UserGroupService {
       @inject(TYPES.UserRepository) private userRepository: UserRepository
    ) {}
 
-   public async save(userId: string, groupId: string, transaction: Transaction): Promise<boolean> {
-      try {
-         const group = await this.groupRepository.getById(groupId) as GroupModel;
-         const user = await this.userRepository.getById(userId) as UserModel;
+   public async save(userId: string, groupId: string, transaction: Transaction) {
+      const group = await this.groupRepository.getById(groupId) as GroupModel;
+      const user = await this.userRepository.getById(userId) as UserModel;
 
-         if (!group || !user) {
-            return false;
-         }
-         await group.addUserModel(user, { transaction });
-         return true;
-      } catch {
-         return false;
+      if (!group || !user) {
+         throw new NotFoundError('Group or User not found');
       }
+      await group.addUserModel(user, { transaction });
    }
 }

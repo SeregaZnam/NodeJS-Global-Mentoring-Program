@@ -14,7 +14,7 @@ import { UserGroupService } from '../service';
 import { Request, Response } from 'express';
 import { Logger } from '../../../logger';
 import { CreateError } from '../../../errors';
-import { validateBody } from '../../../helpers/validate';
+import { validateBody } from '../../../utils/validate';
 import { UserGroupschema } from '../schemas/userGroupSchemas';
 
 @controller('/user-group')
@@ -33,7 +33,7 @@ export class UserGroupController extends BaseHttpController {
       @request() req: Request,
       @response() res: Response
    ) {
-      const transaction = await this.dbConnect.sequelize.transaction();
+      const transaction = await this.dbConnect.transaction();
 
       try {
          const value = await validateBody(UserGroupschema, req.body);

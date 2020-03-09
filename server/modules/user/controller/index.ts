@@ -24,7 +24,7 @@ import {
 } from '../../../errors';
 import { executionTime } from '../../../utils/executionTime';
 import { Logger } from '../../../logger';
-import { validateBody } from '../../../helpers/validate';
+import { validateBody } from '../../../utils/validate';
 import { UserSchema } from '../schemas/userSchemas';
 import { AuthService } from '../../../service/auth.service';
 

@@ -135,3 +135,58 @@
 {"message":"Server starting bootstrap","level":"info"}
 {"message":"Server starting bootstrap","level":"info"}
 {"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"a581bfd1-da96-467a-9287-b0db8e3eb88a","groupId":"d393ed17-6937-443e-8298-13c3e4858b33"},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1621.574499ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 211.0269ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"41fd4ff8-f0a4-40ad-9e2f-af7a6708868e","groupId":"0065cea3-586b-4ed8-9492-0d5071854086"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"41fd4ff8-f0a4-40ad-9e2f-af7a6708868e","groupId":"0065cea3-586b-4ed8-9492-0d5071854086"},"level":"info","message":"Handle request method"}
+{"message":"method createUserGroup worked in 3225.787199ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"41fd4ff8-f0a4-40ad-9e2f-af7a6708868e","groupId":"0065cea3-586gb-4ed8-9492-0d5071854086"},"level":"info","message":"Handle request method"}
+{"method":"createUser","params":{"userId":"41fd4ff8-f0a4-40ad-9e2f-af7a6708868e","groupId":"0065cea3-586gb-4ed8-9492-0d5071854086"},"level":"error","message":"Error create request"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"41fd4ff8-f0a4-40ad-9e2f-af7a6708868e","groupId":"0065cea3-586gb-4ed8-9492-0d5071854086"},"level":"info","message":"Handle request method"}
+{"method":"PUT","url":"/user-group","body":{"userId":"41fd4ff8-f0a4-40ad-9e2f-af7a6708868e","groupId":"0065cea3-586b-4ed8-9492-0d5071854086"},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1603.88ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 183.0699ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"a98e4710-1b86-42da-ae66-fda356ace998","groupId":"2d489e7e-1cb6-4500-ae6d-3ee124283199"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 222.1335ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 190.586499ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"37c7615b-4000-40a7-9da1-eae2ca5d253b","groupId":"f10a6cb7-dcbf-49c3-9d1c-0e0d5b426049"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 202.005699ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 173.757999ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"17aedea9-8752-47c8-96f2-936b7df5479e","groupId":"9414c69f-c01f-4e3d-8843-1910b42c0b37"},"level":"info","message":"Handle request method"}
+{"message":"method createUserGroup worked in 2132.658199ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 195.5945ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"17aedea9-8752-47c8-96f2-936b7df5479e","groupId":"94d14c69f-c01f-4e3d-8843-1910b42c0b37"},"level":"info","message":"Handle request method"}
+{"method":"createUser","params":{"userId":"17aedea9-8752-47c8-96f2-936b7df5479e","groupId":"94d14c69f-c01f-4e3d-8843-1910b42c0b37"},"level":"error","message":"Error create request"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}

@@ -23,7 +23,7 @@ import {
 } from '../../../errors';
 import { Logger } from '../../../logger';
 import { GroupSchema } from '../schemas/groupSchemas';
-import { validateBody } from '../../../helpers/validate';
+import { validateBody } from '../../../utils/validate';
 
 @controller('/group')
 export class GroupController extends BaseHttpController {
