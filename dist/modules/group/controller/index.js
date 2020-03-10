@@ -1,4 +1,16 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,93 +20,156 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Joi = __importStar(require("@hapi/joi"));
 const service_1 = require("../service");
-exports.getAllGroups = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const groups = yield service_1.GroupService.getAll();
-    if (groups) {
-        res.status(200).json(groups);
+const inversify_express_utils_1 = require("inversify-express-utils");
+const http_status_codes_1 = __importDefault(require("http-status-codes"));
+const inversify_1 = require("inversify");
+const executionTime_1 = require("../../../utils/executionTime");
+const types_1 = require("../../../constants/types");
+const errors_1 = require("../../../errors");
+const groupSchemas_1 = require("../schemas/groupSchemas");
+const validate_1 = require("../../../utils/validate");
+let GroupController = class GroupController extends inversify_express_utils_1.BaseHttpController {
+    constructor(logger, groupService) {
+        super();
+        this.logger = logger;
+        this.groupService = groupService;
     }
-    else {
-        res.status(404).end();
+    getAllGroups(res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const groups = yield this.groupService.getAll();
+            res.status(http_status_codes_1.default.OK).json(groups);
+        });
     }
-});
-exports.createGroup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const schema = Joi.object({
-        name: Joi.string()
-            .required(),
-        permissions: Joi.array()
-            .items(Joi.string())
-            .required()
-    });
-    try {
-        const value = yield schema.validateAsync(req.body);
-        const group = {
-            name: value.name,
-            permissions: value.permissions
-        };
-        // eslint-disable-next-line no-unused-expressions
-        (yield service_1.GroupService.save(group))
-            ? res.status(201).json(true)
-            : res.status(404).end();
+    createGroup(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const value = yield validate_1.validateBody(groupSchemas_1.GroupSchema, req.body);
+                const group = {
+                    name: value.name,
+                    permissions: value.permissions
+                };
+                yield this.groupService.save(group);
+                res.status(http_status_codes_1.default.OK).json(true);
+            }
+            catch (err) {
+                this.logger.error('Error create request', {
+                    method: 'createGroup',
+                    params: {
+                        name: req.body.name,
+                        permissions: req.body.permissions
+                    }
+                });
+                throw new errors_1.CreateError('Error create group');
+            }
+        });
     }
-    catch (err) {
-        res.status(400).json(err.details[0].message).end();
+    getGroup(res, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const group = yield this.groupService.getById(id);
+                res.status(http_status_codes_1.default.OK).json(group);
+            }
+            catch (_a) {
+                this.logger.error('Error getting user', {
+                    method: 'getGroup',
+                    params: { id }
+                });
+                throw new errors_1.NotFoundError('Error getting group');
+            }
+        });
     }
-});
-exports.getGroup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
-    const group = yield service_1.GroupService.getById(id);
-    if (group) {
-        res.status(200).json(group);
+    updateGroup(res, body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const group = yield this.groupService.getById(id);
+            if (!group) {
+                throw new errors_1.NotFoundError('Group not found');
+            }
+            try {
+                const value = yield validate_1.validateBody(groupSchemas_1.GroupSchema, body);
+                group.name = value.name;
+                group.permissions = value.permissions;
+                yield this.groupService.update(group);
+                res.status(http_status_codes_1.default.OK).json(true);
+            }
+            catch (_a) {
+                this.logger.error('Error updating group', {
+                    method: 'updateGroup',
+                    params: { id }
+                });
+                throw new errors_1.UpdateError('Error update group');
+            }
+        });
     }
-    else {
-        res.status(404).end();
+    deleteGroup(res, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const group = yield this.groupService.getById(id);
+                if (group) {
+                    yield this.groupService.delete(group.id);
+                    res.status(http_status_codes_1.default.OK).json(true);
+                }
+            }
+            catch (_a) {
+                throw new errors_1.DeleteError('Error deleting group');
+            }
+        });
     }
-});
-exports.updateGroup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
-    const group = yield service_1.GroupService.getById(id);
-    if (!group) {
-        res.status(404).end();
-        return;
-    }
-    const schema = Joi.object({
-        name: Joi.string()
-            .required(),
-        permissions: Joi.array()
-            .items(Joi.string())
-            .required()
-    });
-    try {
-        const value = yield schema.validateAsync(req.body);
-        group.name = value.name;
-        group.permissions = value.permissions;
-        // eslint-disable-next-line no-unused-expressions
-        (yield service_1.GroupService.update(group))
-            ? res.status(201).json(true)
-            : res.status(404).end();
-    }
-    catch (err) {
-        res.status(400).json(err.details[0].message).end();
-    }
-});
-exports.deleteGroup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
-    const group = yield service_1.GroupService.getById(id);
-    if (group && (yield service_1.GroupService.delete(group.id))) {
-        res.status(201).json(true);
-    }
-    else {
-        res.status(404).end();
-    }
-});
+};
+__decorate([
+    inversify_express_utils_1.httpGet(''),
+    executionTime_1.executionTime(),
+    __param(0, inversify_express_utils_1.response()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], GroupController.prototype, "getAllGroups", null);
+__decorate([
+    inversify_express_utils_1.httpPut(''),
+    executionTime_1.executionTime(),
+    __param(0, inversify_express_utils_1.request()),
+    __param(1, inversify_express_utils_1.response()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], GroupController.prototype, "createGroup", null);
+__decorate([
+    inversify_express_utils_1.httpGet('/:id'),
+    executionTime_1.executionTime(),
+    __param(0, inversify_express_utils_1.response()),
+    __param(1, inversify_express_utils_1.requestParam('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], GroupController.prototype, "getGroup", null);
+__decorate([
+    inversify_express_utils_1.httpPost('/:id'),
+    executionTime_1.executionTime(),
+    __param(0, inversify_express_utils_1.response()),
+    __param(1, inversify_express_utils_1.requestBody()),
+    __param(2, inversify_express_utils_1.requestParam('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, String]),
+    __metadata("design:returntype", Promise)
+], GroupController.prototype, "updateGroup", null);
+__decorate([
+    inversify_express_utils_1.httpDelete('/:id'),
+    executionTime_1.executionTime(),
+    __param(0, inversify_express_utils_1.response()),
+    __param(1, inversify_express_utils_1.requestParam('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], GroupController.prototype, "deleteGroup", null);
+GroupController = __decorate([
+    inversify_express_utils_1.controller('/group'),
+    __param(0, inversify_1.inject(types_1.TYPES.Logger)),
+    __param(1, inversify_1.inject(types_1.TYPES.GroupService)),
+    __metadata("design:paramtypes", [Object, service_1.GroupService])
+], GroupController);
+exports.GroupController = GroupController;
 //# sourceMappingURL=index.js.map

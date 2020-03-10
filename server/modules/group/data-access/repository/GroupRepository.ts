@@ -14,17 +14,19 @@ export class GroupRepository {
       return users;
    }
 
-   public async create(group: GroupDTO) {
-      await GroupModel.create(group);
+   public async create(group: GroupDTO): Promise<GroupModel> {
+      return await GroupModel.create(group);
    }
 
-   public async update(group: Group) {
-      await GroupModel.update({
+   public async update(group: Group): Promise<GroupModel> {
+      const [_, [updatedGroup]] = await GroupModel.update({
          name: group.name,
          permissions: group.permissions
       }, {
-         where: { id: group.id }
+         where: { id: group.id },
+         returning: true
       });
+      return updatedGroup;
    }
 
    public async destroy(id: string) {

@@ -3,17 +3,19 @@ import { GroupModel } from '../../../group/data-access/entity/Group';
 import { UserModel } from '../entitity/User';
 import { injectable } from 'inversify';
 import { Op } from 'sequelize';
+import { UserQuery } from '../../types';
 
 @injectable()
 export class UserRepository {
    public async getById(id: string): Promise<UserModel | null> {
-      const user = await UserModel.findByPk(id);
-      return user;
+      return await UserModel.findByPk(id);
    }
 
-   public async findAll(
-      { loginSubstring = '', limit = undefined, query = {} }: {loginSubstring?: string, limit?: number | undefined, query?: any}
-   ): Promise<UserModel[]> {
+   public async findAll({
+      loginSubstring = '',
+      limit = undefined,
+      query = {}
+   }: UserQuery): Promise<UserModel[]> {
       const users = await UserModel.findAll({
          include: [{
             model: GroupModel,
@@ -32,21 +34,23 @@ export class UserRepository {
       return users;
    }
 
-   public async create(user: Omit<User, 'id'>) {
-      await UserModel.create(user);
+   public async create(user: Omit<User, 'id'>): Promise<UserModel> {
+      return await UserModel.create(user);
    }
 
-   public async update(user: User) {
-      await UserModel.update({
+   public async update(user: User): Promise<UserModel> {
+      const [_, [updatedUser]] = await UserModel.update({
          login: user.login,
          password: user.password,
          age: user.age
       }, {
-         where: { id: user.id }
+         where: { id: user.id },
+         returning: true
       });
+      return updatedUser;
    }
 
-   public async destroy(id: string) {
+   public async destroy(id: string): Promise<void> {
       await UserModel.destroy({
          where: { id }
       });

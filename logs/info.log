@@ -248,3 +248,193 @@
 {"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
 {"message":"method getAutoSuggestUsers worked in 166.3138ms","level":"info"}
 {"method":"POST","url":"/user/login","body":{"id":"2f8727ad-353f-4a20-bcdc-e77987b6db4b","login":"Alex","password":"123test","age":15},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1239.890499ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 313.2602ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 325.017ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 320.1592ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 1418.9052ms","level":"info"}
+{"method":"POST","url":"/user/3dac6a8b-a16d-436a-9ae9-373ad0a713d2","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"updateUser","params":{"id":"3dac6a8b-a16d-436a-9ae9-373ad0a713d2"},"level":"error","message":"Error updating user"}
+{"method":"POST","url":"/user/3dac6a8b-a16d-436a-9ae9-g373ad0a713d2","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"POST","url":"/user/3dac6a8b-a16d-436a-9ae9-373ad0a713d1","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"POST","url":"/user/3dac6a8b-a16d-436a-9ae9-373ad0a713d2","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"updateUser","params":{"id":"3dac6a8b-a16d-436a-9ae9-373ad0a713d2"},"level":"error","message":"Error updating user"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 317.0452ms","level":"info"}
+{"method":"POST","url":"/user/e349a0d3-c193-42cd-a829-97f90c77c54e","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"updateUser","params":{"id":"e349a0d3-c193-42cd-a829-97f90c77c54e"},"level":"error","message":"Error updating user"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 1335.5982ms","level":"info"}
+{"method":"POST","url":"/user/55baaae4-51f2-44ab-bb5e-56617bd373c0","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/55baaae4-51f2-44ab-bb5e-56617bd373c0","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"POST","url":"/user/55baaae4-51f2-44ab-bb5e-56617bd373c0","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1199.238301ms","level":"info"}
+{"method":"POST","url":"/user/57ab9e34-803b-4ea7-afbb-1ff1edaa8471","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
+{"method":"POST","url":"/user/57ab9e34-803b-4ea7-afbb-1ff1edaa8471","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
+{"method":"POST","url":"/user/57ab9e34-803b-4ea7-afbb-1ff1edaa8471","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
+{"method":"POST","url":"/user/57ab9e34-803b-4ea7-afbb-1ff1edaa8471","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 396.508599ms","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 331.047ms","level":"info"}
+{"method":"POST","url":"/user/aa687d19-2193-4b55-8704-c74e977fbe39","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"method":"updateUser","params":{"id":"aa687d19-2193-4b55-8704-c74e977fbe39"},"level":"error","message":"Error updating user"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 169.767401ms","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 318.5382ms","level":"info"}
+{"method":"POST","url":"/user/c74191f1-e9c2-46b7-bb16-9c050e560281","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"message":"method updateUser worked in 14218.3828ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 317.687299ms","level":"info"}
+{"method":"POST","url":"/user/2c94f513-171a-465e-8ad1-f44289a8cc95","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"message":"method updateUser worked in 474.3676ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 319.3786ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 164.729099ms","level":"info"}
+{"method":"POST","url":"/user/c3785d34-9d5f-4773-a055-31d653a2428b","body":{"login":"RobinUpdate2","password":"123wer","age":30},"level":"info","message":"Handle request method"}
+{"message":"method updateUser worked in 472.290399ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 155.1339ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 168.688701ms","level":"info"}
+{"method":"DELETE","url":"/user/5061f840-6091-4c79-bc66-3ab22e320fe6","body":{},"level":"info","message":"Handle request method"}
+{"message":"method deleteUser worked in 316.3539ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 1159.8916ms","level":"info"}
+{"method":"PUT","url":"/group","body":{"name":"Group3","permissions":["READ","WRITE"]},"level":"info","message":"Handle request method"}
+{"message":"method createGroup worked in 293.398999ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 1163.6322ms","level":"info"}
+{"method":"PUT","url":"/group","body":{"name":"Group3","permissions":["READ","WRITE"]},"level":"info","message":"Handle request method"}
+{"message":"method createGroup worked in 296.771799ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 145.051501ms","level":"info"}
+{"method":"POST","url":"/group/57a76e89-e811-445a-83b6-474df7ce1969","body":{"name":"Group13","permissions":["READ","WRITE"]},"level":"info","message":"Handle request method"}
+{"message":"method updateGroup worked in 1495.196201ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 149.0616ms","level":"info"}
+{"method":"DELETE","url":"/group/57a76e89-e811-445a-83b6-474df7ce1969","body":{},"level":"info","message":"Handle request method"}
+{"message":"method deleteGroup worked in 304.611899ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 149.615801ms","level":"info"}
+{"method":"GET","url":"/group/91118448-7ffa-4c46-9360-c1298729d699","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getGroup worked in 1186.4021ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1186.3588ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 1193.016899ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"9422b0c6-f5f9-4a06-8565-548624617e59","groupId":"8f026d1d-977f-4716-85f9-0e355b3ecf53"},"level":"info","message":"Handle request method"}
+{"message":"method createUserGroup worked in 1787.5189ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 154.6382ms","level":"info"}

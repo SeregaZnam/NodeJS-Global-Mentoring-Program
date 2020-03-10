@@ -35,18 +35,17 @@ export class UserService {
       }
    }
 
-   public async save(user: Omit<User, 'id'>): Promise<boolean> {
-      await this.userRepository.create(user);
-      return true;
+   public async save(user: Omit<User, 'id'>): Promise<User> {
+      const createdUser: UserModel = await this.userRepository.create(user);
+      return createdUser.get({ plain: true }) as UserModel;
    }
 
-   public async update(user: User): Promise<boolean> {
-      await this.userRepository.update(user);
-      return true;
+   public async update(user: User): Promise<UserModel> {
+      const updatedUser = await this.userRepository.update(user);
+      return updatedUser.get({ plain: true }) as UserModel;
    }
 
-   public async delete(id: string): Promise<boolean> {
+   public async delete(id: string): Promise<void> {
       await this.userRepository.destroy(id);
-      return true;
    }
 }

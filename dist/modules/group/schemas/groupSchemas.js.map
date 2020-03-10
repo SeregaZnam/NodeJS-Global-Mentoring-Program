@@ -1,0 +1,1 @@
+{"version":3,"file":"groupSchemas.js","sourceRoot":"","sources":["../../../../server/modules/group/schemas/groupSchemas.ts"],"names":[],"mappings":";;;;;;;;;AAAA,+CAAiC;AAEpB,QAAA,WAAW,GAAG,GAAG,CAAC,MAAM,CAAC;IACnC,IAAI,EAAE,GAAG,CAAC,MAAM,EAAE;SACd,QAAQ,EAAE;IACd,WAAW,EAAE,GAAG,CAAC,KAAK,EAAE;SACpB,KAAK,CAAC,GAAG,CAAC,MAAM,EAAE,CAAC;SACnB,QAAQ,EAAE;CAChB,CAAC,CAAC"}

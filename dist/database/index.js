@@ -22,13 +22,14 @@ exports.createDbConnect = (config) => __awaiter(void 0, void 0, void 0, function
             ssl: true
         }
     });
+    const transaction = (options) => sequelize.transaction(options);
     yield User_1.initUserModel(sequelize);
     yield Group_1.initGroupModel(sequelize);
-    [User_1.UserModel, Group_1.GroupModel].forEach((entiry) => {
-        if (entiry.associate) {
-            entiry.associate();
+    [User_1.UserModel, Group_1.GroupModel].forEach(entity => {
+        if (entity.associate) {
+            entity.associate();
         }
     });
-    return { sequelize, Sequelize: sequelize_1.Sequelize };
+    return { sequelize, transaction, Sequelize: sequelize_1.Sequelize };
 });
 //# sourceMappingURL=index.js.map

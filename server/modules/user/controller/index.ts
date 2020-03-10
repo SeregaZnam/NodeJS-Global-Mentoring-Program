@@ -78,8 +78,8 @@ export class UserController extends BaseHttpController {
             password: value.password,
             age: value.age
          };
-         await this.userService.save(user);
-         res.status(HttpStatus.OK).json(true);
+         const createdUser = await this.userService.save(user);
+         res.status(HttpStatus.CREATED).json(UserMapper.toDTO(createdUser));
       } catch (err) {
          this.logger.error('Error create request', {
             method: 'createUser',
@@ -133,8 +133,8 @@ export class UserController extends BaseHttpController {
          user.password = value.password;
          user.age = value.age;
 
-         await this.userService.update(user);
-         res.status(HttpStatus.OK).json(true);
+         const updatedUser = await this.userService.update(user);
+         res.status(HttpStatus.OK).json(UserMapper.toDTO(updatedUser));
       } catch {
          this.logger.error('Error updating user', {
             method: 'updateUser',
@@ -154,7 +154,7 @@ export class UserController extends BaseHttpController {
          const user = await this.userService.getById(id);
          if (user) {
             await this.userService.delete(user.id);
-            res.status(HttpStatus.OK).json(true);
+            res.status(HttpStatus.NO_CONTENT).json(true);
          }
       } catch {
          this.logger.error('Error deleting user', {

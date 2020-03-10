@@ -27,3 +27,11 @@
 {"method":"createUser","params":{"userId":"41fd4ff8-f0a4-40ad-9e2f-af7a6708868e","groupId":"0065cea3-586gb-4ed8-9492-0d5071854086"},"level":"error","message":"Error create request"}
 {"method":"createUser","params":{"userId":"17aedea9-8752-47c8-96f2-936b7df5479e","groupId":"94d14c69f-c01f-4e3d-8843-1910b42c0b37"},"level":"error","message":"Error create request"}
 {"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"10"},"level":"error","message":"Error get users with suggest"}
+{"method":"updateUser","params":{"id":"3dac6a8b-a16d-436a-9ae9-373ad0a713d2"},"level":"error","message":"Error updating user"}
+{"method":"updateUser","params":{"id":"3dac6a8b-a16d-436a-9ae9-373ad0a713d2"},"level":"error","message":"Error updating user"}
+{"method":"updateUser","params":{"id":"e349a0d3-c193-42cd-a829-97f90c77c54e"},"level":"error","message":"Error updating user"}
+{"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
+{"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
+{"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
+{"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
+{"method":"updateUser","params":{"id":"aa687d19-2193-4b55-8704-c74e977fbe39"},"level":"error","message":"Error updating user"}

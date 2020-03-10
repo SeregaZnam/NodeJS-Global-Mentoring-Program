@@ -1,4 +1,16 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,12 +21,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const GroupRepository_1 = require("../repository/GroupRepository");
-class GroupService {
-    static getAll() {
+const GroupRepository_1 = require("../data-access/repository/GroupRepository");
+const inversify_1 = require("inversify");
+const types_1 = require("../../../constants/types");
+let GroupService = class GroupService {
+    constructor(groupRepository) {
+        this.groupRepository = groupRepository;
+    }
+    getAll() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const groups = yield GroupRepository_1.GroupRepository.findAll();
+                const groups = yield this.groupRepository.findAll();
                 return groups;
             }
             catch (_a) {
@@ -22,16 +39,16 @@ class GroupService {
             }
         });
     }
-    static getById(id) {
+    getById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const group = yield GroupRepository_1.GroupRepository.getById(id);
+            const group = yield this.groupRepository.getById(id);
             return group ? group.get({ plain: true }) : undefined;
         });
     }
-    static save(group) {
+    save(group) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield GroupRepository_1.GroupRepository.create(group);
+                yield this.groupRepository.create(group);
                 return true;
             }
             catch (_a) {
@@ -39,10 +56,10 @@ class GroupService {
             }
         });
     }
-    static update(group) {
+    update(group) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield GroupRepository_1.GroupRepository.update(group);
+                yield this.groupRepository.update(group);
                 return true;
             }
             catch (_a) {
@@ -50,10 +67,10 @@ class GroupService {
             }
         });
     }
-    static delete(id) {
+    delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield GroupRepository_1.GroupRepository.destroy(id);
+                yield this.groupRepository.destroy(id);
                 return true;
             }
             catch (_a) {
@@ -61,6 +78,11 @@ class GroupService {
             }
         });
     }
-}
+};
+GroupService = __decorate([
+    inversify_1.injectable(),
+    __param(0, inversify_1.inject(types_1.TYPES.GroupRepository)),
+    __metadata("design:paramtypes", [GroupRepository_1.GroupRepository])
+], GroupService);
 exports.GroupService = GroupService;
 //# sourceMappingURL=index.js.map

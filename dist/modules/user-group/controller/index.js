@@ -1,4 +1,16 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,41 +20,64 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Joi = __importStar(require("@hapi/joi"));
+const inversify_express_utils_1 = require("inversify-express-utils");
+const http_status_codes_1 = __importDefault(require("http-status-codes"));
+const inversify_1 = require("inversify");
+const types_1 = require("../../../constants/types");
+const executionTime_1 = require("../../../utils/executionTime");
 const service_1 = require("../service");
-const database_1 = require("../../../database");
-const config_1 = __importDefault(require("../../../config"));
-exports.createUserGroup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const schema = Joi.object({
-        userId: Joi.string()
-            .required(),
-        groupId: Joi.string()
-            .required()
-    });
-    const dbConnect = yield database_1.createDbConnect(config_1.default);
-    const transaction = yield dbConnect.sequelize.transaction();
-    try {
-        const value = yield schema.validateAsync(req.body);
-        // eslint-disable-next-line no-unused-expressions
-        (yield service_1.UserGroupService.save(value.userId, value.groupId, transaction))
-            ? res.status(201).json(true)
-            : res.status(404).end();
-        transaction.commit();
+const errors_1 = require("../../../errors");
+const validate_1 = require("../../../utils/validate");
+const userGroupSchemas_1 = require("../schemas/userGroupSchemas");
+let UserGroupController = class UserGroupController extends inversify_express_utils_1.BaseHttpController {
+    constructor(logger, dbConnect, userGroupService) {
+        super();
+        this.logger = logger;
+        this.dbConnect = dbConnect;
+        this.userGroupService = userGroupService;
     }
-    catch (err) {
-        res.status(400).json(err.details[0].message).end();
-        transaction.rollback();
+    createUserGroup(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const transaction = yield this.dbConnect.transaction();
+            try {
+                const value = yield validate_1.validateBody(userGroupSchemas_1.UserGroupschema, req.body);
+                yield this.userGroupService.save(value.userId, value.groupId, transaction);
+                res.status(http_status_codes_1.default.OK).json(true);
+                transaction.commit();
+            }
+            catch (err) {
+                transaction.rollback();
+                this.logger.error('Error create request', {
+                    method: 'createUser',
+                    params: {
+                        userId: req.body.userId,
+                        groupId: req.body.groupId
+                    }
+                });
+                throw new errors_1.CreateError('Error create user group');
+            }
+        });
     }
-});
+};
+__decorate([
+    inversify_express_utils_1.httpPut(''),
+    executionTime_1.executionTime(),
+    __param(0, inversify_express_utils_1.request()),
+    __param(1, inversify_express_utils_1.response()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], UserGroupController.prototype, "createUserGroup", null);
+UserGroupController = __decorate([
+    inversify_express_utils_1.controller('/user-group'),
+    __param(0, inversify_1.inject(types_1.TYPES.Logger)),
+    __param(1, inversify_1.inject(types_1.TYPES.DbConnect)),
+    __param(2, inversify_1.inject(types_1.TYPES.UserGroupService)),
+    __metadata("design:paramtypes", [Object, Object, service_1.UserGroupService])
+], UserGroupController);
+exports.UserGroupController = UserGroupController;
 //# sourceMappingURL=index.js.map

@@ -3,19 +3,19 @@ export type Permission = 'READ' | 'WRITE' | 'DELETE' | 'SHARE' | 'UPLOAD_FILES';
 export interface Group {
    id: string;
    name: string;
-   permissions: Array<Permission>;
+   permissions: Permission[];
 }
 
-export interface IGroupServise {
+export interface IGroupService {
 
    getAll(): Promise<Group[]>;
 
-   getById(id: string): Promise<Group>;
+   getById(id: string): Promise<Group | undefined>;
 
-   save(user: Group): Promise<boolean>;
+   save(user: Group): Promise<Group>;
 
-   update(user: Group): Promise<boolean>;
+   update(user: Group): Promise<Group>;
 
-   delete(id: string): Promise<boolean>;
+   delete(id: string): Promise<void>;
 
 }
