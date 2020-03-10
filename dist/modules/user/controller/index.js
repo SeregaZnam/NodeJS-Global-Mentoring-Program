@@ -67,7 +67,7 @@ let UserController = class UserController extends inversify_express_utils_1.Base
                     age: value.age
                 };
                 const createdUser = yield this.userService.save(user);
-                res.status(http_status_codes_1.default.OK).json(UserMapper_1.UserMapper.toDTO(createdUser));
+                res.status(http_status_codes_1.default.CREATED).json(UserMapper_1.UserMapper.toDTO(createdUser));
             }
             catch (err) {
                 this.logger.error('Error create request', {
@@ -87,7 +87,7 @@ let UserController = class UserController extends inversify_express_utils_1.Base
             try {
                 const user = yield this.userService.getById(id);
                 if (user) {
-                    res.status(http_status_codes_1.default.CREATED).json(UserMapper_1.UserMapper.toDTO(user));
+                    res.status(http_status_codes_1.default.OK).json(UserMapper_1.UserMapper.toDTO(user));
                 }
             }
             catch (_a) {
@@ -111,7 +111,7 @@ let UserController = class UserController extends inversify_express_utils_1.Base
                 user.password = value.password;
                 user.age = value.age;
                 const updatedUser = yield this.userService.update(user);
-                res.status(http_status_codes_1.default.OK).json(true);
+                res.status(http_status_codes_1.default.OK).json(UserMapper_1.UserMapper.toDTO(updatedUser));
             }
             catch (_a) {
                 this.logger.error('Error updating user', {
@@ -128,7 +128,7 @@ let UserController = class UserController extends inversify_express_utils_1.Base
                 const user = yield this.userService.getById(id);
                 if (user) {
                     yield this.userService.delete(user.id);
-                    res.status(http_status_codes_1.default.OK).json(true);
+                    res.status(http_status_codes_1.default.NO_CONTENT).json(true);
                 }
             }
             catch (_a) {

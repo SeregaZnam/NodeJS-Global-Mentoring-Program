@@ -50,7 +50,7 @@ export class UserRepository {
       return updatedUser;
    }
 
-   public async destroy(id: string) {
+   public async destroy(id: string): Promise<void> {
       await UserModel.destroy({
          where: { id }
       });

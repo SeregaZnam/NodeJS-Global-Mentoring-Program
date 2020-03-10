@@ -31,3 +31,10 @@
 {"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
 {"method":"updateUser","params":{"id":"57ab9e34-803b-4ea7-afbb-1ff1edaa8471"},"level":"error","message":"Error updating user"}
 {"method":"updateUser","params":{"id":"aa687d19-2193-4b55-8704-c74e977fbe39"},"level":"error","message":"Error updating user"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"179bcbdb-68dc-472a-8f99-94e782c4f993\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"10"},"level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"10"},"level":"error","message":"Error get users with suggest"}

@@ -438,3 +438,86 @@
 {"message":"method createUserGroup worked in 1787.5189ms","level":"info"}
 {"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
 {"message":"method getAutoSuggestUsers worked in 154.6382ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"2f8727ad-353f-4a20-bcdc-e77987b6db4b","login":"Alex","password":"123test","age":15},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 171.2789ms","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"179bcbdb-68dc-472a-8f99-94e782c4f993","login":"Alex","password":"123test","age":15},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"179bcbdb-68dc-472a-8f99-94e782c4f993","login":"Alex","password":"123test","age":15},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"179bcbdb-68dc-472a-8f99-94e782c4f993\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 10056.953501ms","level":"info"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"method":"POST","url":"/user/login","body":{"id":"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 5626.814601ms","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"63cc5ad4-ee85-4b6a-ba45-3d2d7ef255f3","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 4672.964701ms","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"04f06b29-b1d5-4c7d-ab76-8c5127e8939a","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"10"},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 2506.8274ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"10"},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 113516.718599ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 6119.739701ms","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"68e94881-de0f-4168-ae66-a9c0404d7817","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"68e94881-de0f-4168-ae66-a9c0404d7817","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 21509.9844ms","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"3705ed81-cc4f-4cef-9f0e-093a14f680d7","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"3705ed81-cc4f-4cef-9f0e-093a14f680d7","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"3705ed81-cc4f-4cef-9f0e-093a14f680d7","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 7006.6598ms","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"791d5c10-c26d-441d-8885-0e68b72680b9","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 403.4916ms","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"ef739fd7-278b-458b-888d-09ea5404d454","login":"Alex","password":"123test"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 158.371701ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 146.972499ms","level":"info"}

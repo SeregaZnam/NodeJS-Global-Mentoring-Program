@@ -47,35 +47,19 @@ let GroupService = class GroupService {
     }
     save(group) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield this.groupRepository.create(group);
-                return true;
-            }
-            catch (_a) {
-                return false;
-            }
+            const createdGroup = yield this.groupRepository.create(group);
+            return createdGroup.get({ plain: true });
         });
     }
     update(group) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield this.groupRepository.update(group);
-                return true;
-            }
-            catch (_a) {
-                return false;
-            }
+            const updatedGroup = yield this.groupRepository.update(group);
+            return updatedGroup.get({ plain: true });
         });
     }
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield this.groupRepository.destroy(id);
-                return true;
-            }
-            catch (_a) {
-                return false;
-            }
+            yield this.groupRepository.destroy(id);
         });
     }
 };

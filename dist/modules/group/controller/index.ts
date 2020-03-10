@@ -58,8 +58,8 @@ export class GroupController extends BaseHttpController {
             permissions: value.permissions
          };
 
-         await this.groupService.save(group);
-         res.status(HttpStatus.OK).json(true);
+         const createdGroup = await this.groupService.save(group);
+         res.status(HttpStatus.CREATED).json(createdGroup);
       } catch (err) {
          this.logger.error('Error create request', {
             method: 'createGroup',
@@ -109,8 +109,8 @@ export class GroupController extends BaseHttpController {
          group.name = value.name;
          group.permissions = value.permissions;
 
-         await this.groupService.update(group);
-         res.status(HttpStatus.OK).json(true);
+         const updatedGroup = await this.groupService.update(group);
+         res.status(HttpStatus.OK).json(updatedGroup);
       } catch {
          this.logger.error('Error updating group', {
             method: 'updateGroup',
@@ -130,7 +130,7 @@ export class GroupController extends BaseHttpController {
          const group = await this.groupService.getById(id);
          if (group) {
             await this.groupService.delete(group.id);
-            res.status(HttpStatus.OK).json(true);
+            res.status(HttpStatus.NO_CONTENT).json(true);
          }
       } catch {
          throw new DeleteError('Error deleting group');

@@ -14,15 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
 const passport_custom_1 = __importDefault(require("passport-custom"));
+const errors_1 = require("../../errors");
 const AuthStrategy = passport_custom_1.default.Strategy;
 exports.initAuthStrategy = (userService) => {
     passport_1.default.use('auth', new AuthStrategy((req, done) => __awaiter(void 0, void 0, void 0, function* () {
-        // const user = await userService.getAll({ query: req.body });
-        // if (user) {
-        //    done(null, user);
-        // } else {
-        //    throw new NotFoundError('User not found');
-        // }
+        const [user] = yield userService.getAll(req.body);
+        if (user) {
+            done(null, user);
+        }
+        else {
+            throw new errors_1.NotFoundError('User not found');
+        }
     })));
 };
 //# sourceMappingURL=authStrategy.js.map

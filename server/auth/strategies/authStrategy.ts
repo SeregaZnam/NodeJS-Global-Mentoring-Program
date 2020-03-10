@@ -8,11 +8,11 @@ const AuthStrategy = passportCustom.Strategy;
 
 export const initAuthStrategy = (userService: UserService) => {
    passport.use('auth', new AuthStrategy(async (req: Request, done: VerifiedCallback) => {
-      // const user = await userService.getAll({ query: req.body });
-      // if (user) {
-      //    done(null, user);
-      // } else {
-      //    throw new NotFoundError('User not found');
-      // }
+      const [user] = await userService.getAll(req.body);
+      if (user) {
+         done(null, user);
+      } else {
+         throw new NotFoundError('User not found');
+      }
    }));
 };

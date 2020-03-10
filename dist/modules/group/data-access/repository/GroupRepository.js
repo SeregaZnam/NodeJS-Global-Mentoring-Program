@@ -31,17 +31,19 @@ let GroupRepository = class GroupRepository {
     }
     create(group) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Group_1.GroupModel.create(group);
+            return yield Group_1.GroupModel.create(group);
         });
     }
     update(group) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield Group_1.GroupModel.update({
+            const [_, [updatedGroup]] = yield Group_1.GroupModel.update({
                 name: group.name,
                 permissions: group.permissions
             }, {
-                where: { id: group.id }
+                where: { id: group.id },
+                returning: true
             });
+            return updatedGroup;
         });
     }
     destroy(id) {

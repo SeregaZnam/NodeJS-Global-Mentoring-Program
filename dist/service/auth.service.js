@@ -71,7 +71,7 @@ let AuthService = class AuthService {
             const jwtConfig = config_1.default.get('jwt');
             return new Promise((res, rej) => {
                 jwt.sign(user, jwtConfig.secretKey, {
-                    expiresIn: '2h'
+                    expiresIn: '4h'
                 }, (err, token) => {
                     if (err) {
                         rej(err);

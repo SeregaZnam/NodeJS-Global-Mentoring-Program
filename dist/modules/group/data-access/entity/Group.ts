@@ -1,10 +1,11 @@
 import { DataTypes, Model, Sequelize, HasManyAddAssociationMixin } from 'sequelize';
 import { UserModel } from '../../../user/data-access/entitity/User';
+import { Permission } from '../../models/group';
 
 export class GroupModel extends Model {
    public id!: string;
    public name!: string;
-   public permissions!: string[];
+   public permissions!: Permission[];
 
    addUserModel!: HasManyAddAssociationMixin<UserModel, string>;
 

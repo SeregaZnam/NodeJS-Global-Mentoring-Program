@@ -79,7 +79,7 @@ export class UserController extends BaseHttpController {
             age: value.age
          };
          const createdUser = await this.userService.save(user);
-         res.status(HttpStatus.OK).json(UserMapper.toDTO(createdUser));
+         res.status(HttpStatus.CREATED).json(UserMapper.toDTO(createdUser));
       } catch (err) {
          this.logger.error('Error create request', {
             method: 'createUser',
@@ -102,7 +102,7 @@ export class UserController extends BaseHttpController {
       try {
          const user = await this.userService.getById(id);
          if (user) {
-            res.status(HttpStatus.CREATED).json(UserMapper.toDTO(user));
+            res.status(HttpStatus.OK).json(UserMapper.toDTO(user));
          }
       } catch {
          this.logger.error('Error getting user', {
@@ -134,7 +134,7 @@ export class UserController extends BaseHttpController {
          user.age = value.age;
 
          const updatedUser = await this.userService.update(user);
-         res.status(HttpStatus.OK).json(true);
+         res.status(HttpStatus.OK).json(UserMapper.toDTO(updatedUser));
       } catch {
          this.logger.error('Error updating user', {
             method: 'updateUser',
@@ -154,7 +154,7 @@ export class UserController extends BaseHttpController {
          const user = await this.userService.getById(id);
          if (user) {
             await this.userService.delete(user.id);
-            res.status(HttpStatus.OK).json(true);
+            res.status(HttpStatus.NO_CONTENT).json(true);
          }
       } catch {
          this.logger.error('Error deleting user', {

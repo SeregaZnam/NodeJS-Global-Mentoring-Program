@@ -74,7 +74,6 @@ let UserService = class UserService {
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.userRepository.destroy(id);
-            return true;
         });
     }
 };

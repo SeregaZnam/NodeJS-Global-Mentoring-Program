@@ -45,8 +45,7 @@ export class UserService {
       return updatedUser.get({ plain: true }) as UserModel;
    }
 
-   public async delete(id: string): Promise<boolean> {
+   public async delete(id: string): Promise<void> {
       await this.userRepository.destroy(id);
-      return true;
    }
 }

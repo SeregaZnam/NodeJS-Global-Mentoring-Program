@@ -1,11 +1,12 @@
 import { GroupRepository } from '../data-access/repository/GroupRepository';
-import { Group } from '../models/group';
+import { Group, IGroupService } from '../models/group';
 import { GroupDTO } from '../dto/groupDTO';
 import { injectable, inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
+import { GroupModel } from '../data-access/entity/Group';
 
 @injectable()
-export class GroupService {
+export class GroupService implements IGroupService {
    constructor(@inject(TYPES.GroupRepository) private groupRepository: GroupRepository) {}
 
    public async getAll(): Promise<any> {
@@ -22,30 +23,17 @@ export class GroupService {
       return group ? group.get({ plain: true }) as Group : undefined;
    }
 
-   public async save(group: GroupDTO): Promise<boolean> {
-      try {
-         await this.groupRepository.create(group);
-         return true;
-      } catch {
-         return false;
-      }
+   public async save(group: GroupDTO): Promise<Group> {
+      const createdGroup = await this.groupRepository.create(group);
+      return createdGroup.get({ plain: true }) as GroupModel;
    }
 
-   public async update(group: Group): Promise<boolean> {
-      try {
-         await this.groupRepository.update(group);
-         return true;
-      } catch {
-         return false;
-      }
+   public async update(group: Group): Promise<Group> {
+      const updatedGroup = await this.groupRepository.update(group);
+      return updatedGroup.get({ plain: true }) as GroupModel;
    }
 
-   public async delete(id: string): Promise<boolean> {
-      try {
-         await this.groupRepository.destroy(id);
-         return true;
-      } catch {
-         return false;
-      }
+   public async delete(id: string): Promise<void> {
+      await this.groupRepository.destroy(id);
    }
 }

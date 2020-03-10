@@ -53,8 +53,8 @@ let GroupController = class GroupController extends inversify_express_utils_1.Ba
                     name: value.name,
                     permissions: value.permissions
                 };
-                yield this.groupService.save(group);
-                res.status(http_status_codes_1.default.OK).json(true);
+                const createdGroup = yield this.groupService.save(group);
+                res.status(http_status_codes_1.default.CREATED).json(createdGroup);
             }
             catch (err) {
                 this.logger.error('Error create request', {
@@ -93,8 +93,8 @@ let GroupController = class GroupController extends inversify_express_utils_1.Ba
                 const value = yield validate_1.validateBody(groupSchemas_1.GroupSchema, body);
                 group.name = value.name;
                 group.permissions = value.permissions;
-                yield this.groupService.update(group);
-                res.status(http_status_codes_1.default.OK).json(true);
+                const updatedGroup = yield this.groupService.update(group);
+                res.status(http_status_codes_1.default.OK).json(updatedGroup);
             }
             catch (_a) {
                 this.logger.error('Error updating group', {
@@ -111,7 +111,7 @@ let GroupController = class GroupController extends inversify_express_utils_1.Ba
                 const group = yield this.groupService.getById(id);
                 if (group) {
                     yield this.groupService.delete(group.id);
-                    res.status(http_status_codes_1.default.OK).json(true);
+                    res.status(http_status_codes_1.default.NO_CONTENT).json(true);
                 }
             }
             catch (_a) {
