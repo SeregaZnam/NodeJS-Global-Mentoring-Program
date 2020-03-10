@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"userId\": \"537d0c6b-fa81-4fc8-bcff-a386c4394a74\",\n\t\"groupId\": \"3f5cba30-9daa-41e5-a1fc-37f91f3b746b\"\n}"
+					"raw": "{\n\t\"userId\": \"104e51d0-a97c-46d6-82bd-9818cf84b8a7\",\n\t\"groupId\": \"60c75c9c-0c47-4832-8456-017b6c3f99e5\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/user-group",

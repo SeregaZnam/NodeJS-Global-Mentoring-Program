@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/user/cd2f954d-ca7b-434c-a7db-a5827a7a3e58",
+					"raw": "http://localhost:3000/user/19e7b30b-7a7d-4595-b741-db15d8392c3b",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -19,7 +19,7 @@
 					"port": "3000",
 					"path": [
 						"user",
-						"cd2f954d-ca7b-434c-a7db-a5827a7a3e58"
+						"19e7b30b-7a7d-4595-b741-db15d8392c3b"
 					]
 				},
 				"description": "Get user"
@@ -83,7 +83,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/user/7166d0d5-a6ab-48ca-8b57-9d1f334fd47a",
+					"raw": "http://localhost:3000/user/c3785d34-9d5f-4773-a055-31d653a2428b",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -91,7 +91,7 @@
 					"port": "3000",
 					"path": [
 						"user",
-						"7166d0d5-a6ab-48ca-8b57-9d1f334fd47a"
+						"c3785d34-9d5f-4773-a055-31d653a2428b"
 					]
 				}
 			},
@@ -103,7 +103,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/user/0df08160-0122-4c3b-a40b-9a9aec218505",
+					"raw": "http://localhost:3000/user/5061f840-6091-4c79-bc66-3ab22e320fe6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -111,7 +111,7 @@
 					"port": "3000",
 					"path": [
 						"user",
-						"0df08160-0122-4c3b-a40b-9a9aec218505"
+						"5061f840-6091-4c79-bc66-3ab22e320fe6"
 					]
 				}
 			},
@@ -121,7 +121,14 @@
 			"name": "Get auto suggest users",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/user?limit=10&loginSubstring=",
 					"protocol": "http",
@@ -141,6 +148,42 @@
 							"key": "loginSubstring",
 							"value": ""
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
 					]
 				}
 			},

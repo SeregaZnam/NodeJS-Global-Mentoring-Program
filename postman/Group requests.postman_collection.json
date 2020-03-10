@@ -66,7 +66,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/group/e67a5c6d-7193-41e9-98c5-cb91214968de",
+					"raw": "http://localhost:3000/group/91118448-7ffa-4c46-9360-c1298729d699",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -74,7 +74,7 @@
 					"port": "3000",
 					"path": [
 						"group",
-						"e67a5c6d-7193-41e9-98c5-cb91214968de"
+						"91118448-7ffa-4c46-9360-c1298729d699"
 					]
 				}
 			},
@@ -93,10 +93,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Group3\",\n\t\"permissions\": [\"READ\", \"WRITE\"]\n}"
+					"raw": "{\n\t\"name\": \"Group13\",\n\t\"permissions\": [\"READ\", \"WRITE\"]\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/group/76b37e91-9a48-43b5-b486-30d4b9249896",
+					"raw": "http://localhost:3000/group/57a76e89-e811-445a-83b6-474df7ce1969",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -104,7 +104,7 @@
 					"port": "3000",
 					"path": [
 						"group",
-						"76b37e91-9a48-43b5-b486-30d4b9249896"
+						"57a76e89-e811-445a-83b6-474df7ce1969"
 					]
 				}
 			},
@@ -116,7 +116,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/group/e67a5c6d-7193-41e9-98c5-cb91214968de",
+					"raw": "http://localhost:3000/group/57a76e89-e811-445a-83b6-474df7ce1969",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -124,7 +124,7 @@
 					"port": "3000",
 					"path": [
 						"group",
-						"e67a5c6d-7193-41e9-98c5-cb91214968de"
+						"57a76e89-e811-445a-83b6-474df7ce1969"
 					]
 				}
 			},
