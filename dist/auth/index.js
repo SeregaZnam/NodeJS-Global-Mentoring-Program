@@ -11,8 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const authStrategy_1 = require("./strategies/authStrategy");
 const bearerStrategy_1 = require("./strategies/bearerStrategy");
-exports.initializeStrategies = (userService) => __awaiter(void 0, void 0, void 0, function* () {
+exports.initializeStrategies = (userService, authService) => __awaiter(void 0, void 0, void 0, function* () {
     yield authStrategy_1.initAuthStrategy(userService);
-    yield bearerStrategy_1.initBearerStrategy();
+    yield bearerStrategy_1.initBearerStrategy(authService);
 });
 //# sourceMappingURL=index.js.map

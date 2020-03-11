@@ -1,0 +1,1 @@
+{"version":3,"file":"GroupMapper.js","sourceRoot":"","sources":["../../../../../server/modules/group/utils/mappers/GroupMapper.ts"],"names":[],"mappings":";;;;;;;;;;;;;AAGA,MAAa,WAAW;IACrB,MAAM,CAAC,KAAK,CAAC,KAAY;QACtB,MAAM,EAAE,SAAS,EAAE,SAAS,KAAkB,KAAK,EAArB,oDAAqB,CAAC;QACpD,OAAO,QAAQ,CAAC;IACnB,CAAC;CACH;AALD,kCAKC"}

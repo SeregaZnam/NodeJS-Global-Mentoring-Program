@@ -10,8 +10,7 @@ export class GroupRepository {
    }
 
    public async findAll(): Promise<GroupModel[]> {
-      const users = await GroupModel.findAll();
-      return users;
+      return await GroupModel.findAll();
    }
 
    public async create(group: GroupDTO): Promise<GroupModel> {

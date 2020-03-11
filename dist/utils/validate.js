@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const errors_1 = require("../errors");
 exports.validateBody = (schema, body, options = {}) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const value = yield schema.validateAsync(body, options);
-        return value;
+        return yield schema.validateAsync(body, options);
+        ;
     }
     catch (error) {
         throw new errors_1.ValidationError(error, body);

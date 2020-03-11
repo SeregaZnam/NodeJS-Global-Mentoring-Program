@@ -48,7 +48,7 @@ export class UserController extends BaseHttpController {
       return this.json(token);
    }
 
-   @httpGet('')
+   @httpGet('', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async getAutoSuggestUsers(
       @requestParam('loginSubstring') loginSubstring: string,

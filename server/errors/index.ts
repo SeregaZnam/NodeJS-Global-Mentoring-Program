@@ -49,3 +49,9 @@ export class InvalidTokenError extends CustomError {
       super(`Invalid token ${token}`, ERROR_CODES.INVALID_TOKEN, HttpStatus.BAD_REQUEST);
    }
 }
+
+export class GetTokenError extends CustomError {
+   constructor(error: Error) {
+      super(error.message, ERROR_CODES.GET_TOKEN, HttpStatus.BAD_REQUEST);
+   }
+}

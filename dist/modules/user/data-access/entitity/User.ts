@@ -35,8 +35,7 @@ export const initUserModel = async (sequelize: Sequelize): Promise<UserModel> =>
       }
    }, {
       sequelize,
-      tableName: 'users',
-      timestamps: false
+      tableName: 'users'
    });
 
    return UserModel as any;

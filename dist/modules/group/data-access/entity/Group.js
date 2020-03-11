@@ -37,8 +37,7 @@ exports.initGroupModel = (sequelize) => __awaiter(void 0, void 0, void 0, functi
         }
     }, {
         sequelize,
-        tableName: 'groups',
-        timestamps: false
+        tableName: 'groups'
     });
     return GroupModel;
 });

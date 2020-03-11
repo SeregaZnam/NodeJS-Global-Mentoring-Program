@@ -40,8 +40,7 @@ exports.initUserModel = (sequelize) => __awaiter(void 0, void 0, void 0, functio
         }
     }, {
         sequelize,
-        tableName: 'users',
-        timestamps: false
+        tableName: 'users'
     });
     return UserModel;
 });

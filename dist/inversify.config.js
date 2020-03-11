@@ -29,7 +29,7 @@ const UserRepository_1 = require("./modules/user/data-access/repository/UserRepo
 const database_1 = require("./database");
 const inversify_1 = require("inversify");
 const logger_1 = __importDefault(require("./logger"));
-const auth_service_1 = require("./service/auth.service");
+const auth_1 = require("./service/auth");
 exports.bindings = new inversify_1.AsyncContainerModule((bind) => __awaiter(void 0, void 0, void 0, function* () {
     yield Promise.resolve().then(() => __importStar(require('./modules/user/controller')));
     yield Promise.resolve().then(() => __importStar(require('./modules/group/controller')));
@@ -38,7 +38,7 @@ exports.bindings = new inversify_1.AsyncContainerModule((bind) => __awaiter(void
     yield dbConnect.sequelize.sync({ force: true });
     bind(types_1.TYPES.DbConnect).toConstantValue(dbConnect);
     bind(types_1.TYPES.Logger).toConstantValue(logger_1.default);
-    bind(types_1.TYPES.AuthService).to(auth_service_1.AuthService);
+    bind(types_1.TYPES.AuthService).to(auth_1.AuthService);
     bind(types_1.TYPES.UserService).to(service_1.UserService);
     bind(types_1.TYPES.GroupService).to(service_2.GroupService);
     bind(types_1.TYPES.UserGroupService).to(service_3.UserGroupService);

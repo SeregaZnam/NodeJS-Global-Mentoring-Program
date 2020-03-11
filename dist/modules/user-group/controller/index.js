@@ -20,12 +20,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const inversify_express_utils_1 = require("inversify-express-utils");
-const http_status_codes_1 = __importDefault(require("http-status-codes"));
 const inversify_1 = require("inversify");
 const types_1 = require("../../../constants/types");
 const executionTime_1 = require("../../../utils/executionTime");
@@ -40,17 +36,17 @@ let UserGroupController = class UserGroupController extends inversify_express_ut
         this.dbConnect = dbConnect;
         this.userGroupService = userGroupService;
     }
-    createUserGroup(req, res) {
+    createUserGroup(req) {
         return __awaiter(this, void 0, void 0, function* () {
             const transaction = yield this.dbConnect.transaction();
             try {
                 const value = yield validate_1.validateBody(userGroupSchemas_1.UserGroupschema, req.body);
                 yield this.userGroupService.save(value.userId, value.groupId, transaction);
-                res.status(http_status_codes_1.default.OK).json(true);
-                transaction.commit();
+                yield transaction.commit();
+                return this.json(true);
             }
             catch (err) {
-                transaction.rollback();
+                yield transaction.rollback();
                 this.logger.error('Error create request', {
                     method: 'createUser',
                     params: {
@@ -67,9 +63,8 @@ __decorate([
     inversify_express_utils_1.httpPut(''),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.request()),
-    __param(1, inversify_express_utils_1.response()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserGroupController.prototype, "createUserGroup", null);
 UserGroupController = __decorate([

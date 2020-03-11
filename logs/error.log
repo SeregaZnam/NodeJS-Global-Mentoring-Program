@@ -42,3 +42,4 @@
 {"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"5cfcfe75-a5d9-4fb0-b79d-8ebc9661a745\",\r\n\t\"login\": \"Alex\",\r\n\t\"password\": \"123test\",\r\n}","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
 {"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"10"},"level":"error","message":"Error get users with suggest"}
 {"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"10"},"level":"error","message":"Error get users with suggest"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"c93ce8e8-0765-4260-b161-9fc1f6586381\",\r\n\t\"login\": \"Sergey\",\r\n\t\"password\": \"123wer\"","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}

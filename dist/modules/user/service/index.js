@@ -20,16 +20,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const UserRepository_1 = require("../data-access/repository/UserRepository");
-const logger_1 = __importDefault(require("../../../logger"));
 const inversify_1 = require("inversify");
 const types_1 = require("../../../constants/types");
 let UserService = class UserService {
-    constructor(userRepository) {
+    constructor(logger, userRepository) {
+        this.logger = logger;
         this.userRepository = userRepository;
     }
     getAll(query) {
@@ -46,17 +43,8 @@ let UserService = class UserService {
     }
     getAutoSuggest(loginSubstring, limit = undefined) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const users = yield this.userRepository.findAll({ loginSubstring, limit });
-                return users.map((user) => user.get({ plain: true }));
-            }
-            catch (err) {
-                logger_1.default.error('Error get users with suggest', {
-                    err,
-                    method: 'getAutoSuggest',
-                    params: { loginSubstring, limit }
-                });
-            }
+            const users = yield this.userRepository.findAll({ loginSubstring, limit });
+            return users.map((user) => user.get({ plain: true }));
         });
     }
     save(user) {
@@ -79,8 +67,9 @@ let UserService = class UserService {
 };
 UserService = __decorate([
     inversify_1.injectable(),
-    __param(0, inversify_1.inject(types_1.TYPES.UserRepository)),
-    __metadata("design:paramtypes", [UserRepository_1.UserRepository])
+    __param(0, inversify_1.inject(types_1.TYPES.Logger)),
+    __param(1, inversify_1.inject(types_1.TYPES.UserRepository)),
+    __metadata("design:paramtypes", [Object, UserRepository_1.UserRepository])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=index.js.map

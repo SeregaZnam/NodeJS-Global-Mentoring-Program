@@ -11,11 +11,11 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class UserMapper {
-    static toDTO(user) {
-        const { password, createdAt, updatedAt } = user, userDTO = __rest(user, ["password", "createdAt", "updatedAt"]);
-        return userDTO;
+class GroupMapper {
+    static toDTO(group) {
+        const { createdAt, updatedAt } = group, groupDTO = __rest(group, ["createdAt", "updatedAt"]);
+        return groupDTO;
     }
 }
-exports.UserMapper = UserMapper;
-//# sourceMappingURL=UserMapper.js.map
+exports.GroupMapper = GroupMapper;
+//# sourceMappingURL=GroupMapper.js.map

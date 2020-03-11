@@ -1,6 +1,6 @@
 import passport from 'passport';
 import { UserService } from '../service';
-import { Request, Response, NextFunction } from 'express';
+import { Request } from 'express';
 import { User } from '../models/user';
 import { UserMapper } from '../utils/mappers/UserMapper';
 import {
@@ -8,14 +8,12 @@ import {
    httpPut,
    httpPost,
    request,
-   response,
    httpDelete,
    controller,
    BaseHttpController,
    requestParam,
    requestBody
 } from 'inversify-express-utils';
-import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import {
@@ -28,7 +26,7 @@ import { executionTime } from '../../../utils/executionTime';
 import { Logger } from '../../../logger';
 import { validateBody } from '../../../utils/validate';
 import { UserSchema } from '../schemas/userSchemas';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../service/auth';
 
 @controller('/user')
 export class UserController extends BaseHttpController {
@@ -44,32 +42,35 @@ export class UserController extends BaseHttpController {
       passport.authenticate('auth', { session: false })
    )
    async signInUser(
-      @request() req: Request,
-      @response() res: Response,
-         next: NextFunction
+      @request() req: Request
    ) {
       const token = await this.authService.signToken(req.body);
-      res.json(token);
+      return this.json(token);
    }
 
-   @httpGet('')
+   @httpGet('', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async getAutoSuggestUsers(
-      @request() req: Request,
-      @response() res: Response
+      @requestParam('loginSubstring') loginSubstring: string,
+      @requestParam('limit') limit: number
    ) {
-      const loginSubstring = req.query.loginSubstring;
-      const limit = req.query.limit;
-
-      const users = await this.userService.getAutoSuggest(loginSubstring, limit);
-      res.status(HttpStatus.OK).json(users);
+      try {
+         const users = await this.userService.getAutoSuggest(loginSubstring, limit);
+         return this.json((users || []).map((u) => UserMapper.toDTO(u)));
+      } catch (err) {
+         this.logger.error('Error get users with suggest', {
+            err,
+            method: 'getAutoSuggestUsers',
+            params: { loginSubstring, limit }
+         });
+         throw new NotFoundError('Error getting users');
+      }
    }
 
    @httpPut('')
    @executionTime()
    async createUser(
-      @request() req: Request,
-      @response() res: Response
+      @request() req: Request
    ) {
       try {
          const value = await validateBody(UserSchema, req.body);
@@ -79,7 +80,7 @@ export class UserController extends BaseHttpController {
             age: value.age
          };
          const createdUser = await this.userService.save(user);
-         res.status(HttpStatus.CREATED).json(UserMapper.toDTO(createdUser));
+         return this.json(UserMapper.toDTO(createdUser));
       } catch (err) {
          this.logger.error('Error create request', {
             method: 'createUser',
@@ -96,13 +97,12 @@ export class UserController extends BaseHttpController {
    @httpGet('/:id')
    @executionTime()
    async getUser(
-      @response() res: Response,
       @requestParam('id') id: string
    ) {
       try {
          const user = await this.userService.getById(id);
          if (user) {
-            res.status(HttpStatus.OK).json(UserMapper.toDTO(user));
+            return this.json(UserMapper.toDTO(user));
          }
       } catch {
          this.logger.error('Error getting user', {
@@ -116,7 +116,6 @@ export class UserController extends BaseHttpController {
    @httpPost('/:id')
    @executionTime()
    async updateUser(
-      @response() res: Response,
       @requestBody() body: any,
       @requestParam('id') id: string
    ) {
@@ -134,7 +133,7 @@ export class UserController extends BaseHttpController {
          user.age = value.age;
 
          const updatedUser = await this.userService.update(user);
-         res.status(HttpStatus.OK).json(UserMapper.toDTO(updatedUser));
+         return this.json(UserMapper.toDTO(updatedUser));
       } catch {
          this.logger.error('Error updating user', {
             method: 'updateUser',
@@ -147,14 +146,13 @@ export class UserController extends BaseHttpController {
    @httpDelete('/:id')
    @executionTime()
    async deleteUser(
-      @response() res: Response,
       @requestParam('id') id: string
    ) {
       try {
          const user = await this.userService.getById(id);
          if (user) {
             await this.userService.delete(user.id);
-            res.status(HttpStatus.NO_CONTENT).json(true);
+            return this.json(true);
          }
       } catch {
          this.logger.error('Error deleting user', {

@@ -51,4 +51,10 @@ class InvalidTokenError extends CustomError {
     }
 }
 exports.InvalidTokenError = InvalidTokenError;
+class GetTokenError extends CustomError {
+    constructor(error) {
+        super(error.message, errors_1.ERROR_CODES.GET_TOKEN, http_status_codes_1.default.BAD_REQUEST);
+    }
+}
+exports.GetTokenError = GetTokenError;
 //# sourceMappingURL=index.js.map

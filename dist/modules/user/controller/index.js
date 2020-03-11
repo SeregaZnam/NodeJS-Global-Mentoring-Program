@@ -28,14 +28,13 @@ const passport_1 = __importDefault(require("passport"));
 const service_1 = require("../service");
 const UserMapper_1 = require("../utils/mappers/UserMapper");
 const inversify_express_utils_1 = require("inversify-express-utils");
-const http_status_codes_1 = __importDefault(require("http-status-codes"));
 const inversify_1 = require("inversify");
 const types_1 = require("../../../constants/types");
 const errors_1 = require("../../../errors");
 const executionTime_1 = require("../../../utils/executionTime");
 const validate_1 = require("../../../utils/validate");
 const userSchemas_1 = require("../schemas/userSchemas");
-const auth_service_1 = require("../../../service/auth.service");
+const auth_1 = require("../../../service/auth");
 let UserController = class UserController extends inversify_express_utils_1.BaseHttpController {
     constructor(logger, userService, authService) {
         super();
@@ -43,21 +42,29 @@ let UserController = class UserController extends inversify_express_utils_1.Base
         this.userService = userService;
         this.authService = authService;
     }
-    signInUser(req, res, next) {
+    signInUser(req) {
         return __awaiter(this, void 0, void 0, function* () {
             const token = yield this.authService.signToken(req.body);
-            res.json(token);
+            return this.json(token);
         });
     }
-    getAutoSuggestUsers(req, res) {
+    getAutoSuggestUsers(loginSubstring, limit) {
         return __awaiter(this, void 0, void 0, function* () {
-            const loginSubstring = req.query.loginSubstring;
-            const limit = req.query.limit;
-            const users = yield this.userService.getAutoSuggest(loginSubstring, limit);
-            res.status(http_status_codes_1.default.OK).json(users);
+            try {
+                const users = yield this.userService.getAutoSuggest(loginSubstring, limit);
+                return this.json((users || []).map((u) => UserMapper_1.UserMapper.toDTO(u)));
+            }
+            catch (err) {
+                this.logger.error('Error get users with suggest', {
+                    err,
+                    method: 'getAutoSuggestUsers',
+                    params: { loginSubstring, limit }
+                });
+                throw new errors_1.NotFoundError('Error getting users');
+            }
         });
     }
-    createUser(req, res) {
+    createUser(req) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const value = yield validate_1.validateBody(userSchemas_1.UserSchema, req.body);
@@ -67,7 +74,7 @@ let UserController = class UserController extends inversify_express_utils_1.Base
                     age: value.age
                 };
                 const createdUser = yield this.userService.save(user);
-                res.status(http_status_codes_1.default.CREATED).json(UserMapper_1.UserMapper.toDTO(createdUser));
+                return this.json(UserMapper_1.UserMapper.toDTO(createdUser));
             }
             catch (err) {
                 this.logger.error('Error create request', {
@@ -82,12 +89,12 @@ let UserController = class UserController extends inversify_express_utils_1.Base
             }
         });
     }
-    getUser(res, id) {
+    getUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const user = yield this.userService.getById(id);
                 if (user) {
-                    res.status(http_status_codes_1.default.OK).json(UserMapper_1.UserMapper.toDTO(user));
+                    return this.json(UserMapper_1.UserMapper.toDTO(user));
                 }
             }
             catch (_a) {
@@ -99,7 +106,7 @@ let UserController = class UserController extends inversify_express_utils_1.Base
             }
         });
     }
-    updateUser(res, body, id) {
+    updateUser(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield this.userService.getById(id);
             if (!user) {
@@ -111,7 +118,7 @@ let UserController = class UserController extends inversify_express_utils_1.Base
                 user.password = value.password;
                 user.age = value.age;
                 const updatedUser = yield this.userService.update(user);
-                res.status(http_status_codes_1.default.OK).json(UserMapper_1.UserMapper.toDTO(updatedUser));
+                return this.json(UserMapper_1.UserMapper.toDTO(updatedUser));
             }
             catch (_a) {
                 this.logger.error('Error updating user', {
@@ -122,13 +129,13 @@ let UserController = class UserController extends inversify_express_utils_1.Base
             }
         });
     }
-    deleteUser(res, id) {
+    deleteUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const user = yield this.userService.getById(id);
                 if (user) {
                     yield this.userService.delete(user.id);
-                    res.status(http_status_codes_1.default.NO_CONTENT).json(true);
+                    return this.json(true);
                 }
             }
             catch (_a) {
@@ -144,55 +151,50 @@ let UserController = class UserController extends inversify_express_utils_1.Base
 __decorate([
     inversify_express_utils_1.httpPost('/login', passport_1.default.authenticate('auth', { session: false })),
     __param(0, inversify_express_utils_1.request()),
-    __param(1, inversify_express_utils_1.response()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, Function]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "signInUser", null);
 __decorate([
-    inversify_express_utils_1.httpGet(''),
+    inversify_express_utils_1.httpGet('', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
-    __param(0, inversify_express_utils_1.request()),
-    __param(1, inversify_express_utils_1.response()),
+    __param(0, inversify_express_utils_1.requestParam('loginSubstring')),
+    __param(1, inversify_express_utils_1.requestParam('limit')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [String, Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getAutoSuggestUsers", null);
 __decorate([
     inversify_express_utils_1.httpPut(''),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.request()),
-    __param(1, inversify_express_utils_1.response()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "createUser", null);
 __decorate([
     inversify_express_utils_1.httpGet('/:id'),
     executionTime_1.executionTime(),
-    __param(0, inversify_express_utils_1.response()),
-    __param(1, inversify_express_utils_1.requestParam('id')),
+    __param(0, inversify_express_utils_1.requestParam('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUser", null);
 __decorate([
     inversify_express_utils_1.httpPost('/:id'),
     executionTime_1.executionTime(),
-    __param(0, inversify_express_utils_1.response()),
-    __param(1, inversify_express_utils_1.requestBody()),
-    __param(2, inversify_express_utils_1.requestParam('id')),
+    __param(0, inversify_express_utils_1.requestBody()),
+    __param(1, inversify_express_utils_1.requestParam('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, String]),
+    __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "updateUser", null);
 __decorate([
     inversify_express_utils_1.httpDelete('/:id'),
     executionTime_1.executionTime(),
-    __param(0, inversify_express_utils_1.response()),
-    __param(1, inversify_express_utils_1.requestParam('id')),
+    __param(0, inversify_express_utils_1.requestParam('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "deleteUser", null);
 UserController = __decorate([
@@ -201,7 +203,7 @@ UserController = __decorate([
     __param(1, inversify_1.inject(types_1.TYPES.UserService)),
     __param(2, inversify_1.inject(types_1.TYPES.AuthService)),
     __metadata("design:paramtypes", [Object, service_1.UserService,
-        auth_service_1.AuthService])
+        auth_1.AuthService])
 ], UserController);
 exports.UserController = UserController;
 //# sourceMappingURL=index.js.map

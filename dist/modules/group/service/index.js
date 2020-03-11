@@ -30,13 +30,8 @@ let GroupService = class GroupService {
     }
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const groups = yield this.groupRepository.findAll();
-                return groups;
-            }
-            catch (_a) {
-                throw new Error('Error receiving groups');
-            }
+            const groups = yield this.groupRepository.findAll();
+            return groups ? groups.map(g => g.get({ plain: true })) : undefined;
         });
     }
     getById(id) {

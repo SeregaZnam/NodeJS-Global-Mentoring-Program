@@ -14,6 +14,7 @@ import { preloadMockData } from './utils/preloadMockData';
 import { initializeStrategies } from './auth';
 import { UserService } from './modules/user/service';
 import { TYPES } from './constants/types';
+import { AuthService } from './service/auth';
 
 process.on('unhandledRejection', (err) => {
    throw err;
@@ -33,7 +34,10 @@ const bootstrap = async () => {
          app.use(express.json());
          app.use(loggerHandler);
          app.use(httpError);
-         await initializeStrategies(container.get<UserService>(TYPES.UserService));
+         await initializeStrategies(
+            container.get<UserService>(TYPES.UserService),
+            container.get<AuthService>(TYPES.AuthService)
+         );
       });
 
       const app = server.build();

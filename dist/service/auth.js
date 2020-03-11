@@ -36,29 +36,29 @@ const config_1 = __importDefault(require("../configs/config"));
 const inversify_1 = require("inversify");
 const types_1 = require("../constants/types");
 const errors_1 = require("../errors");
+const service_1 = require("../modules/user/service");
 let AuthService = class AuthService {
-    constructor(logger) {
+    constructor(logger, userService) {
         this.logger = logger;
+        this.userService = userService;
     }
-    extractToken(req) {
-        return req.headers['x-access-token'] || req.headers.authorization;
-    }
-    verifyToken(req, res, next) {
+    verifyToken(token) {
         return __awaiter(this, void 0, void 0, function* () {
-            const token = this.extractToken(req);
             const jwtConfig = config_1.default.get('jwt');
             if (token) {
-                jwt.verify(token, jwtConfig.secretKey, (err, decoded) => {
-                    if (err) {
-                        this.logger.error(err.message, 'Token does not verified');
+                try {
+                    const decoded = yield jwt.verify(token, jwtConfig.secretKey);
+                    const user = yield this.userService.getById(decoded.sub);
+                    if (!user) {
+                        this.logger.error('No token');
                         throw new errors_1.InvalidTokenError(token);
                     }
-                    else {
-                        // TODO
-                        console.log(decoded);
-                        return next();
-                    }
-                });
+                    return user;
+                }
+                catch (err) {
+                    this.logger.error(err.message, 'Token does not verified');
+                    throw new errors_1.InvalidTokenError(token);
+                }
             }
             else {
                 this.logger.error('No token');
@@ -68,26 +68,26 @@ let AuthService = class AuthService {
     }
     signToken(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const jwtConfig = config_1.default.get('jwt');
-            return new Promise((res, rej) => {
-                jwt.sign(user, jwtConfig.secretKey, {
+            try {
+                const jwtConfig = config_1.default.get('jwt');
+                const token = yield jwt.sign(user, jwtConfig.secretKey, {
+                    subject: user.id,
                     expiresIn: '4h'
-                }, (err, token) => {
-                    if (err) {
-                        rej(err);
-                    }
-                    else {
-                        res(token);
-                    }
                 });
-            });
+                return token;
+            }
+            catch (err) {
+                this.logger.error('Error getting token');
+                throw new errors_1.GetTokenError(err);
+            }
         });
     }
 };
 AuthService = __decorate([
     inversify_1.injectable(),
     __param(0, inversify_1.inject(types_1.TYPES.Logger)),
-    __metadata("design:paramtypes", [Object])
+    __param(1, inversify_1.inject(types_1.TYPES.UserService)),
+    __metadata("design:paramtypes", [Object, service_1.UserService])
 ], AuthService);
 exports.AuthService = AuthService;
-//# sourceMappingURL=auth.service.js.map
+//# sourceMappingURL=auth.js.map

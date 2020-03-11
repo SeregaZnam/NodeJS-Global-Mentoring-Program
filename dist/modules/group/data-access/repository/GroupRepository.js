@@ -25,8 +25,7 @@ let GroupRepository = class GroupRepository {
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = yield Group_1.GroupModel.findAll();
-            return users;
+            return yield Group_1.GroupModel.findAll();
         });
     }
     create(group) {

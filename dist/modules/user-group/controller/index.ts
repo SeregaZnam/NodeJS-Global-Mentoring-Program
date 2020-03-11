@@ -1,17 +1,15 @@
 import {
-   controller,
-   httpPut,
    request,
-   response,
+   httpPut,
+   controller,
    BaseHttpController
 } from 'inversify-express-utils';
-import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import { executionTime } from '../../../utils/executionTime';
 import { DBConnect } from '../../../database';
 import { UserGroupService } from '../service';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { Logger } from '../../../logger';
 import { CreateError } from '../../../errors';
 import { validateBody } from '../../../utils/validate';
@@ -30,19 +28,19 @@ export class UserGroupController extends BaseHttpController {
    @httpPut('')
    @executionTime()
    async createUserGroup(
-      @request() req: Request,
-      @response() res: Response
+      @request() req: Request
    ) {
       const transaction = await this.dbConnect.transaction();
 
       try {
          const value = await validateBody(UserGroupschema, req.body);
          await this.userGroupService.save(value.userId, value.groupId, transaction);
+         await transaction.commit();
 
-         res.status(HttpStatus.OK).json(true);
-         transaction.commit();
+         return this.json(true);
       } catch (err) {
-         transaction.rollback();
+         await transaction.rollback();
+
          this.logger.error('Error create request', {
             method: 'createUser',
             params: {

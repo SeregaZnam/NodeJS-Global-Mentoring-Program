@@ -1,10 +1,9 @@
-import { GroupService } from '../service';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { GroupDTO } from '../dto/groupDTO';
+import { GroupService } from '../service';
 import {
    httpGet,
    request,
-   response,
    httpPut,
    httpPost,
    httpDelete,
@@ -13,7 +12,6 @@ import {
    requestParam,
    requestBody
 } from 'inversify-express-utils';
-import HttpStatus from 'http-status-codes';
 import { inject } from 'inversify';
 import { executionTime } from '../../../utils/executionTime';
 import { TYPES } from '../../../constants/types';
@@ -26,6 +24,7 @@ import {
 import { Logger } from '../../../logger';
 import { GroupSchema } from '../schemas/groupSchemas';
 import { validateBody } from '../../../utils/validate';
+import { GroupMapper } from '../utils/mappers/GroupMapper';
 
 @controller('/group')
 export class GroupController extends BaseHttpController {
@@ -38,18 +37,23 @@ export class GroupController extends BaseHttpController {
 
    @httpGet('')
    @executionTime()
-   async getAllGroups(
-      @response() res: Response
-   ) {
-      const groups = await this.groupService.getAll();
-      res.status(HttpStatus.OK).json(groups);
+   async getAllGroups() {
+      try {
+         const groups = await this.groupService.getAll();
+         return this.json((groups || []).map((g) => GroupMapper.toDTO(g)));
+      } catch (err) {
+         this.logger.error('Error get users with suggest', {
+            err,
+            method: 'getAllGroups'
+         });
+         throw new NotFoundError('Error getting groups');
+      }
    }
 
    @httpPut('')
    @executionTime()
    async createGroup(
-      @request() req: Request,
-      @response() res: Response
+      @request() req: Request
    ) {
       try {
          const value = await validateBody(GroupSchema, req.body);
@@ -59,7 +63,7 @@ export class GroupController extends BaseHttpController {
          };
 
          const createdGroup = await this.groupService.save(group);
-         res.status(HttpStatus.CREATED).json(createdGroup);
+         return this.json(GroupMapper.toDTO(createdGroup));
       } catch (err) {
          this.logger.error('Error create request', {
             method: 'createGroup',
@@ -75,12 +79,11 @@ export class GroupController extends BaseHttpController {
    @httpGet('/:id')
    @executionTime()
    async getGroup(
-      @response() res: Response,
       @requestParam('id') id: string
    ) {
       try {
          const group = await this.groupService.getById(id);
-         res.status(HttpStatus.OK).json(group);
+         return this.json(group && GroupMapper.toDTO(group));
       } catch {
          this.logger.error('Error getting user', {
             method: 'getGroup',
@@ -93,7 +96,6 @@ export class GroupController extends BaseHttpController {
    @httpPost('/:id')
    @executionTime()
    async updateGroup(
-      @response() res: Response,
       @requestBody() body: any,
       @requestParam('id') id: string
    ) {
@@ -110,7 +112,7 @@ export class GroupController extends BaseHttpController {
          group.permissions = value.permissions;
 
          const updatedGroup = await this.groupService.update(group);
-         res.status(HttpStatus.OK).json(updatedGroup);
+         return this.json(GroupMapper.toDTO(updatedGroup));
       } catch {
          this.logger.error('Error updating group', {
             method: 'updateGroup',
@@ -123,14 +125,13 @@ export class GroupController extends BaseHttpController {
    @httpDelete('/:id')
    @executionTime()
    async deleteGroup(
-      @response() res: Response,
       @requestParam('id') id: string
    ) {
       try {
          const group = await this.groupService.getById(id);
          if (group) {
             await this.groupService.delete(group.id);
-            res.status(HttpStatus.NO_CONTENT).json(true);
+            return this.json(true);
          }
       } catch {
          throw new DeleteError('Error deleting group');

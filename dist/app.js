@@ -43,7 +43,7 @@ const bootstrap = () => __awaiter(void 0, void 0, void 0, function* () {
             app.use(express_1.default.json());
             app.use(loggerHandler_1.loggerHandler);
             app.use(httpError_1.httpError);
-            yield auth_1.initializeStrategies(container.get(types_1.TYPES.UserService));
+            yield auth_1.initializeStrategies(container.get(types_1.TYPES.UserService), container.get(types_1.TYPES.AuthService));
         }));
         const app = server.build();
         yield preloadMockData_1.preloadMockData();

@@ -620,3 +620,66 @@
 {"message":"method getUser worked in 1200.4908ms","level":"info"}
 {"message":"Server starting bootstrap","level":"info"}
 {"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user/926fd2b5-beba-4a17-ade2-7b363b695294","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getUser worked in 160.8712ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 165.8149ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 157.9723ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"740e02e8-0233-44bd-a19f-51cb478ecad0","groupId":"926f2610-bcd7-455a-b135-082f21abb236"},"level":"info","message":"Handle request method"}
+{"message":"method createUserGroup worked in 2937.257799ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 152.285ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 166.9559ms","level":"info"}
+{"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"c93ce8e8-0765-4260-b161-9fc1f6586381\",\r\n\t\"login\": \"Sergey\",\r\n\t\"password\": \"123wer\"","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1219.4846ms","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"16230860-fec9-4012-abc2-60a24c64d7a9","login":"Sergey","password":"123wer"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"16edde60-323f-4357-9bd7-7274e777b159","login":"Sergey","password":"123wer"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"e04fce79-1b30-4ebb-9794-2ea939db6eca","login":"Sergey","password":"123wer"},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"POST","url":"/user/login","body":{"id":"b2eaf655-519b-4949-b413-a810768ba10b","login":"Sergey","password":"123wer"},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1279.258ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"b7938aaa-65f8-4427-9b89-cbba179e87ba","login":"Sergey","password":"123wer"},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1230.405299ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1216.4326ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"POST","url":"/user/login","body":{"id":"fb9d70a4-6504-4adf-962d-23d5599b0bf2","login":"Sergey","password":"123wer"},"level":"info","message":"Handle request method"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}

@@ -1,14 +1,15 @@
 import passport from 'passport';
-import passportBearer, { IVerifyOptions } from 'passport-http-bearer';
+import passportBearer from 'passport-http-bearer';
+import { AuthService } from '../../service/auth';
 
 const BearerStrategy = passportBearer.Strategy;
 
-export const initBearerStrategy = () => {
-   passport.use('bearer', new BearerStrategy((
+export const initBearerStrategy = async (authService: AuthService) => {
+   passport.use('bearer', new BearerStrategy(async (
       token: string,
-      done: (error: any, user?: any, options?: IVerifyOptions | string) => void
+      done: (error: any, user?: any, options?: any) => void
    ) => {
-      // TODO
-      return done(null, { user: '' }, { scope: 'all', message: '' });
+      const result = await authService.verifyToken(token);
+      return done(null, result, { scope: 'all' });
    }));
 };
