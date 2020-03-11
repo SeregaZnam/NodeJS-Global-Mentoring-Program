@@ -26,7 +26,7 @@ import { executionTime } from '../../../utils/executionTime';
 import { Logger } from '../../../logger';
 import { validateBody } from '../../../utils/validate';
 import { UserSchema } from '../schemas/userSchemas';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../service/auth';
 
 @controller('/user')
 export class UserController extends BaseHttpController {
@@ -56,7 +56,7 @@ export class UserController extends BaseHttpController {
    ) {
       try {
          const users = await this.userService.getAutoSuggest(loginSubstring, limit);
-         return this.json(users);
+         return this.json((users || []).map((u) => UserMapper.toDTO(u)));
       } catch (err) {
          this.logger.error('Error get users with suggest', {
             err,

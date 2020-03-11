@@ -24,6 +24,7 @@ import {
 import { Logger } from '../../../logger';
 import { GroupSchema } from '../schemas/groupSchemas';
 import { validateBody } from '../../../utils/validate';
+import { GroupMapper } from '../utils/mappers/GroupMapper';
 
 @controller('/group')
 export class GroupController extends BaseHttpController {
@@ -39,7 +40,7 @@ export class GroupController extends BaseHttpController {
    async getAllGroups() {
       try {
          const groups = await this.groupService.getAll();
-         return this.json(groups);
+         return this.json((groups || []).map((g) => GroupMapper.toDTO(g)));
       } catch (err) {
          this.logger.error('Error get users with suggest', {
             err,
@@ -62,7 +63,7 @@ export class GroupController extends BaseHttpController {
          };
 
          const createdGroup = await this.groupService.save(group);
-         return this.json(createdGroup);
+         return this.json(GroupMapper.toDTO(createdGroup));
       } catch (err) {
          this.logger.error('Error create request', {
             method: 'createGroup',
@@ -82,7 +83,7 @@ export class GroupController extends BaseHttpController {
    ) {
       try {
          const group = await this.groupService.getById(id);
-         return this.json(group);
+         return this.json(group && GroupMapper.toDTO(group));
       } catch {
          this.logger.error('Error getting user', {
             method: 'getGroup',
@@ -111,7 +112,7 @@ export class GroupController extends BaseHttpController {
          group.permissions = value.permissions;
 
          const updatedGroup = await this.groupService.update(group);
-         return this.json(updatedGroup);
+         return this.json(GroupMapper.toDTO(updatedGroup));
       } catch {
          this.logger.error('Error updating group', {
             method: 'updateGroup',

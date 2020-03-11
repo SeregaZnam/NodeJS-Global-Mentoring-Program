@@ -4,6 +4,8 @@ export interface Group {
    id: string;
    name: string;
    permissions: Permission[];
+   createdAt?: Date;
+   updatedAt?: Date;
 }
 
 export interface IGroupService {

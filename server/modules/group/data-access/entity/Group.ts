@@ -34,8 +34,7 @@ export const initGroupModel = async (sequelize: Sequelize): Promise<GroupModel> 
       }
    }, {
       sequelize,
-      tableName: 'groups',
-      timestamps: false
+      tableName: 'groups'
    });
 
    return GroupModel as any;

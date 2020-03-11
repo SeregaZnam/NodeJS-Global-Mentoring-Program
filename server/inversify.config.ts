@@ -8,7 +8,7 @@ import { UserRepository } from './modules/user/data-access/repository/UserReposi
 import { createDbConnect, DBConnect } from './database';
 import { AsyncContainerModule, interfaces } from 'inversify';
 import logger, { Logger } from './logger';
-import { AuthService } from './service/auth.service';
+import { AuthService } from './service/auth';
 
 export const bindings = new AsyncContainerModule(async (bind: interfaces.Bind) => {
    await import('./modules/user/controller');
