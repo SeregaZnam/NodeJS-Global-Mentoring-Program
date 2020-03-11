@@ -9,13 +9,9 @@ import { GroupModel } from '../data-access/entity/Group';
 export class GroupService implements IGroupService {
    constructor(@inject(TYPES.GroupRepository) private groupRepository: GroupRepository) {}
 
-   public async getAll(): Promise<any> {
-      try {
-         const groups = await this.groupRepository.findAll();
-         return groups;
-      } catch {
-         throw new Error('Error receiving groups');
-      }
+   public async getAll(): Promise<Group[] | undefined> {
+      const groups = await this.groupRepository.findAll();
+      return groups ? groups.map(g => g.get({ plain: true })) as Group[] : undefined;
    }
 
    public async getById(id: string): Promise<Group | undefined> {

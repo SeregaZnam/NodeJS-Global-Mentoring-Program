@@ -8,7 +8,7 @@ export interface Group {
 
 export interface IGroupService {
 
-   getAll(): Promise<Group[]>;
+   getAll(): Promise<Group[] | undefined>;
 
    getById(id: string): Promise<Group | undefined>;
 

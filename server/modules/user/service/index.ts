@@ -1,13 +1,16 @@
 import { User } from '../models/user';
 import { UserRepository } from '../data-access/repository/UserRepository';
 import { UserModel } from '../data-access/entitity/User';
-import logger from '../../../logger';
+import { Logger } from '../../../logger';
 import { injectable, inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 
 @injectable()
 export class UserService {
-   constructor(@inject(TYPES.UserRepository) private userRepository: UserRepository) {}
+   constructor(
+      @inject(TYPES.Logger) private logger: Logger,
+      @inject(TYPES.UserRepository) private userRepository: UserRepository
+   ) {}
 
    public async getAll(query?: any): Promise<User[]> {
       const users = await this.userRepository.findAll({ query });
@@ -23,16 +26,8 @@ export class UserService {
       loginSubstring: string,
       limit: number | undefined = undefined
    ): Promise<User[] | void> {
-      try {
-         const users = await this.userRepository.findAll({ loginSubstring, limit });
-         return users.map((user: UserModel) => user.get({ plain: true }) as User);
-      } catch (err) {
-         logger.error('Error get users with suggest', {
-            err,
-            method: 'getAutoSuggest',
-            params: { loginSubstring, limit }
-         });
-      }
+      const users = await this.userRepository.findAll({ loginSubstring, limit });
+      return users.map((user: UserModel) => user.get({ plain: true }) as User);
    }
 
    public async save(user: Omit<User, 'id'>): Promise<User> {
