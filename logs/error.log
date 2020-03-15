@@ -57,3 +57,6 @@
 {"level":"error","message":"invalid token"}
 {"level":"error","message":"invalid token"}
 {"level":"error","message":"jwt malformed"}
+{"message":"No token","level":"error"}
+{"message":"No token","level":"error"}
+{"level":"error","message":"Invalid token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkzODM0M2RkLTdiZmYtNDhhZS05NGRhLWUwMmQ3YWE4YjQ3NSIsImxvZ2luIjoiU2VyZ2V5IiwicGFzc3dvcmQiOiIxMjN3ZXIiLCJpYXQiOjE1ODQzMDEyNDIsImV4cCI6MTU4NDMxNTY0Miwic3ViIjoiOTM4MzQzZGQtN2JmZi00OGFlLTk0ZGEtZTAyZDdhYThiNDc1In0.41Ofhh9xxQcyRy3_wBSlsMbzXvmphnSBnKOolLG0q_c"}
