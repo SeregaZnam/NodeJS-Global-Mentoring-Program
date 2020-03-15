@@ -1,3 +1,4 @@
+import passport from 'passport';
 import {
    request,
    httpPut,
@@ -13,7 +14,7 @@ import { Request } from 'express';
 import { Logger } from '../../../logger';
 import { CreateError } from '../../../errors';
 import { validateBody } from '../../../utils/validate';
-import { UserGroupschema } from '../schemas/userGroupSchemas';
+import { UserGroupSchema } from '../schemas/userGroupSchemas';
 
 @controller('/user-group')
 export class UserGroupController extends BaseHttpController {
@@ -25,7 +26,7 @@ export class UserGroupController extends BaseHttpController {
       super();
    }
 
-   @httpPut('')
+   @httpPut('', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async createUserGroup(
       @request() req: Request
@@ -33,7 +34,7 @@ export class UserGroupController extends BaseHttpController {
       const transaction = await this.dbConnect.transaction();
 
       try {
-         const value = await validateBody(UserGroupschema, req.body);
+         const value = await validateBody(UserGroupSchema, req.body);
          await this.userGroupService.save(value.userId, value.groupId, transaction);
          await transaction.commit();
 

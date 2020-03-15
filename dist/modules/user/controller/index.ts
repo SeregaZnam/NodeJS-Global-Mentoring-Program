@@ -67,7 +67,7 @@ export class UserController extends BaseHttpController {
       }
    }
 
-   @httpPut('')
+   @httpPut('', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async createUser(
       @request() req: Request
@@ -94,7 +94,7 @@ export class UserController extends BaseHttpController {
       }
    }
 
-   @httpGet('/:id')
+   @httpGet('/:id', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async getUser(
       @requestParam('id') id: string
@@ -113,7 +113,7 @@ export class UserController extends BaseHttpController {
       }
    }
 
-   @httpPost('/:id')
+   @httpPost('/:id', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async updateUser(
       @requestBody() body: any,
@@ -143,7 +143,7 @@ export class UserController extends BaseHttpController {
       }
    }
 
-   @httpDelete('/:id')
+   @httpDelete('/:id', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async deleteUser(
       @requestParam('id') id: string

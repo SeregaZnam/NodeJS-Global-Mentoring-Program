@@ -61,8 +61,6 @@ let AuthService = class AuthService {
                 }
             }
             else {
-                this.logger.error('No token');
-                throw new errors_1.InvalidTokenError(token);
             }
         });
     }

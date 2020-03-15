@@ -1,3 +1,4 @@
+import passport from 'passport';
 import { Request } from 'express';
 import { GroupDTO } from '../dto/groupDTO';
 import { GroupService } from '../service';
@@ -8,9 +9,9 @@ import {
    httpPost,
    httpDelete,
    controller,
-   BaseHttpController,
+   requestBody,
    requestParam,
-   requestBody
+   BaseHttpController
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { executionTime } from '../../../utils/executionTime';
@@ -35,7 +36,7 @@ export class GroupController extends BaseHttpController {
       super();
    }
 
-   @httpGet('')
+   @httpGet('', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async getAllGroups() {
       try {
@@ -50,7 +51,7 @@ export class GroupController extends BaseHttpController {
       }
    }
 
-   @httpPut('')
+   @httpPut('', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async createGroup(
       @request() req: Request
@@ -76,7 +77,7 @@ export class GroupController extends BaseHttpController {
       }
    }
 
-   @httpGet('/:id')
+   @httpGet('/:id', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async getGroup(
       @requestParam('id') id: string
@@ -93,7 +94,7 @@ export class GroupController extends BaseHttpController {
       }
    }
 
-   @httpPost('/:id')
+   @httpPost('/:id', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async updateGroup(
       @requestBody() body: any,
@@ -122,7 +123,7 @@ export class GroupController extends BaseHttpController {
       }
    }
 
-   @httpDelete('/:id')
+   @httpDelete('/:id', passport.authenticate('bearer', { session: false }))
    @executionTime()
    async deleteGroup(
       @requestParam('id') id: string

@@ -20,7 +20,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const passport_1 = __importDefault(require("passport"));
 const inversify_express_utils_1 = require("inversify-express-utils");
 const inversify_1 = require("inversify");
 const types_1 = require("../../../constants/types");
@@ -40,7 +44,7 @@ let UserGroupController = class UserGroupController extends inversify_express_ut
         return __awaiter(this, void 0, void 0, function* () {
             const transaction = yield this.dbConnect.transaction();
             try {
-                const value = yield validate_1.validateBody(userGroupSchemas_1.UserGroupschema, req.body);
+                const value = yield validate_1.validateBody(userGroupSchemas_1.UserGroupSchema, req.body);
                 yield this.userGroupService.save(value.userId, value.groupId, transaction);
                 yield transaction.commit();
                 return this.json(true);
@@ -60,7 +64,7 @@ let UserGroupController = class UserGroupController extends inversify_express_ut
     }
 };
 __decorate([
-    inversify_express_utils_1.httpPut(''),
+    inversify_express_utils_1.httpPut('', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.request()),
     __metadata("design:type", Function),

@@ -14,10 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
 const passport_http_bearer_1 = __importDefault(require("passport-http-bearer"));
+const errors_1 = require("../../errors");
 const BearerStrategy = passport_http_bearer_1.default.Strategy;
 exports.initBearerStrategy = (authService) => __awaiter(void 0, void 0, void 0, function* () {
     passport_1.default.use('bearer', new BearerStrategy((token, done) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield authService.verifyToken(token);
+        if (!token) {
+            throw new errors_1.InvalidTokenError('123');
+        }
         return done(null, result, { scope: 'all' });
     })));
 });

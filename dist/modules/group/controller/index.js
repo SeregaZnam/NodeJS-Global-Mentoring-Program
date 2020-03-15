@@ -20,7 +20,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const passport_1 = __importDefault(require("passport"));
 const service_1 = require("../service");
 const inversify_express_utils_1 = require("inversify-express-utils");
 const inversify_1 = require("inversify");
@@ -127,14 +131,14 @@ let GroupController = class GroupController extends inversify_express_utils_1.Ba
     }
 };
 __decorate([
-    inversify_express_utils_1.httpGet(''),
+    inversify_express_utils_1.httpGet('', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], GroupController.prototype, "getAllGroups", null);
 __decorate([
-    inversify_express_utils_1.httpPut(''),
+    inversify_express_utils_1.httpPut('', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.request()),
     __metadata("design:type", Function),
@@ -142,7 +146,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], GroupController.prototype, "createGroup", null);
 __decorate([
-    inversify_express_utils_1.httpGet('/:id'),
+    inversify_express_utils_1.httpGet('/:id', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.requestParam('id')),
     __metadata("design:type", Function),
@@ -150,7 +154,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], GroupController.prototype, "getGroup", null);
 __decorate([
-    inversify_express_utils_1.httpPost('/:id'),
+    inversify_express_utils_1.httpPost('/:id', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.requestBody()),
     __param(1, inversify_express_utils_1.requestParam('id')),
@@ -159,7 +163,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], GroupController.prototype, "updateGroup", null);
 __decorate([
-    inversify_express_utils_1.httpDelete('/:id'),
+    inversify_express_utils_1.httpDelete('/:id', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.requestParam('id')),
     __metadata("design:type", Function),

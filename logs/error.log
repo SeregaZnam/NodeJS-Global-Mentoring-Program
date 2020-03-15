@@ -43,3 +43,17 @@
 {"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"10"},"level":"error","message":"Error get users with suggest"}
 {"err":{},"method":"getAutoSuggest","params":{"loginSubstring":"","limit":"10"},"level":"error","message":"Error get users with suggest"}
 {"err":{"expose":true,"statusCode":400,"status":400,"body":"{\r\n\t\"id\": \"c93ce8e8-0765-4260-b161-9fc1f6586381\",\r\n\t\"login\": \"Sergey\",\r\n\t\"password\": \"123wer\"","type":"entity.parse.failed"},"level":"error","message":"Something went wrong"}
+{"level":"error","message":"jwt expired"}
+{"method":"createUser","params":{"login":"Alex1","password":"pass123wer"},"level":"error","message":"Error create request"}
+{"method":"createUser","params":{"login":"Alex1","password":"pass123wer"},"level":"error","message":"Error create request"}
+{"method":"createUser","params":{"login":"Alex1"},"level":"error","message":"Error create request"}
+{"method":"createUser","params":{"login":"Alex1"},"level":"error","message":"Error create request"}
+{"method":"createUser","params":{"login":"Alex1"},"level":"error","message":"Error create request"}
+{"method":"createUser","params":{"login":"Alex1"},"level":"error","message":"Error create request"}
+{"level":"error","message":"jwt expired"}
+{"level":"error","message":"invalid signature"}
+{"level":"error","message":"invalid token"}
+{"level":"error","message":"invalid token"}
+{"level":"error","message":"invalid token"}
+{"level":"error","message":"invalid token"}
+{"level":"error","message":"jwt malformed"}

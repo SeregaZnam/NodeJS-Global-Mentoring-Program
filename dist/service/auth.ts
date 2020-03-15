@@ -3,7 +3,6 @@ import config from '../configs/config';
 import { injectable, inject } from 'inversify';
 import { Logger } from '../logger';
 import { TYPES } from '../constants/types';
-import { Request } from 'express';
 import { User } from '../modules/user/models/user';
 import { InvalidTokenError, GetTokenError } from '../errors';
 import { UserService } from '../modules/user/service';
@@ -33,8 +32,7 @@ export class AuthService {
             throw new InvalidTokenError(token);
          }
       } else {
-         this.logger.error('No token');
-         throw new InvalidTokenError(token);
+        
       }
    }
 

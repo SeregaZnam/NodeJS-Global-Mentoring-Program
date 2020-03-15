@@ -8,7 +8,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Joi = __importStar(require("@hapi/joi"));
-exports.UserGroupschema = Joi.object({
+exports.UserGroupSchema = Joi.object({
     userId: Joi.string()
         .required(),
     groupId: Joi.string()

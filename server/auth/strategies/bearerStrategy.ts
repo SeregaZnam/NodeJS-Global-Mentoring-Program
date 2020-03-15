@@ -1,6 +1,7 @@
 import passport from 'passport';
 import passportBearer from 'passport-http-bearer';
 import { AuthService } from '../../service/auth';
+import { InvalidTokenError } from '../../errors';
 
 const BearerStrategy = passportBearer.Strategy;
 

@@ -165,7 +165,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getAutoSuggestUsers", null);
 __decorate([
-    inversify_express_utils_1.httpPut(''),
+    inversify_express_utils_1.httpPut('', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.request()),
     __metadata("design:type", Function),
@@ -173,7 +173,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "createUser", null);
 __decorate([
-    inversify_express_utils_1.httpGet('/:id'),
+    inversify_express_utils_1.httpGet('/:id', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.requestParam('id')),
     __metadata("design:type", Function),
@@ -181,7 +181,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUser", null);
 __decorate([
-    inversify_express_utils_1.httpPost('/:id'),
+    inversify_express_utils_1.httpPost('/:id', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.requestBody()),
     __param(1, inversify_express_utils_1.requestParam('id')),
@@ -190,7 +190,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "updateUser", null);
 __decorate([
-    inversify_express_utils_1.httpDelete('/:id'),
+    inversify_express_utils_1.httpDelete('/:id', passport_1.default.authenticate('bearer', { session: false })),
     executionTime_1.executionTime(),
     __param(0, inversify_express_utils_1.requestParam('id')),
     __metadata("design:type", Function),
