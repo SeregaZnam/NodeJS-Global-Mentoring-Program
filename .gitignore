@@ -1,2 +1,8 @@
-node_modules/
-logs/
+# dependencies
+**/node_modules
+
+# logs processes
+**/logs
+
+# production
+**/dist
