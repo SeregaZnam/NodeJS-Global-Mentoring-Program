@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../server/auth/index.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,4DAA6D;AAC7D,gEAAiE;AAIpD,QAAA,oBAAoB,GAAG,CAAO,WAAwB,EAAE,WAAwB,EAAE,EAAE;IAC9F,MAAM,+BAAgB,CAAC,WAAW,CAAC,CAAC;IACpC,MAAM,mCAAkB,CAAC,WAAW,CAAC,CAAC;AACzC,CAAC,CAAA,CAAC"}

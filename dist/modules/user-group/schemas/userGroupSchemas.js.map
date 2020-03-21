@@ -1,1 +1,0 @@
-{"version":3,"file":"userGroupSchemas.js","sourceRoot":"","sources":["../../../../server/modules/user-group/schemas/userGroupSchemas.ts"],"names":[],"mappings":";;;;;;;;;AAAA,+CAAiC;AAEpB,QAAA,eAAe,GAAG,GAAG,CAAC,MAAM,CAAC;IACvC,MAAM,EAAE,GAAG,CAAC,MAAM,EAAE;SAChB,QAAQ,EAAE;IACd,OAAO,EAAE,GAAG,CAAC,MAAM,EAAE;SACjB,QAAQ,EAAE;CAChB,CAAC,CAAC"}
