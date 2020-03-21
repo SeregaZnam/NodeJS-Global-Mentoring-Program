@@ -7,7 +7,8 @@ import { NotFoundError } from '../../errors';
 const AuthStrategy = passportCustom.Strategy;
 
 export const initAuthStrategy = (userService: UserService) => {
-   passport.use('auth', new AuthStrategy(async (req: Request, done: VerifiedCallback) => {
+	// prettier-ignore
+	passport.use('auth', new AuthStrategy(async (req: Request, done: VerifiedCallback) => {
       const [user] = await userService.getAll(req.body);
       if (user) {
          done(null, user);

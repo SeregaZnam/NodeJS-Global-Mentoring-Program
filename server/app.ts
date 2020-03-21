@@ -17,42 +17,42 @@ import { TYPES } from './constants/types';
 import { AuthService } from './service/auth';
 
 process.on('unhandledRejection', (err) => {
-   throw err;
+	throw err;
 });
 
 const bootstrap = async () => {
-   try {
-      logger.info('Server starting bootstrap');
-      const container = new Container();
-      await container.loadAsync(bindings);
-      const server = new InversifyExpressServer(container);
+	try {
+		logger.info('Server starting bootstrap');
+		const container = new Container();
+		await container.loadAsync(bindings);
+		const server = new InversifyExpressServer(container);
 
-      server.setConfig(async (app: Application) => {
-         app.use(cors());
-         app.use(helmet());
-         app.use(bodyParser.json());
-         app.use(express.json());
-         app.use(loggerHandler);
-         app.use(httpError);
-         await initializeStrategies(
-            container.get<UserService>(TYPES.UserService),
-            container.get<AuthService>(TYPES.AuthService)
-         );
-      });
+		server.setConfig(async (app: Application) => {
+			app.use(cors());
+			app.use(helmet());
+			app.use(bodyParser.json());
+			app.use(express.json());
+			app.use(loggerHandler);
+			app.use(httpError);
+			await initializeStrategies(
+				container.get<UserService>(TYPES.UserService),
+				container.get<AuthService>(TYPES.AuthService)
+			);
+		});
 
-      const app = server.build();
+		const app = server.build();
 
-      await preloadMockData();
+		await preloadMockData();
 
-      app.listen(config.get('port'), () => {
-         logger.info(`Server is running at ${config.get('port')}!`);
-      });
-   } catch (err) {
-      logger.error('can not bootstrap server', { err });
-      throw err;
-   }
+		app.listen(config.get('port'), () => {
+			logger.info(`Server is running at ${config.get('port')}!`);
+		});
+	} catch (err) {
+		logger.error('can not bootstrap server', { err });
+		throw err;
+	}
 };
 
 bootstrap().catch(() => {
-   process.exit(1);
+	process.exit(1);
 });

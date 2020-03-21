@@ -5,7 +5,8 @@ import { AuthService } from '../../service/auth';
 const BearerStrategy = passportBearer.Strategy;
 
 export const initBearerStrategy = async (authService: AuthService) => {
-   passport.use('bearer', new BearerStrategy(async (
+	// prettier-ignore
+	passport.use('bearer', new BearerStrategy(async (
       token: string,
       done: (error: any, user?: any, options?: any) => void
    ) => {

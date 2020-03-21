@@ -4,31 +4,31 @@ import { initUserModel, UserModel } from '../modules/user/data-access/entitity/U
 import { initGroupModel, GroupModel } from '../modules/group/data-access/entity/Group';
 
 export interface DBConnect {
-   sequelize: Sequelize,
-   transaction: (options?: TransactionOptions) => Promise<Transaction>,
-   Sequelize: typeof Sequelize
+	sequelize: Sequelize;
+	transaction: (options?: TransactionOptions) => Promise<Transaction>;
+	Sequelize: typeof Sequelize;
 }
 
 export const createDbConnect = async (config: Config): Promise<DBConnect> => {
-   const { host, database, password, user, port } = config.get('db');
-   const sequelize = new Sequelize(database, user, password, {
-      dialect: 'postgres',
-      host,
-      port,
-      dialectOptions: {
-         ssl: true
-      }
-   });
-   const transaction = (options?: TransactionOptions) => sequelize.transaction(options);
+	const { host, database, password, user, port } = config.get('db');
+	const sequelize = new Sequelize(database, user, password, {
+		dialect: 'postgres',
+		host,
+		port,
+		dialectOptions: {
+			ssl: true
+		}
+	});
+	const transaction = (options?: TransactionOptions) => sequelize.transaction(options);
 
-   await initUserModel(sequelize);
-   await initGroupModel(sequelize);
+	await initUserModel(sequelize);
+	await initGroupModel(sequelize);
 
-   [UserModel, GroupModel].forEach(entity => {
-      if (entity.associate) {
-         entity.associate();
-      }
-   });
+	[UserModel, GroupModel].forEach((entity) => {
+		if (entity.associate) {
+			entity.associate();
+		}
+	});
 
-   return { sequelize, transaction, Sequelize };
+	return { sequelize, transaction, Sequelize };
 };

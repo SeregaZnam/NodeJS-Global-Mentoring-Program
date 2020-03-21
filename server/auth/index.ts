@@ -4,6 +4,6 @@ import { UserService } from '../modules/user/service';
 import { AuthService } from '../service/auth';
 
 export const initializeStrategies = async (userService: UserService, authService: AuthService) => {
-   await initAuthStrategy(userService);
-   await initBearerStrategy(authService);
+	await initAuthStrategy(userService);
+	await initBearerStrategy(authService);
 };

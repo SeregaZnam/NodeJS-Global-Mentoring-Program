@@ -1,10 +1,5 @@
 import passport from 'passport';
-import {
-   request,
-   httpPut,
-   controller,
-   BaseHttpController
-} from 'inversify-express-utils';
+import { request, httpPut, controller, BaseHttpController } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { TYPES } from '../../../constants/types';
 import { executionTime } from '../../../utils/executionTime';
@@ -18,38 +13,36 @@ import { UserGroupSchema } from '../schemas/userGroupSchemas';
 
 @controller('/user-group')
 export class UserGroupController extends BaseHttpController {
-   constructor(
-      @inject(TYPES.Logger) private logger: Logger,
-      @inject(TYPES.DbConnect) private dbConnect: DBConnect,
-      @inject(TYPES.UserGroupService) private userGroupService: UserGroupService
-   ) {
-      super();
-   }
+	constructor(
+		@inject(TYPES.Logger) private logger: Logger,
+		@inject(TYPES.DbConnect) private dbConnect: DBConnect,
+		@inject(TYPES.UserGroupService) private userGroupService: UserGroupService
+	) {
+		super();
+	}
 
-   @httpPut('', passport.authenticate('bearer', { session: false }))
-   @executionTime()
-   async createUserGroup(
-      @request() req: Request
-   ) {
-      const transaction = await this.dbConnect.transaction();
+	@httpPut('', passport.authenticate('bearer', { session: false }))
+	@executionTime()
+	async createUserGroup(@request() req: Request) {
+		const transaction = await this.dbConnect.transaction();
 
-      try {
-         const value = await validateBody(UserGroupSchema, req.body);
-         await this.userGroupService.save(value.userId, value.groupId, transaction);
-         await transaction.commit();
+		try {
+			const value = await validateBody(UserGroupSchema, req.body);
+			await this.userGroupService.save(value.userId, value.groupId, transaction);
+			await transaction.commit();
 
-         return this.json(true);
-      } catch (err) {
-         await transaction.rollback();
+			return this.json(true);
+		} catch (err) {
+			await transaction.rollback();
 
-         this.logger.error('Error create request', {
-            method: 'createUser',
-            params: {
-               userId: req.body.userId,
-               groupId: req.body.groupId
-            }
-         });
-         throw new CreateError('Error create user group');
-      }
-   }
+			this.logger.error('Error create request', {
+				method: 'createUser',
+				params: {
+					userId: req.body.userId,
+					groupId: req.body.groupId
+				}
+			});
+			throw new CreateError('Error create user group');
+		}
+	}
 }

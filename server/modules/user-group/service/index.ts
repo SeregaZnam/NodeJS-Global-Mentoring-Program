@@ -9,18 +9,18 @@ import { NotFoundError } from '../../../errors';
 
 @injectable()
 export class UserGroupService {
-   constructor(
-      @inject(TYPES.GroupRepository) private groupRepository: GroupRepository,
-      @inject(TYPES.UserRepository) private userRepository: UserRepository
-   ) {}
+	constructor(
+		@inject(TYPES.GroupRepository) private groupRepository: GroupRepository,
+		@inject(TYPES.UserRepository) private userRepository: UserRepository
+	) {}
 
-   public async save(userId: string, groupId: string, transaction: Transaction) {
-      const group = await this.groupRepository.getById(groupId) as GroupModel;
-      const user = await this.userRepository.getById(userId) as UserModel;
+	public async save(userId: string, groupId: string, transaction: Transaction) {
+		const group = (await this.groupRepository.getById(groupId)) as GroupModel;
+		const user = (await this.userRepository.getById(userId)) as UserModel;
 
-      if (!group || !user) {
-         throw new NotFoundError('Group or User not found');
-      }
-      await group.addUserModel(user, { transaction });
-   }
+		if (!group || !user) {
+			throw new NotFoundError('Group or User not found');
+		}
+		await group.addUserModel(user, { transaction });
+	}
 }
