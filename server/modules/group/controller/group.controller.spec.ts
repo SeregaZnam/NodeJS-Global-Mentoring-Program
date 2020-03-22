@@ -17,7 +17,14 @@ describe('GroupController', () => {
 		});
 
 		mockGroupService = {
-			getAll: jest.fn().mockResolvedValue({}),
+			getAll: jest.fn().mockResolvedValue([
+				{
+					id: '0983c24b-782c-4d7e-a170-6a1dbb4b7cf4',
+					name: 'Group1',
+					createdAt: new Date(),
+					updatedAt: new Date()
+				}
+			]),
 			save: jest.fn().mockResolvedValue({}),
 			getById: jest.fn().mockResolvedValue({}),
 			update: jest.fn().mockResolvedValue({}),

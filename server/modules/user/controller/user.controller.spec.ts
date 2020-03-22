@@ -18,7 +18,16 @@ describe('UserController', () => {
 		});
 
 		mockUserService = {
-			getAutoSuggest: jest.fn().mockResolvedValue({}),
+			getAutoSuggest: jest.fn().mockResolvedValue([
+				{
+					id: '9bc71fed-f320-437d-9e45-7517a6392751',
+					login: 'Sergey',
+					password: 'password',
+					age: 25,
+					createdAt: new Date(),
+					updatedAt: new Date()
+				}
+			]),
 			createUser: jest.fn().mockResolvedValue({}),
 			getUser: jest.fn().mockResolvedValue({}),
 			updateUser: jest.fn().mockResolvedValue({}),
