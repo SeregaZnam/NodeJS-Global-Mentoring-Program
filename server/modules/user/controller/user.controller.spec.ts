@@ -28,7 +28,14 @@ describe('UserController', () => {
 					updatedAt: new Date()
 				}
 			]),
-			createUser: jest.fn().mockResolvedValue({}),
+			save: jest.fn().mockResolvedValue({
+				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+				login: 'Test',
+				password: 'test',
+				age: 10,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			}),
 			getUser: jest.fn().mockResolvedValue({}),
 			updateUser: jest.fn().mockResolvedValue({}),
 			deleteUser: jest.fn().mockResolvedValue({})
@@ -52,7 +59,11 @@ describe('UserController', () => {
 			.expect(200);
 	});
 
-	it('should create user for method createUser', async () => {});
+	it('should create user for method createUser', async () => {
+		await supertest(server.build())
+			.put('')
+			.expect(200);
+	});
 
 	it('should return user for method getUser', async () => {});
 
