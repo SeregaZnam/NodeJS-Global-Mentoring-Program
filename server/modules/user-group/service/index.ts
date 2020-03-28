@@ -14,13 +14,13 @@ export class UserGroupService {
 		@inject(TYPES.UserRepository) private userRepository: UserRepository
 	) {}
 
-	public async save(userId: string, groupId: string, transaction: Transaction) {
+	public async save(userId: string, groupId: string, transaction?: Transaction) {
 		const group = (await this.groupRepository.getById(groupId)) as GroupModel;
 		const user = (await this.userRepository.getById(userId)) as UserModel;
 
 		if (!group || !user) {
 			throw new NotFoundError('Group or User not found');
 		}
-		await group.addUserModel(user, { transaction });
+		await group.addUserModel(user);
 	}
 }

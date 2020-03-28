@@ -31,7 +31,7 @@ export class GroupController extends BaseHttpController {
 		super();
 	}
 
-	@httpGet('', passport.authenticate('bearer', { session: false }))
+	@httpGet('')
 	@executionTime()
 	async getAllGroups() {
 		try {

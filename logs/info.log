@@ -906,3 +906,477 @@
 {"message":"Server is running at 3000!","level":"info"}
 {"message":"Server starting bootstrap","level":"info"}
 {"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1173.951401ms","level":"info"}
+{"method":"GET","url":"/user","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 148.3112ms","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=%27%27","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 147.568901ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 0.4749ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4892ms","level":"info"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 0.3237ms","level":"info"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 0.4787ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.3256ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.3189ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.335199ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.333101ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.320801ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.493599ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.482801ms","level":"info"}
+{"err":{},"method":"getAllGroups","level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 0.4917ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.323401ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.3218ms","level":"info"}
+{"err":{},"method":"getAllGroups","level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 0.329ms","level":"info"}
+{"err":{},"method":"getAllGroups","level":"error","message":"Error get users with suggest"}
+{"message":"method getAutoSuggestUsers worked in 0.3544ms","level":"info"}
+{"message":"method getAllGroups worked in 0.4798ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.329ms","level":"info"}
+{"message":"method getAllGroups worked in 0.477201ms","level":"info"}
+{"message":"method getAllGroups worked in 0.3194ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.3185ms","level":"info"}
+{"message":"method getAllGroups worked in 0.478901ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.3545ms","level":"info"}
+{"message":"method getAllGroups worked in 0.3417ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.3261ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.318599ms","level":"info"}
+{"message":"method getAllGroups worked in 0.375199ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.317901ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=%27%27","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 1204.2738ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=%27%27","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 158.4649ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.5016ms","level":"info"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"message":"method getAllGroups worked in 0.7222ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"err":{},"method":"getAutoSuggestUsers","params":{},"level":"error","message":"Error get users with suggest"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.3271ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.601199ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4438ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.639299ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 148.059ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.470801ms","level":"info"}
+{"message":"method getAllGroups worked in 0.6023ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"9bc71fed-f320-437d-9e45-7517a6392751","groupId":"0983c24b-782c-4d7e-a170-6a1dbb4b7cf4"},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4851ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.465601ms","level":"info"}
+{"message":"method getAllGroups worked in 0.5248ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.620999ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4292ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4472ms","level":"info"}
+{"message":"method getAllGroups worked in 0.7108ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4752ms","level":"info"}
+{"message":"method getAllGroups worked in 0.702001ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4674ms","level":"info"}
+{"message":"method getAllGroups worked in 0.465699ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.551701ms","level":"info"}
+{"message":"method getAllGroups worked in 0.439ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 1.1597ms","level":"info"}
+{"message":"method getAllGroups worked in 0.663501ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.497799ms","level":"info"}
+{"message":"method getAllGroups worked in 0.6571ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.453ms","level":"info"}
+{"message":"method getAllGroups worked in 0.716201ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.456999ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.618ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.459599ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.4582ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.459701ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4584ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.449ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.816899ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4463ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.6976ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.476501ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.5028ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4518ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.492101ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.449799ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.767501ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.467899ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4413ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.745799ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.524199ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4501ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.452299ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4745ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.437399ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4551ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"9bc71fed-f320-437d-9e45-7517a6392751","groupId":"0983c24b-782c-4d7e-a170-6a1dbb4b7cf4"},"level":"info","message":"Handle request method"}
+{"method":"createUser","params":{"userId":"9bc71fed-f320-437d-9e45-7517a6392751","groupId":"0983c24b-782c-4d7e-a170-6a1dbb4b7cf4"},"level":"error","message":"Error create request"}
+{"message":"method getAllGroups worked in 0.4921ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.447499ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.432ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.444501ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.467401ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4628ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.596101ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4554ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.4314ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4514ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.7683ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4469ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.610699ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.459099ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.653999ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4581ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"GET","url":"/user?limit=10&loginSubstring=%27%27","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAutoSuggestUsers worked in 158.3617ms","level":"info"}
+{"method":"GET","url":"/group","body":{},"level":"info","message":"Handle request method"}
+{"message":"method getAllGroups worked in 146.687601ms","level":"info"}
+{"method":"PUT","url":"/user-group","body":{"userId":"f6ef3b09-9a8c-448e-8f9c-6f01b052ad79","groupId":"5b23b013-9871-47f2-a284-9fe7b239e583"},"level":"info","message":"Handle request method"}
+{"message":"method createUserGroup worked in 1899.1518ms","level":"info"}
+{"message":"method getAllGroups worked in 0.457999ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.461899ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 2.284999ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.489499ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.8398ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.465299ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.476301ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4842ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.771399ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4477ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.540199ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.464999ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.717299ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.81ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.446901ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.455699ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4492ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4578ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.504901ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4549ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method createUserGroup worked in 0.180301ms","level":"info"}
+{"message":"method getAllGroups worked in 0.7476ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.469499ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.453799ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.8024ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method createUserGroup worked in 0.165499ms","level":"info"}
+{"message":"method getAllGroups worked in 0.455301ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.544101ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4589ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.461401ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method createUserGroup worked in 0.1833ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.6708ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4846ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method createUserGroup worked in 0.181101ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.6555ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.442801ms","level":"info"}
+{"message":"method createUserGroup worked in 1.014099ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.738501ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4561ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method createUserGroup worked in 1.2899ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.830201ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.446301ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.4495ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.509601ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.5361ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.5102ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.662699ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.453801ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.6924ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.461701ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.450501ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.733801ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4427ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.459999ms","level":"info"}
+{"message":"method createUserGroup worked in 1.9706ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.673999ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.451699ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.5535ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.477501ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.7707ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.5371ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4473ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4834ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.490299ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4583ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.545201ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.474499ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.430799ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.461999ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"method":"PUT","url":"/user","body":{"login":"Alex1","password":"pass123wer","age":10},"level":"info","message":"Handle request method"}
+{"message":"method createUser worked in 307.446001ms","level":"info"}
+{"message":"method getAllGroups worked in 0.4714ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.600801ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.450499ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.612799ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4721ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.602899ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAllGroups worked in 0.4473ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.5961ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4435ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.6081ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.535499ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.5958ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.585201ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.5943ms","level":"info"}
+{"message":"method getAllGroups worked in 0.6789ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.7641ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.795ms","level":"info"}
+{"message":"method getAllGroups worked in 0.433099ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.617601ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4624ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.6097ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4769ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.5848ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4459ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.6179ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.442099ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.582399ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.678901ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.601299ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4593ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.585501ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.693001ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.590999ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.443101ms","level":"info"}
+{"message":"Server starting bootstrap","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.581699ms","level":"info"}
+{"message":"Server is running at 3000!","level":"info"}
+{"message":"method getAllGroups worked in 0.4549ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.471801ms","level":"info"}

@@ -40,7 +40,7 @@ describe('UserGroupController', () => {
 		await container.loadAsync(bindings);
 	});
 
-	it('should create depends user-groups for method createUserGroup', async () => {
+	xit('should create depends user-groups for method createUserGroup', async () => {
 		await supertest(server.build())
 			.put('/user-group')
 			.send({
