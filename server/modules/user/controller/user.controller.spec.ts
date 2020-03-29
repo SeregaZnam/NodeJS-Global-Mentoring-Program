@@ -4,6 +4,7 @@ import supertest from 'supertest';
 import { TYPES } from '../../../constants/types';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import { Container, AsyncContainerModule, interfaces } from 'inversify';
+import bodyParser from 'body-parser';
 
 describe('UserController', () => {
 	let container: Container;
@@ -31,14 +32,22 @@ describe('UserController', () => {
 			save: jest.fn().mockResolvedValue({
 				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
 				login: 'Test',
-				password: 'test',
+				password: 'pass123wer',
 				age: 10,
 				createdAt: new Date(),
 				updatedAt: new Date()
 			}),
-			getUser: jest.fn().mockResolvedValue({}),
-			updateUser: jest.fn().mockResolvedValue({}),
-			deleteUser: jest.fn().mockResolvedValue({})
+			getById: jest.fn().mockResolvedValue({
+				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+				login: 'Test',
+				age: 20
+			}),
+			update: jest.fn().mockResolvedValue({
+				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+				login: 'Tes2',
+				age: 10
+			}),
+			delete: jest.fn().mockResolvedValue({})
 		};
 		mockAuthService = {
 			verifyToken: jest.fn().mockResolvedValue({})
@@ -60,14 +69,55 @@ describe('UserController', () => {
 	});
 
 	it('should create user for method createUser', async () => {
+		server.setConfig((app) => app.use(bodyParser.json()));
+		const body = {
+			login: 'Test',
+			password: 'pass123wer',
+			age: 10
+		};
 		await supertest(server.build())
-			.put('')
-			.expect(200);
+			.put('/user')
+			.send(body)
+			.expect('Content-Type', /json/)
+			.expect(200, {
+				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+				login: 'Test',
+				age: 10
+			});
 	});
 
-	it('should return user for method getUser', async () => {});
+	it('should return user for method getUser', async () => {
+		await supertest(server.build())
+			.get('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
+			.expect('Content-Type', /json/)
+			.expect(200, {
+				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+				login: 'Test',
+				age: 20
+			});
+	});
 
-	it('should update user for method updateUser', async () => {});
+	it('should update user for method updateUser', async () => {
+		server.setConfig((app) => app.use(bodyParser.json()));
+		const body = {
+			login: 'Test',
+			password: 'pass123wer',
+			age: 10
+		};
+		await supertest(server.build())
+			.post('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
+			.send(body)
+			.expect('Content-Type', /json/)
+			.expect(200, {
+				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+				login: 'Tes2',
+				age: 10
+			});
+	});
 
-	it('should delete user for method deleteUser', async () => {});
+	it('should delete user for method deleteUser', async () => {
+		await supertest(server.build())
+			.delete('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
+			.expect(200);
+	});
 });

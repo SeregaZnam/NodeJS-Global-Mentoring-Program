@@ -111,13 +111,8 @@ export class UserController extends BaseHttpController {
 		}
 
 		try {
-			const value = await validateBody(UserSchema, body);
-
-			user.login = value.login;
-			user.password = value.password;
-			user.age = value.age;
-
-			const updatedUser = await this.userService.update(user);
+			const { login, password, age } = await validateBody(UserSchema, body);
+			const updatedUser = await this.userService.update({ ...user, login, password, age });
 			return this.json(UserMapper.toDTO(updatedUser));
 		} catch {
 			this.logger.error('Error updating user', {
