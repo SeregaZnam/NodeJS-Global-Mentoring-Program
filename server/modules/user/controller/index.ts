@@ -60,28 +60,23 @@ export class UserController extends BaseHttpController {
 
 	@httpPut('')
 	@executionTime()
-	async createUser(@request() req: Request) {
-		// try {
-		// const value = await validateBody(UserSchema, req.body);
-		// const user: Omit<User, 'id'> = {
-		// 	login: req.body.login,
-		// 	password: req.body.password,
-		// 	age: req.body.age
-		// };
-		// const createdUser = await this.userService.save(user);
-		// return this.json(UserMapper.toDTO(createdUser));
-		return true;
-		// } catch (err) {
-		// 	this.logger.error('Error create request', {
-		// 		method: 'createUser',
-		// 		params: {
-		// 			login: req.body.login,
-		// 			password: req.body.password,
-		// 			age: req.body.age
-		// 		}
-		// 	});
-		// 	throw new CreateError('Error create user');
-		// }
+	async createUser(@requestBody() body: any) {
+		try {
+			const { login, password, age } = await validateBody(UserSchema, body);
+			const user: Omit<User, 'id'> = { login, password, age };
+			const createdUser = await this.userService.save(user);
+			return this.json(UserMapper.toDTO(createdUser));
+		} catch (err) {
+			this.logger.error('Error create request', {
+				method: 'createUser',
+				params: {
+					login: body.login,
+					password: body.password,
+					age: body.age
+				}
+			});
+			throw new CreateError('Error create user');
+		}
 	}
 
 	@httpGet('/:id', passport.authenticate('bearer', { session: false }))

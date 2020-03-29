@@ -48,22 +48,18 @@ export class GroupController extends BaseHttpController {
 
 	@httpPut('', passport.authenticate('bearer', { session: false }))
 	@executionTime()
-	async createGroup(@request() req: Request) {
+	async createGroup(@requestBody() body: any) {
 		try {
-			const value = await validateBody(GroupSchema, req.body);
-			const group: GroupDTO = {
-				name: value.name,
-				permissions: value.permissions
-			};
+			const { name, permissions } = await validateBody(GroupSchema, body);
+			const createdGroup = await this.groupService.save({ name, permissions });
 
-			const createdGroup = await this.groupService.save(group);
 			return this.json(GroupMapper.toDTO(createdGroup));
 		} catch (err) {
 			this.logger.error('Error create request', {
 				method: 'createGroup',
 				params: {
-					name: req.body.name,
-					permissions: req.body.permissions
+					name: body.name,
+					permissions: body.permissions
 				}
 			});
 			throw new CreateError('Error create group');
@@ -95,12 +91,12 @@ export class GroupController extends BaseHttpController {
 		}
 
 		try {
-			const value = await validateBody(GroupSchema, body);
-
-			group.name = value.name;
-			group.permissions = value.permissions;
-
-			const updatedGroup = await this.groupService.update(group);
+			const { name, permissions } = await validateBody(GroupSchema, body);
+			const updatedGroup = await this.groupService.update({
+				...group,
+				name,
+				permissions
+			});
 			return this.json(GroupMapper.toDTO(updatedGroup));
 		} catch {
 			this.logger.error('Error updating group', {
