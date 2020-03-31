@@ -34,8 +34,8 @@ export class UserController extends BaseHttpController {
 	}
 
 	@httpPost('/login', passport.authenticate('auth', { session: false }))
-	async signInUser(@request() req: Request) {
-		const token = await this.authService.signToken(req.body);
+	async signInUser(@requestBody() body: any) {
+		const token = await this.authService.signToken(body);
 		return this.json(token);
 	}
 

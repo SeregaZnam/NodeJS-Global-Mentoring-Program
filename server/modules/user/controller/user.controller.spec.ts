@@ -5,18 +5,53 @@ import { TYPES } from '../../../constants/types';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import { Container, AsyncContainerModule, interfaces } from 'inversify';
 import bodyParser from 'body-parser';
+import passport from 'passport';
+
+const createRequestWithToken = (request: any, token: any) => {
+	const obj: any = {};
+	for (const key in request) {
+		if (Object.prototype.hasOwnProperty.call(request, key)) {
+			const method = request[key];
+			obj[key] = (path: any) => method(path).set('Authorization', token);
+		}
+	}
+
+	return obj;
+};
+
+const createAuthorizedRequest = async (request: any) => {
+	const res = await request
+		.post('/login')
+		.set('Accept', 'application/json')
+		.send({ login: 'admin', password: 'admin' });
+
+	const token = `Bearer ${res.body.token}`;
+	return createRequestWithToken(request, token);
+};
 
 describe('UserController', () => {
 	let container: Container;
 	let server: InversifyExpressServer;
 	let mockUserService: any;
 	let mockAuthService: any;
+	let request: any;
 
 	beforeEach(async () => {
 		container = new Container();
 		const bindings = new AsyncContainerModule(async (bind: interfaces.Bind) => {
 			await import('./index');
 		});
+
+		request = await createAuthorizedRequest('localhost:3000');
+
+		await request
+			.put('/user')
+			.send({
+				login: 'Test',
+				password: 'pass123wer',
+				age: 10
+			})
+			.expect(200);
 
 		mockUserService = {
 			getAutoSuggest: jest.fn().mockResolvedValue([
@@ -50,6 +85,11 @@ describe('UserController', () => {
 			delete: jest.fn().mockResolvedValue({})
 		};
 		mockAuthService = {
+			signToken: jest
+				.fn()
+				.mockResolvedValue(
+					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhmMTBhODFhLTk1NGItNGJlMi04ZmI2LWE2Zjk4Yjk5OWRlZSIsImxvZ2luIjoiVGVzMiIsInBhc3N3b3JkIjoiMTIzd2VyIn0.9MRa4vwA8dpoimSf6nnWJOUpJzsYsMp4R7tH_be7zfo'
+				),
 			verifyToken: jest.fn().mockResolvedValue({})
 		};
 
@@ -64,6 +104,7 @@ describe('UserController', () => {
 	it('should return users for method getAutoSuggestUsers', async () => {
 		await supertest(server.build())
 			.get('/user?limit=10&loginSubstring=""')
+			.set('Authorization', 'some token')
 			.expect('Content-Type', /json/)
 			.expect(200);
 	});
@@ -75,7 +116,7 @@ describe('UserController', () => {
 			password: 'pass123wer',
 			age: 10
 		};
-		await supertest(server.build())
+		await request
 			.put('/user')
 			.send(body)
 			.expect('Content-Type', /json/)
