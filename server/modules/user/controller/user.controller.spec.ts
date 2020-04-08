@@ -6,6 +6,7 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 import { Container, AsyncContainerModule, interfaces } from 'inversify';
 import bodyParser from 'body-parser';
 import passport from 'passport';
+import { debug } from 'winston';
 
 const createRequestWithToken = (request: any, token: any) => {
 	const obj: any = {};
@@ -19,14 +20,15 @@ const createRequestWithToken = (request: any, token: any) => {
 	return obj;
 };
 
-const createAuthorizedRequest = async (request: any) => {
-	const res = await request
+const createAuthorizedRequest = async (host: string) => {
+	const _request = supertest(host);
+	const res = await _request
 		.post('/login')
 		.set('Accept', 'application/json')
 		.send({ login: 'admin', password: 'admin' });
 
 	const token = `Bearer ${res.body.token}`;
-	return createRequestWithToken(request, token);
+	return createRequestWithToken(_request, token);
 };
 
 describe('UserController', () => {
@@ -35,23 +37,26 @@ describe('UserController', () => {
 	let mockUserService: any;
 	let mockAuthService: any;
 	let request: any;
+	
+
+	beforeAll(async () => {
+		request = await createAuthorizedRequest('localhost:3000');
+
+		// await request
+		// 	.put('/user')
+		// 	.send({
+		// 		login: 'Test',
+		// 		password: 'pass123wer',
+		// 		age: 10
+		// 	})
+		// 	.expect(200);
+	});
 
 	beforeEach(async () => {
 		container = new Container();
 		const bindings = new AsyncContainerModule(async (bind: interfaces.Bind) => {
 			await import('./index');
 		});
-
-		request = await createAuthorizedRequest('localhost:3000');
-
-		await request
-			.put('/user')
-			.send({
-				login: 'Test',
-				password: 'pass123wer',
-				age: 10
-			})
-			.expect(200);
 
 		mockUserService = {
 			getAutoSuggest: jest.fn().mockResolvedValue([
@@ -102,63 +107,66 @@ describe('UserController', () => {
 	});
 
 	it('should return users for method getAutoSuggestUsers', async () => {
-		await supertest(server.build())
+		const getResponse = await supertest(server.build())
 			.get('/user?limit=10&loginSubstring=""')
 			.set('Authorization', 'some token')
 			.expect('Content-Type', /json/)
 			.expect(200);
+
+		expect(Array.isArray(getResponse.body)).toBeTruthy();
+		expect(getResponse.body[0].login).toEqual('Sergey');
 	});
 
-	it('should create user for method createUser', async () => {
-		server.setConfig((app) => app.use(bodyParser.json()));
-		const body = {
-			login: 'Test',
-			password: 'pass123wer',
-			age: 10
-		};
-		await request
-			.put('/user')
-			.send(body)
-			.expect('Content-Type', /json/)
-			.expect(200, {
-				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
-				login: 'Test',
-				age: 10
-			});
-	});
+	// it('should create user for method createUser', async () => {
+	// 	server.setConfig((app) => app.use(bodyParser.json()));
+	// 	const body = {
+	// 		login: 'Test',
+	// 		password: 'pass123wer',
+	// 		age: 10
+	// 	};
+	// 	await request
+	// 		.put('/user')
+	// 		.send(body)
+	// 		.expect('Content-Type', /json/)
+	// 		.expect(200, {
+	// 			id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+	// 			login: 'Test',
+	// 			age: 10
+	// 		});
+	// });
 
-	it('should return user for method getUser', async () => {
-		await supertest(server.build())
-			.get('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
-			.expect('Content-Type', /json/)
-			.expect(200, {
-				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
-				login: 'Test',
-				age: 20
-			});
-	});
+	// it('should return user for method getUser', async () => {
+	// 	await supertest(server.build())
+	// 		.get('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
+	// 		.expect('Content-Type', /json/)
+	// 		.expect(200, {
+	// 			id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+	// 			login: 'Test',
+	// 			age: 20
+	// 		});
+	// });
 
-	it('should update user for method updateUser', async () => {
-		server.setConfig((app) => app.use(bodyParser.json()));
-		const body = {
-			login: 'Test',
-			password: 'pass123wer',
-			age: 10
-		};
-		await supertest(server.build())
-			.post('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
-			.send(body)
-			.expect('Content-Type', /json/)
-			.expect(200, {
-				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
-				login: 'Tes2',
-				age: 10
-			});
-	});
+	// it('should update user for method updateUser', async () => {
+	// 	server.setConfig((app) => app.use(bodyParser.json()));
+	// 	const body = {
+	// 		login: 'Test',
+	// 		password: 'pass123wer',
+	// 		age: 10
+	// 	};
+	// 	await supertest(server.build())
+	// 		.post('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
+	// 		.send(body)
+	// 		.expect('Content-Type', /json/)
+	// 		.expect(200, {
+	// 			id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+	// 			login: 'Tes2',
+	// 			age: 10
+	// 		});
+	// });
 
-	it('should delete user for method deleteUser', async () => {
-		await supertest(server.build())
-			.delete('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
-			.expect(200);
-	});
+	// it('should delete user for method deleteUser', async () => {
+	// 	await supertest(server.build())
+	// 		.delete('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
+	// 		.expect(200);
+	// });
 });
