@@ -1,14 +1,60 @@
 import 'reflect-metadata';
 import logger from '../../../logger';
-import supertest from 'supertest';
+import supertest, { SuperTest, Test } from 'supertest';
 import { TYPES } from '../../../constants/types';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import { Container, AsyncContainerModule, interfaces } from 'inversify';
-import bodyParser from 'body-parser';
-import passport from 'passport';
-import { debug } from 'winston';
+import { Application } from 'express';
+import { initializeStrategies } from '../../../auth';
+import { InvalidTokenError } from '../../../errors';
 
-const createRequestWithToken = (request: any, token: any) => {
+const AUTH_TOKEN =
+	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhmMTBhODFhLTk1NGItNGJlMi04ZmI2LWE2Zjk4Yjk5OWRlZSIsImxvZ2luIjoiVGVzMiIsInBhc3N3b3JkIjoiMTIzd2VyIn0.9MRa4vwA8dpoimSf6nnWJOUpJzsYsMp4R7tH_be7zfo';
+
+const TEST_USER = {
+	id: '9bc71fed-f320-437d-9e45-7517a6392751',
+	login: 'Sergey',
+	password: 'password',
+	age: 25,
+	createdAt: new Date(),
+	updatedAt: new Date()
+};
+
+const mockUserService = {
+	getAutoSuggest: jest.fn().mockResolvedValue([TEST_USER]),
+	save: jest.fn().mockResolvedValue({
+		id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+		login: 'Test',
+		password: 'pass123wer',
+		age: 10,
+		createdAt: new Date(),
+		updatedAt: new Date()
+	}),
+	getById: jest.fn().mockResolvedValue({
+		id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+		login: 'Test',
+		age: 20
+	}),
+	update: jest.fn().mockResolvedValue({
+		id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+		login: 'Tes2',
+		age: 10
+	}),
+	delete: jest.fn().mockResolvedValue({})
+};
+
+const mockAuthService = {
+	signToken: jest.fn().mockResolvedValue(AUTH_TOKEN),
+	// verifyToken: jest.fn().mockResolvedValue(TEST_USER)
+	verifyToken: jest.fn().mockImplementation((token: string) => {
+		if (token === AUTH_TOKEN) {
+			return TEST_USER;
+		}
+		throw new InvalidTokenError(token);
+	})
+};
+
+const createRequestWithToken = (request: any, token: string): Application => {
 	const obj: any = {};
 	for (const key in request) {
 		if (Object.prototype.hasOwnProperty.call(request, key)) {
@@ -17,40 +63,28 @@ const createRequestWithToken = (request: any, token: any) => {
 		}
 	}
 
-	return obj;
+	return obj as Application;
 };
 
-const createAuthorizedRequest = async (host: string) => {
-	const _request = supertest(host);
-	const res = await _request
-		.post('/login')
-		.set('Accept', 'application/json')
-		.send({ login: 'admin', password: 'admin' });
+const createAuthorizedRequest = async (app: Application): Promise<Application> => {
+	const _request = supertest(app);
+	// const res = await _request
+	// 	.post('/login')
+	// 	.set('Accept', 'application/json')
+	// 	.send({ login: 'anything', password: 'anything' });
 
-	const token = `Bearer ${res.body.token}`;
+	// const token = `Bearer ${res.body.token}`;
+	const token = `Bearer ${AUTH_TOKEN}`;
+
 	return createRequestWithToken(_request, token);
 };
 
 describe('UserController', () => {
 	let container: Container;
 	let server: InversifyExpressServer;
-	let mockUserService: any;
-	let mockAuthService: any;
-	let request: any;
-	
-
-	beforeAll(async () => {
-		request = await createAuthorizedRequest('localhost:3000');
-
-		// await request
-		// 	.put('/user')
-		// 	.send({
-		// 		login: 'Test',
-		// 		password: 'pass123wer',
-		// 		age: 10
-		// 	})
-		// 	.expect(200);
-	});
+	let request: Application;
+	let AuthService: any;
+	let UserService: any;
 
 	beforeEach(async () => {
 		container = new Container();
@@ -58,63 +92,45 @@ describe('UserController', () => {
 			await import('./index');
 		});
 
-		mockUserService = {
-			getAutoSuggest: jest.fn().mockResolvedValue([
-				{
-					id: '9bc71fed-f320-437d-9e45-7517a6392751',
-					login: 'Sergey',
-					password: 'password',
-					age: 25,
-					createdAt: new Date(),
-					updatedAt: new Date()
-				}
-			]),
-			save: jest.fn().mockResolvedValue({
-				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
-				login: 'Test',
-				password: 'pass123wer',
-				age: 10,
-				createdAt: new Date(),
-				updatedAt: new Date()
-			}),
-			getById: jest.fn().mockResolvedValue({
-				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
-				login: 'Test',
-				age: 20
-			}),
-			update: jest.fn().mockResolvedValue({
-				id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
-				login: 'Tes2',
-				age: 10
-			}),
-			delete: jest.fn().mockResolvedValue({})
-		};
-		mockAuthService = {
-			signToken: jest
-				.fn()
-				.mockResolvedValue(
-					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhmMTBhODFhLTk1NGItNGJlMi04ZmI2LWE2Zjk4Yjk5OWRlZSIsImxvZ2luIjoiVGVzMiIsInBhc3N3b3JkIjoiMTIzd2VyIn0.9MRa4vwA8dpoimSf6nnWJOUpJzsYsMp4R7tH_be7zfo'
-				),
-			verifyToken: jest.fn().mockResolvedValue({})
-		};
-
 		container.bind(TYPES.Logger).toConstantValue(logger);
 		container.bind(TYPES.AuthService).toConstantValue(mockAuthService);
 		container.bind(TYPES.UserService).toConstantValue(mockUserService);
 
 		server = new InversifyExpressServer(container);
 		await container.loadAsync(bindings);
+
+		AuthService = container.get<typeof mockAuthService>(TYPES.AuthService);
+		UserService = container.get<typeof mockUserService>(TYPES.UserService);
+		await initializeStrategies(UserService, AuthService);
+
+		request = await createAuthorizedRequest(server.build());
 	});
 
-	it('should return users for method getAutoSuggestUsers', async () => {
-		const getResponse = await supertest(server.build())
-			.get('/user?limit=10&loginSubstring=""')
-			.set('Authorization', 'some token')
-			.expect('Content-Type', /json/)
-			.expect(200);
+	describe('getAutoSuggestUsers', () => {
+		it('should return users for method getAutoSuggestUsers', async () => {
+			const getResponse = await request
+				.get('/user?limit=10')
+				.expect('Content-Type', /json/)
+				.expect(200);
 
-		expect(Array.isArray(getResponse.body)).toBeTruthy();
-		expect(getResponse.body[0].login).toEqual('Sergey');
+			expect(UserService.getAutoSuggest).toBeCalled();
+			expect(Array.isArray(getResponse.body)).toBeTruthy();
+			expect(getResponse.body[0].login).toEqual('Sergey');
+		});
+	});
+
+	describe('getUser', () => {
+		it('should return user by id', async () => {
+			const userId = '8f10a81a-954b-4be2-8fb6-a6f98b999dee';
+			const getUserResponse = await request
+				.get(`/user/${userId}`)
+				.expect('Content-Type', /json/)
+				.expect(200);
+
+			expect(AuthService.verifyToken).toBeCalled();
+			expect(UserService.getById).toBeCalledWith(userId);
+			expect(getUserResponse.body.login).toContain('Test');
+		});
 	});
 
 	// it('should create user for method createUser', async () => {
