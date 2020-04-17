@@ -112,3 +112,9 @@
 {"method":"updateUser","params":{"id":"8f10a81a-954b-4be2-8fb6-a6f98b999dee"},"level":"error","message":"Error updating user"}
 {"method":"updateUser","params":{"id":"8f10a81a-954b-4be2-8fb6-a6f98b999dee"},"level":"error","message":"Error updating user"}
 {"method":"updateUser","params":{"id":"8f10a81a-954b-4be2-8fb6-a6f98b999dee"},"level":"error","message":"Error updating user"}
+{"err":{},"method":"getAllGroups","level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAllGroups","level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAllGroups","level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAllGroups","level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAllGroups","level":"error","message":"Error get users with suggest"}
+{"err":{},"method":"getAllGroups","level":"error","message":"Error get users with suggest"}

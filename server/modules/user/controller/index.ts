@@ -1,13 +1,11 @@
 import passport from 'passport';
 import { UserService } from '../service';
-import { Request } from 'express';
 import { User } from '../models/user';
 import { UserMapper } from '../utils/mappers/UserMapper';
 import {
 	httpGet,
 	httpPut,
 	httpPost,
-	request,
 	httpDelete,
 	controller,
 	BaseHttpController,

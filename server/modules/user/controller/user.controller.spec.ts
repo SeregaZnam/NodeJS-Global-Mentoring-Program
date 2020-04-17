@@ -96,6 +96,7 @@ describe('UserController', () => {
 
 		server = new InversifyExpressServer(container);
 		await container.loadAsync(bindings);
+
 		server.setConfig((app) => {
 			app.use(bodyParser.json());
 			app.use(bodyParser.urlencoded({ extended: true }));

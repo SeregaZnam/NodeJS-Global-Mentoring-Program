@@ -21,17 +21,19 @@ import { Logger } from '../../../logger';
 import { GroupSchema } from '../schemas/groupSchemas';
 import { validateBody } from '../../../utils/validate';
 import { GroupMapper } from '../utils/mappers/GroupMapper';
+import { AuthService } from '../../../service/auth';
 
 @controller('/group')
 export class GroupController extends BaseHttpController {
 	constructor(
 		@inject(TYPES.Logger) private logger: Logger,
-		@inject(TYPES.GroupService) private groupService: GroupService
+		@inject(TYPES.GroupService) private groupService: GroupService,
+		@inject(TYPES.AuthService) private authService: AuthService
 	) {
 		super();
 	}
 
-	@httpGet('')
+	@httpGet('', passport.authenticate('bearer', { session: false }))
 	@executionTime()
 	async getAllGroups() {
 		try {
