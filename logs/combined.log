@@ -1710,3 +1710,13 @@
 {"message":"method deleteGroup worked in 0.194201ms","level":"info"}
 {"message":"method updateUser worked in 0.3774ms","level":"info"}
 {"message":"method deleteUser worked in 0.113801ms","level":"info"}
+{"message":"method getAutoSuggestUsers worked in 0.4715ms","level":"info"}
+{"message":"method getAllGroups worked in 0.5648ms","level":"info"}
+{"message":"method getUser worked in 0.160401ms","level":"info"}
+{"message":"method createGroup worked in 2.1229ms","level":"info"}
+{"message":"method createUser worked in 2.2155ms","level":"info"}
+{"message":"method getGroup worked in 0.116699ms","level":"info"}
+{"message":"method updateUser worked in 0.3156ms","level":"info"}
+{"message":"method updateGroup worked in 0.347599ms","level":"info"}
+{"message":"method deleteUser worked in 0.2194ms","level":"info"}
+{"message":"method deleteGroup worked in 0.174999ms","level":"info"}
