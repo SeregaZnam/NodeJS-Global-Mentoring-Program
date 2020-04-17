@@ -39,7 +39,7 @@ export class UserController extends BaseHttpController {
 		return this.json(token);
 	}
 
-	@httpGet('')
+	@httpGet('', passport.authenticate('bearer', { session: false }))
 	@executionTime()
 	async getAutoSuggestUsers(
 		@requestParam('loginSubstring') loginSubstring: string,
@@ -58,7 +58,7 @@ export class UserController extends BaseHttpController {
 		}
 	}
 
-	@httpPut('')
+	@httpPut('', passport.authenticate('bearer', { session: false }))
 	@executionTime()
 	async createUser(@requestBody() body: any) {
 		try {
@@ -100,7 +100,6 @@ export class UserController extends BaseHttpController {
 	@executionTime()
 	async updateUser(@requestBody() body: any, @requestParam('id') id: string) {
 		const user = await this.userService.getById(id);
-
 		if (!user) {
 			throw new NotFoundError('Error getting user');
 		}

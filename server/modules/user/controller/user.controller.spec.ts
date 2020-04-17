@@ -7,6 +7,7 @@ import { Container, AsyncContainerModule, interfaces } from 'inversify';
 import { Application } from 'express';
 import { initializeStrategies } from '../../../auth';
 import { InvalidTokenError } from '../../../errors';
+import bodyParser from 'body-parser';
 
 const AUTH_TOKEN =
 	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhmMTBhODFhLTk1NGItNGJlMi04ZmI2LWE2Zjk4Yjk5OWRlZSIsImxvZ2luIjoiVGVzMiIsInBhc3N3b3JkIjoiMTIzd2VyIn0.9MRa4vwA8dpoimSf6nnWJOUpJzsYsMp4R7tH_be7zfo';
@@ -59,7 +60,10 @@ const createRequestWithToken = (request: any, token: string): Application => {
 	for (const key in request) {
 		if (Object.prototype.hasOwnProperty.call(request, key)) {
 			const method = request[key];
-			obj[key] = (path: any) => method(path).set('Authorization', token);
+			obj[key] = (path: any) =>
+				method(path)
+					.set('Authorization', token)
+					.set('Accept', 'application/json');
 		}
 	}
 
@@ -68,12 +72,6 @@ const createRequestWithToken = (request: any, token: string): Application => {
 
 const createAuthorizedRequest = async (app: Application): Promise<Application> => {
 	const _request = supertest(app);
-	// const res = await _request
-	// 	.post('/login')
-	// 	.set('Accept', 'application/json')
-	// 	.send({ login: 'anything', password: 'anything' });
-
-	// const token = `Bearer ${res.body.token}`;
 	const token = `Bearer ${AUTH_TOKEN}`;
 
 	return createRequestWithToken(_request, token);
@@ -98,6 +96,10 @@ describe('UserController', () => {
 
 		server = new InversifyExpressServer(container);
 		await container.loadAsync(bindings);
+		server.setConfig((app) => {
+			app.use(bodyParser.json());
+			app.use(bodyParser.urlencoded({ extended: true }));
+		});
 
 		AuthService = container.get<typeof mockAuthService>(TYPES.AuthService);
 		UserService = container.get<typeof mockUserService>(TYPES.UserService);
@@ -133,56 +135,47 @@ describe('UserController', () => {
 		});
 	});
 
-	// it('should create user for method createUser', async () => {
-	// 	server.setConfig((app) => app.use(bodyParser.json()));
-	// 	const body = {
-	// 		login: 'Test',
-	// 		password: 'pass123wer',
-	// 		age: 10
-	// 	};
-	// 	await request
-	// 		.put('/user')
-	// 		.send(body)
-	// 		.expect('Content-Type', /json/)
-	// 		.expect(200, {
-	// 			id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
-	// 			login: 'Test',
-	// 			age: 10
-	// 		});
-	// });
+	describe('createUser', () => {
+		it('should create user for method createUser', async () => {
+			const body = {
+				login: 'Test',
+				password: 'pass123wer',
+				age: 10
+			};
+			await (request as any)
+				.put('/user')
+				.send(body)
+				.expect(200, {
+					id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+					login: 'Test',
+					age: 10
+				});
+		});
+	});
 
-	// it('should return user for method getUser', async () => {
-	// 	await supertest(server.build())
-	// 		.get('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
-	// 		.expect('Content-Type', /json/)
-	// 		.expect(200, {
-	// 			id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
-	// 			login: 'Test',
-	// 			age: 20
-	// 		});
-	// });
+	describe('updateUser', () => {
+		it('should update user for method updateUser', async () => {
+			const body = {
+				login: 'Test',
+				password: 'pass123wer',
+				age: 10
+			};
+			await (request as any)
+				.post('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
+				.send(body)
+				.set('Accept', 'application/json')
+				.set('Content-Type', 'application/json')
+				.expect(200, {
+					id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
+					login: 'Tes2',
+					age: 10
+				});
+		});
+	});
 
-	// it('should update user for method updateUser', async () => {
-	// 	server.setConfig((app) => app.use(bodyParser.json()));
-	// 	const body = {
-	// 		login: 'Test',
-	// 		password: 'pass123wer',
-	// 		age: 10
-	// 	};
-	// 	await supertest(server.build())
-	// 		.post('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
-	// 		.send(body)
-	// 		.expect('Content-Type', /json/)
-	// 		.expect(200, {
-	// 			id: '8f10a81a-954b-4be2-8fb6-a6f98b999dee',
-	// 			login: 'Tes2',
-	// 			age: 10
-	// 		});
-	// });
-
-	// it('should delete user for method deleteUser', async () => {
-	// 	await supertest(server.build())
-	// 		.delete('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee')
-	// 		.expect(200);
-	// });
+	describe('deleteUser', () => {
+		it('should delete user for method deleteUser', async () => {
+			await (request as any).delete('/user/8f10a81a-954b-4be2-8fb6-a6f98b999dee').expect(200);
+		});
+	});
 });
